@@ -7,12 +7,12 @@ class PhotoHandler(
 ) : UpdateHandler() {
 
     override suspend fun handleUpdate(update: Update): Boolean {
-        if (update.message?.photo == null) {
-            return false
+        update.message?.photo?.let {
+            logger.info("Handle photo")
+            action.invoke(update)
+            return true
         }
 
-        logger.info("Handle photo")
-        action.invoke(update)
-        return true
+        return false
     }
 }

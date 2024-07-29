@@ -16,6 +16,7 @@ internal class RegistrationImp : HandlerRegistration {
     override suspend fun processUpdate(update: Update) {
 
         if (update.message == null &&
+            update.inlineQuery == null &&
             update.editedMessage == null &&
             update.channelPost == null &&
             update.editedChannelPost == null &&

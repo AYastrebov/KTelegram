@@ -26,6 +26,7 @@ interface Bot {
     suspend fun sendVideo(params: SendVideoRequest): Response<Message>
     suspend fun sendVideoNote(params: SendVideoNoteRequest): Response<Message>
     suspend fun editMessageReplyMarkup(params: EditMessageReplyMarkupRequest): Response<Message>
+    suspend fun answerInlineQuery(params: InlineQueryRequest): Response<Boolean>
 
     suspend fun setWebhook(url: String): Response<Boolean>
     suspend fun getWebhookInfo(): Response<WebhookInfo>
@@ -110,6 +111,11 @@ class BotImp(override val token: String) : Bot {
 
     override suspend fun editMessageReplyMarkup(params: EditMessageReplyMarkupRequest): Response<Message> =
         client.get("editMessageReplyMarkup") {
+            setBody(params)
+        }.body()
+
+    override suspend fun answerInlineQuery(params: InlineQueryRequest): Response<Boolean> =
+        client.get("answerInlineQuery") {
             setBody(params)
         }.body()
 }

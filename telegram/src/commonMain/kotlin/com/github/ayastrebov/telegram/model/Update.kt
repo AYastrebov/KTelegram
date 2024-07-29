@@ -24,4 +24,7 @@ data class Update(
 
     @SerialName("callback_query")
     val callbackQuery: CallbackQuery? = null,
+
+    @SerialName("inline_query")
+    val inlineQuery: InlineQuery? = null,
 )
