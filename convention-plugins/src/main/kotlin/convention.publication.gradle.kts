@@ -3,8 +3,6 @@
 
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
-import org.gradle.kotlin.dsl.`maven-publish`
-import org.gradle.kotlin.dsl.signing
 import java.util.*
 
 plugins {
@@ -15,9 +13,9 @@ plugins {
 // Stub secrets to let the project sync and build without the publication values set up
 ext["signing.keyId"] = null
 ext["signing.password"] = null
-ext["signing.secretKeyRingFile"] = null
-ext["ossrhUsername"] = null
-ext["ossrhPassword"] = null
+ext["signing.secretKey"] = null
+ext["gpr.user"] = null
+ext["gpr.token"] = null
 
 // Grabbing secrets from local.properties file or from environment variables, which could be used on CI
 val secretPropsFile = project.rootProject.file("local.properties")
@@ -30,9 +28,9 @@ if (secretPropsFile.exists()) {
 } else {
     ext["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
     ext["signing.password"] = System.getenv("SIGNING_PASSWORD")
-    ext["signing.secretKeyRingFile"] = System.getenv("SIGNING_SECRET_KEY_RING_FILE")
-    ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
-    ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
+    ext["signing.secretKey"] = System.getenv("SIGNING_SECRET_KEY")
+    ext["gpr.user"] = System.getenv("GPR_USER")
+    ext["gpr.token"] = System.getenv("GPR_TOKEN")
 }
 
 val javadocJar by tasks.registering(Jar::class) {
@@ -41,15 +39,23 @@ val javadocJar by tasks.registering(Jar::class) {
 
 fun getExtraString(name: String) = ext[name]?.toString()
 
+// Decode Base64-encoded GPG key
+fun getDecodedString(name: String): String? {
+    val encoded = getExtraString(name)
+    return encoded?.let {
+        String(Base64.getDecoder().decode(it))
+    }
+}
+
 publishing {
     // Configure maven central repository
     repositories {
         maven {
-            name = "sonatype"
-            setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ayastrebov/ktelegram")
             credentials {
-                username = getExtraString("ossrhUsername")
-                password = getExtraString("ossrhPassword")
+                username = getExtraString("gpr.user")
+                password = getExtraString("gpr.token")
             }
         }
     }
@@ -62,8 +68,8 @@ publishing {
         // Provide artifacts information requited by Maven Central
         pom {
             name.set("KTelegram")
-            description.set("Kotlin Multiplatform library")
-            //url.set("") todo
+            description.set("Kotlin telegram bot API client")
+            url.set("https://github.com/AYastrebov/KTelegram")
 
             licenses {
                 license {
@@ -73,13 +79,15 @@ publishing {
             }
             developers {
                 developer {
-                    //id.set("") todo
-                    //name.set("") todo
-                    //email.set("") todo
+                    id.set("ayastrebov")
+                    name.set("Andrey Yastrebov")
+                    email.set("ayastrebov@gmail.com")
                 }
             }
             scm {
-                //url.set("") todo
+                connection.set("scm:git:git://github.com/yourusername/your-repo.git")
+                developerConnection.set("scm:git:ssh://github.com/ayastrebov/ktelegram.git")
+                url.set("https://github.com/ayastrebov/ktelegram")
             }
         }
     }
@@ -87,7 +95,12 @@ publishing {
 
 // Signing artifacts. Signing.* extra properties values will be used
 signing {
-    if (getExtraString("signing.keyId") != null) {
+    val keyId = getExtraString("signing.keyId")
+    val password = getExtraString("signing.password")
+    val secretKey = getDecodedString("signing.secretKey")
+
+    if (keyId != null && secretKey != null) {
+        useInMemoryPgpKeys(keyId, secretKey, password)
         sign(publishing.publications)
     }
 }

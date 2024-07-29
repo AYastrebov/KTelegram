@@ -1,0 +1,47 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Publish KTelegram
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - release/*
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'corretto'
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Publish to GitHub Packages
+      run: ./gradlew publishAllPublicationsToGitHubPackagesRepository --stacktrace --info
+      env:
+        GPR_USER: ${{ secrets.GITHUB_ACTOR }}
+        GPR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+        SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+        SIGNING_SECRET_KEY: ${{ secrets.SIGNING_SECRET_KEY }}
