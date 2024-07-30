@@ -34,11 +34,11 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
-    - name: Build with Gradle
-      run: ./gradlew build
-
     - name: Publish to GitHub Packages
-      run: ./gradlew publishAllPublicationsToGitHubPackagesRepository --stacktrace --info
+      run: >
+        ./gradlew
+        publishAllPublicationsToGitHubPackagesRepository
+        -PKtelegramDeployVersion=${{ github.ref_name }}
       env:
         GPR_USER: ${{ secrets.GITHUB_ACTOR }}
         GPR_TOKEN: ${{ secrets.GITHUB_TOKEN }}

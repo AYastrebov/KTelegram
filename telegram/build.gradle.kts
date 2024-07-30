@@ -9,7 +9,8 @@ plugins {
 }
 
 group = "com.github.ayastrebov"
-version = "0.1.1"
+val deployVersion = findProperty("KtelegramDeployVersion") as String?
+version = deployVersion?.removePrefix("v") ?: "0.0.1-SNAPSHOT"
 
 kotlin {
     jvm {
