@@ -37,7 +37,7 @@ jobs:
     - name: Publish to GitHub Packages
       run: >
         ./gradlew
-        publishAllPublicationsToGitHubPackagesRepository
+        publishTelegramPublicationToGitHubPackagesRepository
         -PKtelegramDeployVersion=${{ github.ref_name }}
       env:
         GPR_USER: ${{ secrets.GITHUB_ACTOR }}

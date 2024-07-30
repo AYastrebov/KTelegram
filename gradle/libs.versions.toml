@@ -4,7 +4,7 @@ dokka = "1.9.20"
 kotlin = "2.0.0"
 kotlinx-datetime = "0.6.0"
 ktor = "3.0.0-beta-2"
-slf4j = "2.0.6"
+slf4j = "2.0.12"
 
 [libraries]
 
@@ -19,5 +19,5 @@ slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 [plugins]
 
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
