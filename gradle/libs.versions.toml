@@ -3,7 +3,7 @@
 dokka = "2.0.0-Beta"
 kotlin = "2.0.21"
 kotlinx-datetime = "0.6.1"
-ktor = "3.0.0"
+ktor = "3.0.1"
 slf4j = "2.0.12"
 
 [libraries]
