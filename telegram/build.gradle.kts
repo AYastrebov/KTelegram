@@ -1,5 +1,4 @@
 plugins {
-    alias(libs.plugins.dokka)
     alias(libs.plugins.jvm)
     alias(libs.plugins.kotlinx.serialization)
     id("convention.publication")
