@@ -12,5 +12,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "KTelegram"
 
-include(":telegram")
 includeBuild("convention-plugins")
