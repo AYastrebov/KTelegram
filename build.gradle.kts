@@ -1,5 +1,3 @@
-import org.gradle.internal.extensions.stdlib.toDefaultLowerCase
-
 plugins {
     alias(libs.plugins.jvm)
     alias(libs.plugins.dokka)
@@ -8,7 +6,7 @@ plugins {
     id("convention.publication")
 }
 
-val projectId = "com.github.ayastrebov"
+val projectId = "com.github.ayastrebov.ktelegram"
 
 group = projectId
 val deployVersion = findProperty("KtelegramDeployVersion") as String?
@@ -42,6 +40,7 @@ publishing {
             groupId = projectId
             artifactId = project.name
             version = project.version.toString()
+            description = project.description
 
             from(components["java"])
             artifact(sourcesJar)

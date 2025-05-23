@@ -60,7 +60,7 @@ publishing {
     publications.withType<MavenPublication> {
         // Provide artifacts information requited by Maven Central
         pom {
-            name.set("KTelegram")
+            name.set("ktelegram")
             description.set("Kotlin telegram bot API client")
             url.set("https://github.com/AYastrebov/KTelegram")
 

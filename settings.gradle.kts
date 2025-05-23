@@ -24,6 +24,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KTelegram"
+rootProject.name = "telegram-client"
 
 includeBuild("convention-plugins")
