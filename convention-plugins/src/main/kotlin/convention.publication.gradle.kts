@@ -33,10 +33,6 @@ if (secretPropsFile.exists()) {
     ext["gpr.token"] = System.getenv("GPR_TOKEN")
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("javadoc")
-}
-
 fun getExtraString(name: String) = ext[name]?.toString()
 
 // Decode Base64-encoded GPG key
@@ -62,9 +58,6 @@ publishing {
 
     // Configure all publications
     publications.withType<MavenPublication> {
-        // Stub javadoc.jar artifact
-        artifact(javadocJar.get())
-
         // Provide artifacts information requited by Maven Central
         pom {
             name.set("KTelegram")

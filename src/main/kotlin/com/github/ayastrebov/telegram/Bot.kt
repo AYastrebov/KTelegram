@@ -4,7 +4,6 @@ import com.github.ayastrebov.telegram.model.*
 import com.github.ayastrebov.telegram.request.*
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
@@ -40,7 +39,7 @@ class BotImp(override val token: String) : Bot {
 
     override fun getLogger(): org.slf4j.Logger = logger
 
-    private val client = HttpClient(CIO) {
+    val configuration:  HttpClientConfig<*>.() -> Unit = {
         install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.INFO
@@ -63,6 +62,8 @@ class BotImp(override val token: String) : Bot {
             }
         }
     }
+
+    val client = HttpClient(configuration)
 
     override suspend fun getUpdates(params: UpdateRequest): Response<List<Update>> =
         client.get("getUpdates") {
