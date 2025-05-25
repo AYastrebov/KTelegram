@@ -24,6 +24,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "telegram-client"
+rootProject.name = "telegram-api-client"
 
 includeBuild("convention-plugins")

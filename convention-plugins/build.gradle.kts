@@ -5,3 +5,7 @@ plugins {
 repositories {
     gradlePluginPortal() // To use 'maven-publish' and 'signing' plugins in our own plugin
 }
+
+dependencies {
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.0.0")
+}

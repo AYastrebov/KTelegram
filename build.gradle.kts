@@ -6,12 +6,10 @@ plugins {
     id("convention.publication")
 }
 
-val projectId = "com.github.ayastrebov.ktelegram"
-
-group = projectId
 val deployVersion = findProperty("KtelegramDeployVersion") as String?
 version = deployVersion?.removePrefix("v") ?: "0.0.1-SNAPSHOT"
-description = "Telegram API client for Kotlin"
+group = "com.github.ayastrebov.telegram"
+description = "Kotlin telegram bot API client"
 
 kotlin {
     jvmToolchain(17)
@@ -25,26 +23,9 @@ dependencies {
     implementation(libs.kotlinx.datetime)
 }
 
-val sourcesJar = tasks.register<Jar>("sourcesJar") {
-    archiveClassifier.set("sources")
-    from(project.sourceSets.main.map { it.allSource })
-}
-val dokkaJavadocJar = tasks.register<Jar>("dokkaJavadocJar") {
-    archiveClassifier.set("javadoc")
-    from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("telegram") {
-            groupId = projectId
-            artifactId = project.name
-            version = project.version.toString()
-            description = project.description
-
-            from(components["java"])
-            artifact(sourcesJar)
-            artifact(dokkaJavadocJar)
-        }
-    }
+publishing.publications.create<MavenPublication>("telegram") {
+    groupId = project.group.toString()
+    artifactId = project.name
+    version = project.version.toString()
+    description = project.description
 }
