@@ -1,6 +1,5 @@
 package com.github.ayastrebov.telegram.model
 
-import com.github.ayastrebov.telegram.utils.LocalDateTimeUnixSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -15,7 +14,6 @@ data class Message(
     @SerialName("sender_chat")
     val senderChat: Chat? = null,
 
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
     val date: LocalDateTime,
 
     val chat: Chat,
@@ -36,7 +34,6 @@ data class Message(
     val forwardSenderName: String? = null,
 
     @SerialName("forward_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
     val forwardDate: LocalDateTime? = null,
 
     @SerialName("is_automatic_forward")
@@ -49,7 +46,6 @@ data class Message(
     val viaBot: User? = null,
 
     @SerialName("edit_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
     val editDate: LocalDateTime? = null,
 
     @SerialName("has_protected_content")

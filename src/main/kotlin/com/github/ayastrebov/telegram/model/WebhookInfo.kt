@@ -1,6 +1,5 @@
 package com.github.ayastrebov.telegram.model
 
-import com.github.ayastrebov.telegram.utils.LocalDateTimeUnixSerializer
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,14 +15,12 @@ data class WebhookInfo(
     val pendingUpdateCount: Long,
 
     @SerialName("last_error_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
     val lastErrorDate: LocalDateTime? = null,
 
     @SerialName("last_error_message")
     val lastErrorMessage: String? = null,
 
     @SerialName("last_synchronization_error_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
     val lastSynchronizationErrorDate: LocalDateTime? = null,
 
     @SerialName("max_connections")
