@@ -21,6 +21,9 @@ dependencies {
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.kotlinx.datetime)
+
+    /// Tests
+    testImplementation(kotlin("test"))
 }
 
 publishing.publications.create<MavenPublication>("telegram") {
