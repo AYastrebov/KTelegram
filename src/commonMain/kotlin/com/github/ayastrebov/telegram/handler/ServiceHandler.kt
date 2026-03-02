@@ -4,6 +4,13 @@ import com.github.ayastrebov.telegram.model.Update
 import com.github.ayastrebov.telegram.model.commandEntity
 import com.github.ayastrebov.telegram.model.isGroup
 
+/**
+ * Handler for bot commands in group chats that are NOT in the restricted list.
+ *
+ * Useful for applying service-level logic (e.g., auto-responses) to groups the bot monitors.
+ *
+ * @param restrictedChatIds Chat IDs where this handler should NOT trigger.
+ */
 class ServiceHandler(
     private val restrictedChatIds: List<String>
 ) : UpdateHandler() {

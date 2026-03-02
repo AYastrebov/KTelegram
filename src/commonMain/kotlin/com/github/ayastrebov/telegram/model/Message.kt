@@ -1,10 +1,16 @@
 package com.github.ayastrebov.telegram.model
 
-import com.github.ayastrebov.telegram.utils.LocalDateTimeUnixSerializer
-import kotlinx.datetime.LocalDateTime
+import com.github.ayastrebov.telegram.utils.InstantUnixSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.ExperimentalTime
 
+/**
+ * Represents a message in Telegram.
+ *
+ * This is the central type in the Telegram Bot API — most updates contain a message.
+ */
+@OptIn(ExperimentalTime::class)
 @Serializable
 data class Message(
     @SerialName("message_id")
@@ -15,8 +21,8 @@ data class Message(
     @SerialName("sender_chat")
     val senderChat: Chat? = null,
 
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
-    val date: LocalDateTime,
+    @Serializable(with = InstantUnixSerializer::class)
+    val date: kotlin.time.Instant,
 
     val chat: Chat,
 
@@ -36,8 +42,8 @@ data class Message(
     val forwardSenderName: String? = null,
 
     @SerialName("forward_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
-    val forwardDate: LocalDateTime? = null,
+    @Serializable(with = InstantUnixSerializer::class)
+    val forwardDate: kotlin.time.Instant? = null,
 
     @SerialName("is_automatic_forward")
     val isAutomaticForward: Boolean? = null,
@@ -49,8 +55,8 @@ data class Message(
     val viaBot: User? = null,
 
     @SerialName("edit_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
-    val editDate: LocalDateTime? = null,
+    @Serializable(with = InstantUnixSerializer::class)
+    val editDate: kotlin.time.Instant? = null,
 
     @SerialName("has_protected_content")
     val hasProtectedContent: Boolean? = null,
@@ -69,6 +75,10 @@ data class Message(
     val sticker: Sticker? = null,
     val voice: Voice? = null,
     val video: Video? = null,
+    val animation: Animation? = null,
+    val location: Location? = null,
+    val contact: Contact? = null,
+    val dice: Dice? = null,
 
     @SerialName("video_note")
     val videoNote: VideoNote? = null,
@@ -86,13 +96,18 @@ data class Message(
 
     @SerialName("pinned_message")
     val pinnedMessage: Message? = null,
+
+    @SerialName("reply_markup")
+    val replyMarkup: InlineKeyboardMarkup? = null,
 )
 
+/** The first bot_command entity in this message, if any. */
 val Message.commandEntity
     get() = entities?.firstOrNull {
         it.type == "bot_command"
     }
 
+/** The command text (without leading `/`), if this message contains a bot command. */
 val Message.commandText
     get() =
         commandEntity?.let {

@@ -2,6 +2,11 @@ package com.github.ayastrebov.telegram
 
 import com.github.ayastrebov.telegram.model.Update
 
+/**
+ * A handler that can process a Telegram [Update].
+ *
+ * Returns `true` if the update was handled (stops the chain), `false` to pass to the next handler.
+ */
 interface Handler {
     suspend fun handleUpdate(update: Update): Boolean
 }
@@ -14,19 +19,6 @@ internal class RegistrationImp : HandlerRegistration {
     }
 
     override suspend fun processUpdate(update: Update) {
-
-        if (update.message == null &&
-            update.inlineQuery == null &&
-            update.editedMessage == null &&
-            update.channelPost == null &&
-            update.editedChannelPost == null &&
-            update.callbackQuery == null &&
-            update.chosenInlineResult == null
-        ) {
-            // Stop bot, do nothing
-            return
-        }
-
         for (handler in handlers) {
             if (handler.handleUpdate(update)) {
                 return
@@ -35,6 +27,11 @@ internal class RegistrationImp : HandlerRegistration {
     }
 }
 
+/**
+ * Registry for [Handler] instances with chain-of-responsibility processing.
+ *
+ * Handlers are evaluated in registration order; the first handler returning `true` stops the chain.
+ */
 interface HandlerRegistration {
     companion object {
         fun create(): HandlerRegistration = RegistrationImp()
@@ -44,10 +41,21 @@ interface HandlerRegistration {
     suspend fun processUpdate(update: Update)
 }
 
+/**
+ * Container that manages a chain of [Handler]s and dispatches updates through them.
+ *
+ * ```kotlin
+ * val container = HandlersContainer()
+ * container.registerHandlers {
+ *     register(commandHandler)
+ *     register(messageHandler)
+ * }
+ * container.processUpdate(update)
+ * ```
+ */
 class HandlersContainer {
     private val handlers = HandlerRegistration.create()
 
     fun registerHandlers(registration: HandlerRegistration.() -> Unit) = registration.invoke(handlers)
     suspend fun processUpdate(update: Update) = handlers.processUpdate(update)
 }
-

@@ -5,8 +5,11 @@ import com.github.ayastrebov.telegram.model.KeyboardMarkup
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Parameters for [answerInlineQuery][com.github.ayastrebov.telegram.Bot.answerInlineQuery].
+ */
 @Serializable
-data class InlineQueryRequest(
+data class AnswerInlineQueryRequest(
     @SerialName("inline_query_id")
     val inlineQueryId: String,
 
@@ -22,6 +25,28 @@ data class InlineQueryRequest(
     val nextOffset: String? = null,
 )
 
+/**
+ * Parameters for [answerCallbackQuery][com.github.ayastrebov.telegram.Bot.answerCallbackQuery].
+ */
+@Serializable
+data class AnswerCallbackQueryRequest(
+    @SerialName("callback_query_id")
+    val callbackQueryId: String,
+
+    val text: String? = null,
+
+    @SerialName("show_alert")
+    val showAlert: Boolean? = null,
+
+    val url: String? = null,
+
+    @SerialName("cache_time")
+    val cacheTime: Int? = null,
+)
+
+/**
+ * Base type for inline query results. Each subclass maps to a specific result type.
+ */
 @Serializable
 sealed class InlineQueryResult {
     abstract val id: String
@@ -29,6 +54,9 @@ sealed class InlineQueryResult {
     @SerialName("input_message_content")
     abstract val inputMessageContent: InputMessageContent
 
+    /**
+     * Represents an article result for an inline query.
+     */
     @Serializable
     @SerialName("article")
     class InlineQueryResultArticle(
@@ -53,6 +81,5 @@ sealed class InlineQueryResult {
 
         @SerialName("thumbnail_height")
         val thumbnailHeight: Int? = null,
-
-        ) : InlineQueryResult()
+    ) : InlineQueryResult()
 }

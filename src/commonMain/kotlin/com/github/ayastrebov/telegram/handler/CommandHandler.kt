@@ -26,6 +26,13 @@ private class CommandRegistrationImp : CommandRegistration {
     }
 }
 
+/**
+ * Handler for slash commands (e.g., `/start`, `/help`).
+ *
+ * Strips the `@botName` suffix and matches commands case-insensitively.
+ *
+ * @param botName The bot's username, used to strip `@botName` suffixes from commands.
+ */
 class CommandHandler(private val botName: String) : UpdateHandler() {
 
     private val commands = CommandRegistration.create()

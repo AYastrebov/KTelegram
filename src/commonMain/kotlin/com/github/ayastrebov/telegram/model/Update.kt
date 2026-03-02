@@ -3,6 +3,11 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents an incoming update from Telegram.
+ *
+ * At most one of the optional fields can be present in any given update.
+ */
 @Serializable
 data class Update(
     @SerialName("update_id")
@@ -27,4 +32,10 @@ data class Update(
 
     @SerialName("inline_query")
     val inlineQuery: InlineQuery? = null,
+
+    @SerialName("my_chat_member")
+    val myChatMember: ChatMemberUpdated? = null,
+
+    @SerialName("chat_member")
+    val chatMember: ChatMemberUpdated? = null,
 )

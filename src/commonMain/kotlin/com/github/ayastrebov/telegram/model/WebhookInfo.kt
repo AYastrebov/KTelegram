@@ -1,10 +1,14 @@
 package com.github.ayastrebov.telegram.model
 
-import com.github.ayastrebov.telegram.utils.LocalDateTimeUnixSerializer
-import kotlinx.datetime.LocalDateTime
+import com.github.ayastrebov.telegram.utils.InstantUnixSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.ExperimentalTime
 
+/**
+ * Contains information about the current status of a webhook.
+ */
+@OptIn(ExperimentalTime::class)
 @Serializable
 data class WebhookInfo(
     val url: String,
@@ -16,15 +20,15 @@ data class WebhookInfo(
     val pendingUpdateCount: Long,
 
     @SerialName("last_error_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
-    val lastErrorDate: LocalDateTime? = null,
+    @Serializable(with = InstantUnixSerializer::class)
+    val lastErrorDate: kotlin.time.Instant? = null,
 
     @SerialName("last_error_message")
     val lastErrorMessage: String? = null,
 
     @SerialName("last_synchronization_error_date")
-    @Serializable(with = LocalDateTimeUnixSerializer::class)
-    val lastSynchronizationErrorDate: LocalDateTime? = null,
+    @Serializable(with = InstantUnixSerializer::class)
+    val lastSynchronizationErrorDate: kotlin.time.Instant? = null,
 
     @SerialName("max_connections")
     val maxConnections: Long? = null,

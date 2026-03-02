@@ -3,6 +3,9 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents a sticker.
+ */
 @Serializable
 data class Sticker(
     @SerialName("file_id")
@@ -21,7 +24,7 @@ data class Sticker(
     val isVideo: Boolean = false,
 
     val emoji: String? = null,
-    val thumb: PhotoSize? = null,
+    val thumbnail: PhotoSize? = null,
 
     @SerialName("set_name")
     val setName: String? = null,

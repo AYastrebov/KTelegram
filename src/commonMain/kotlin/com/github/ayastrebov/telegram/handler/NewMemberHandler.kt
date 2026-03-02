@@ -2,6 +2,9 @@ package com.github.ayastrebov.telegram.handler
 
 import com.github.ayastrebov.telegram.model.Update
 
+/**
+ * Handler that triggers when a new (non-bot) member joins a chat.
+ */
 class NewMemberHandler : UpdateHandler() {
 
     private val actions = MessageRegistration.create()

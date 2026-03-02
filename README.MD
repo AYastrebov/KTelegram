@@ -1,14 +1,14 @@
 # KTelegram
 
-**KTelegram** is a Kotlin library for interacting with the Telegram Bot API. It provides a straightforward and idiomatic way to build Telegram bots using Kotlin.
+A **Kotlin Multiplatform** library providing a type-safe, coroutine-based client for the [Telegram Bot API](https://core.telegram.org/bots/api).
+
+## Supported Platforms
+
+JVM, iOS (arm64/x64/simulatorArm64), macOS (arm64/x64), Linux x64, Windows (mingwX64), JS (browser/Node.js), WasmJS (browser/Node.js).
 
 ## Installation
 
-To use **KTelegram** in your Kotlin project, follow these steps:
-
 ### 1. Add the GitHub Packages Repository
-
-Add the following Maven repository to your `build.gradle.kts`:
 
 ```kotlin
 repositories {
@@ -24,10 +24,166 @@ repositories {
 
 ### 2. Add the Dependency
 
-Add the following dependency to your `build.gradle.kts` file:
-
 ```kotlin
 dependencies {
-    implementation("com.github.ayastrebov:telegram:0.1.0")
+    implementation("com.github.ayastrebov.telegram:telegram-api-client:<version>")
 }
 ```
+
+## Quick Start
+
+```kotlin
+val bot = TelegramBot("YOUR_BOT_TOKEN")
+
+// Get bot info
+val me = bot.getMe().getOrThrow()
+println("Bot: ${me.firstName} (@${me.username})")
+
+// Send a message
+bot.sendMessage(SendMessageRequest(
+    chatId = "123456",
+    text = "Hello from KTelegram!"
+)).getOrThrow()
+
+// Don't forget to close when done
+bot.close()
+```
+
+## Polling Example
+
+```kotlin
+val bot = TelegramBot("YOUR_BOT_TOKEN")
+var offset = 0L
+
+while (true) {
+    val updates = bot.getUpdates(GetUpdatesRequest(offset = offset, timeout = 30)).getOrThrow()
+    for (update in updates) {
+        offset = update.updateId + 1
+        // Process each update
+        container.processUpdate(update)
+    }
+}
+```
+
+## Handler System
+
+KTelegram provides a chain-of-responsibility handler system. Register handlers in order; the first one that returns `true` stops the chain.
+
+### Commands
+
+```kotlin
+val commandHandler = CommandHandler(botName = "my_bot")
+commandHandler.registerCommands {
+    register("start") { update ->
+        bot.sendMessage(SendMessageRequest(
+            chatId = update.message!!.chat.id.toString(),
+            text = "Welcome!"
+        ))
+    }
+    register("help") { update ->
+        bot.sendMessage(SendMessageRequest(
+            chatId = update.message!!.chat.id.toString(),
+            text = "Available commands: /start, /help"
+        ))
+    }
+}
+```
+
+### Messages
+
+```kotlin
+val messageHandler = MessageHandler()
+messageHandler.registerActions {
+    register(
+        filter = { it.contains("hello", ignoreCase = true) },
+        action = { update ->
+            bot.sendMessage(SendMessageRequest(
+                chatId = update.message!!.chat.id.toString(),
+                text = "Hello to you too!"
+            ))
+            true
+        }
+    )
+}
+```
+
+### Callback Queries (Inline Keyboards)
+
+```kotlin
+val callbackHandler = CallbackQueryHandler()
+callbackHandler.registerCallbacks {
+    onData("approve") { query ->
+        bot.answerCallbackQuery(AnswerCallbackQueryRequest(
+            callbackQueryId = query.id,
+            text = "Approved!"
+        ))
+    }
+    onPrefix("page_") { query ->
+        // Handle pagination: query.data is "page_1", "page_2", etc.
+    }
+}
+```
+
+### Wiring It Together
+
+```kotlin
+val container = HandlersContainer()
+container.registerHandlers {
+    register(commandHandler)
+    register(callbackHandler)
+    register(messageHandler) // catch-all last
+}
+```
+
+## Error Handling
+
+All API methods return `Response<T>`. Use the extensions:
+
+```kotlin
+// Throw on error
+val user = bot.getMe().getOrThrow()
+
+// Null on error
+val user = bot.getMe().getOrNull()
+
+// Check manually
+val response = bot.sendMessage(request)
+if (response.isError) {
+    println("Error ${response.errorCode}: ${response.description}")
+}
+```
+
+## Testing with MockEngine
+
+The bot accepts an optional Ktor `HttpClientEngine` for testing:
+
+```kotlin
+val mockEngine = MockEngine { request ->
+    respond(
+        content = """{"ok": true, "result": {"id": 1, "is_bot": true, "first_name": "Test"}}""",
+        headers = headersOf(HttpHeaders.ContentType, "application/json"),
+    )
+}
+
+val bot = TelegramBot("test-token", engine = mockEngine)
+val me = bot.getMe().getOrThrow()
+assertEquals("Test", me.firstName)
+```
+
+## API Coverage
+
+| Category | Methods |
+|----------|---------|
+| Updates | `getUpdates`, `getMe` |
+| Messages | `sendMessage`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `forwardMessage`, `copyMessage`, `sendChatAction` |
+| Editing | `editMessageText`, `editMessageCaption`, `editMessageReplyMarkup`, `deleteMessage` |
+| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage` |
+| Callbacks | `answerCallbackQuery` |
+| Inline | `answerInlineQuery` |
+| Files | `getFile` |
+| Webhooks | `setWebhook`, `getWebhookInfo`, `deleteWebhook` |
+| Commands | `setMyCommands`, `getMyCommands`, `deleteMyCommands` |
+
+## License
+
+MIT

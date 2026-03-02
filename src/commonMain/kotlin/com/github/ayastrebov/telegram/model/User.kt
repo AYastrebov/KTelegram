@@ -3,6 +3,9 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents a Telegram user or bot.
+ */
 @Serializable
 data class User(
     val id: Long,
@@ -20,5 +23,7 @@ data class User(
 
     @SerialName("language_code")
     val languageCode: String? = null,
-)
 
+    @SerialName("is_premium")
+    val isPremium: Boolean? = null,
+)

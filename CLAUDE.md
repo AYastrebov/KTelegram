@@ -23,22 +23,25 @@ JDK 17 is required.
 
 **Core components** (`src/commonMain/kotlin/com/github/ayastrebov/telegram/`):
 
-- **`Bot` interface / `BotImp`** — Telegram Bot API client. Wraps Ktor HTTP client with JSON content negotiation and Ktor logging plugin. All API methods are `suspend` functions. Base URL is `https://api.telegram.org/bot{token}/`.
+- **`Bot` interface / `BotImp`** — Telegram Bot API client (~36 methods). Wraps Ktor HTTP client with JSON content negotiation and logging. All API methods use `suspend fun` + `client.post()`. Accepts optional `HttpClientEngine` for testing. Factory function: `TelegramBot(token, engine?, configure?)`. Call `close()` to release resources.
 
 - **`HandlersContainer` / `HandlerRegistration`** — Chain-of-responsibility pattern for processing updates. Handlers are evaluated in registration order; first handler returning `true` stops the chain. Configure via DSL: `container.registerHandlers { register(handler) }`.
 
-- **`handler/`** — Specialized handlers extending `UpdateHandler`: `CommandHandler` (slash commands), `MessageHandler` (text), `PhotoHandler`, `InlineQueryHandler`, `ServiceHandler`, `NewMemberHandler`. Each has its own DSL for registering actions.
+- **`handler/`** — Specialized handlers extending `UpdateHandler`: `CommandHandler` (slash commands), `MessageHandler` (text filters), `PhotoHandler`, `InlineQueryHandler`, `CallbackQueryHandler` (inline keyboards with `onData`/`onPrefix`), `EditedMessageHandler`, `ServiceHandler`, `NewMemberHandler`.
 
-- **`model/`** — `@Serializable` data classes mapping to Telegram API types. All use `@SerialName` for JSON field mapping. `Response<T>` wraps all API responses.
+- **`model/`** — `@Serializable` data classes mapping to Telegram API types. All use `@SerialName` for JSON field mapping. `Response<T>` wraps all API responses with `getOrThrow()`, `getOrNull()`, `isError` extensions. `TelegramApiException` for error handling.
 
-- **`request/`** — Request DTOs for API calls (`SendMessageRequest`, `SendPhotoRequest`, etc.).
+- **`request/`** — Request DTOs grouped by category: `MessageRequests.kt`, `EditRequests.kt`, `ChatRequests.kt`, `InlineRequests.kt`, `UpdateRequests.kt`, `CommandRequests.kt`.
 
-- **`utils/LocalDateTimeUnixSerializer`** — Custom serializer converting Unix timestamps to `LocalDateTime` using `Europe/Moscow` timezone.
+- **`utils/InstantUnixSerializer`** — Custom serializer converting Unix timestamps to `kotlin.time.Instant` (stdlib, no extra dependencies).
 
 ## Key Conventions
 
 - JSON config: `ignoreUnknownKeys = true`, `isLenient = true`, `prettyPrint = true`
+- All HTTP calls use POST (Telegram API accepts POST with JSON body for everything)
 - IDs (message, chat, user) are `Long` type
+- Timestamps use `kotlin.time.Instant` with `InstantUnixSerializer`
 - Version is derived from git tags (`v*` prefix stripped) or defaults to `0.0.1-SNAPSHOT`
 - Publishing uses vanniktech/gradle-maven-publish-plugin with GPG signing
 - Publishing credentials come from env vars (`GPR_USER`, `GPR_TOKEN`)
+- Tests use ktor-client-mock `MockEngine` for HTTP mocking and kotlinx-coroutines-test `runTest`

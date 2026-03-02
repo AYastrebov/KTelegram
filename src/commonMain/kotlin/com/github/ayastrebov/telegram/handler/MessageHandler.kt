@@ -25,6 +25,11 @@ private class MessageRegistrationImp : MessageRegistration {
     }
 }
 
+/**
+ * Handler for text messages with customizable filters.
+ *
+ * Each registered action has a filter predicate; the first matching action that returns `true` stops the chain.
+ */
 class MessageHandler : UpdateHandler() {
 
     private val actions = MessageRegistration.create()
