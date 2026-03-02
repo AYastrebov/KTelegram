@@ -172,17 +172,20 @@ assertEquals("Test", me.firstName)
 
 ## API Coverage
 
+KTelegram intentionally provides **partial** Telegram Bot API coverage focused on the most commonly used bot workflows.
+
 | Category | Methods |
 |----------|---------|
 | Updates | `getUpdates`, `getMe` |
-| Messages | `sendMessage`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `forwardMessage`, `copyMessage`, `sendChatAction` |
+| Messages | `sendMessage`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
 | Editing | `editMessageText`, `editMessageCaption`, `editMessageReplyMarkup`, `deleteMessage` |
-| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage` |
+| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage` |
 | Callbacks | `answerCallbackQuery` |
 | Inline | `answerInlineQuery` |
 | Files | `getFile` |
 | Webhooks | `setWebhook`, `getWebhookInfo`, `deleteWebhook` |
 | Commands | `setMyCommands`, `getMyCommands`, `deleteMyCommands` |
+| Bot Session | `logOut`, `closeBot` |
 
 ## License
 

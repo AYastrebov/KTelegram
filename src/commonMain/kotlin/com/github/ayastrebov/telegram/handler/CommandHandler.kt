@@ -3,26 +3,16 @@ package com.github.ayastrebov.telegram.handler
 import com.github.ayastrebov.telegram.model.Update
 import com.github.ayastrebov.telegram.model.commandText
 
-interface CommandRegistration {
-    data class Descriptor(
-        val command: String,
-        val action: suspend (update: Update) -> Unit
-    )
+data class CommandDescriptor(
+    val command: String,
+    val action: suspend (update: Update) -> Unit
+)
 
-    fun register(command: String, action: suspend (update: Update) -> Unit)
-
-    val descriptors: List<Descriptor>
-
-    companion object {
-        fun create(): CommandRegistration = CommandRegistrationImp()
-    }
-}
-
-private class CommandRegistrationImp : CommandRegistration {
-    override val descriptors = mutableListOf<CommandRegistration.Descriptor>()
-
-    override fun register(command: String, action: suspend (update: Update) -> Unit) {
-        descriptors.add(CommandRegistration.Descriptor(command, action))
+class CommandRegistration internal constructor(
+    private val target: MutableList<CommandDescriptor>,
+) {
+    fun register(command: String, action: suspend (update: Update) -> Unit) {
+        target.add(CommandDescriptor(command, action))
     }
 }
 
@@ -35,17 +25,24 @@ private class CommandRegistrationImp : CommandRegistration {
  */
 class CommandHandler(private val botName: String) : UpdateHandler() {
 
-    private val commands = CommandRegistration.create()
+    private val commands = mutableListOf<CommandDescriptor>()
 
-    fun registerCommands(registration: CommandRegistration.() -> Unit) = registration.invoke(commands)
+    fun registerCommands(registration: CommandRegistration.() -> Unit) {
+        registration.invoke(CommandRegistration(commands))
+    }
 
     override suspend fun handleUpdate(update: Update): Boolean {
-        update.message?.commandText?.let {
-            for (descriptor in commands.descriptors) {
-                if (it.removeSuffix("@$botName").contentEquals(descriptor.command, true)) {
-                    descriptor.action.invoke(update)
-                    return true
-                }
+        val rawCommand = update.message?.commandText?.toString() ?: return false
+        val commandBotName = rawCommand.substringAfter('@', missingDelimiterValue = "")
+        if (commandBotName.isNotEmpty() && commandBotName.equals(botName, ignoreCase = true).not()) {
+            return false
+        }
+
+        val command = rawCommand.substringBefore('@')
+        for (descriptor in commands) {
+            if (command.contentEquals(descriptor.command, true)) {
+                descriptor.action.invoke(update)
+                return true
             }
         }
 

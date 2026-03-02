@@ -4,6 +4,24 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
+ * Parameters for [getChat][com.github.ayastrebov.telegram.Bot.getChat].
+ */
+@Serializable
+data class GetChatRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+)
+
+/**
+ * Parameters for [getChatMemberCount][com.github.ayastrebov.telegram.Bot.getChatMemberCount].
+ */
+@Serializable
+data class GetChatMemberCountRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+)
+
+/**
  * Parameters for [getChatMember][com.github.ayastrebov.telegram.Bot.getChatMember].
  */
 @Serializable
@@ -13,6 +31,15 @@ data class GetChatMemberRequest(
 
     @SerialName("user_id")
     val userId: Long,
+)
+
+/**
+ * Parameters for [getChatAdministrators][com.github.ayastrebov.telegram.Bot.getChatAdministrators].
+ */
+@Serializable
+data class GetChatAdministratorsRequest(
+    @SerialName("chat_id")
+    val chatId: String,
 )
 
 /**
@@ -46,6 +73,15 @@ data class UnbanChatMemberRequest(
 
     @SerialName("only_if_banned")
     val onlyIfBanned: Boolean? = null,
+)
+
+/**
+ * Parameters for [leaveChat][com.github.ayastrebov.telegram.Bot.leaveChat].
+ */
+@Serializable
+data class LeaveChatRequest(
+    @SerialName("chat_id")
+    val chatId: String,
 )
 
 /**

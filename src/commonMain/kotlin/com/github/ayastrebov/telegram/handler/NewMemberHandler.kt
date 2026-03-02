@@ -7,20 +7,19 @@ import com.github.ayastrebov.telegram.model.Update
  */
 class NewMemberHandler : UpdateHandler() {
 
-    private val actions = MessageRegistration.create()
+    private val actions = mutableListOf<MessageDescriptor>()
 
-    fun registerActions(registration: MessageRegistration.() -> Unit) = registration.invoke(actions)
+    fun registerActions(registration: MessageRegistration.() -> Unit) {
+        registration.invoke(MessageRegistration(actions))
+    }
 
     override suspend fun handleUpdate(update: Update): Boolean {
-        update.message?.newChatMembers?.firstOrNull()?.let {
-            if (it.isBot) {
-                return false
-            }
+        val hasNonBotMembers = update.message?.newChatMembers?.any { member -> member.isBot.not() } ?: return false
+        if (hasNonBotMembers.not()) return false
 
-            for (descriptor in actions.descriptors) {
-                if (descriptor.action.invoke(update)) {
-                    return true
-                }
+        for (descriptor in actions) {
+            if (descriptor.action.invoke(update)) {
+                return true
             }
         }
 

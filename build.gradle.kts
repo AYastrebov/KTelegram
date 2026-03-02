@@ -78,8 +78,6 @@ mavenPublishing {
         }
     }
 
-    publishToMavenCentral()
-    signAllPublications()
 }
 
 publishing {

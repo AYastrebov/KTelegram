@@ -11,7 +11,7 @@ sealed class InputMessageContent {
         val messageText: String,
 
         @SerialName("parse_mode")
-        val parseMode: String? = null,
+        val parseMode: ParseMode? = null,
 
         @SerialName("entities")
         val entities: List<MessageEntity>? = null,

@@ -2,6 +2,7 @@ package com.github.ayastrebov.telegram.request
 
 import com.github.ayastrebov.telegram.model.InlineKeyboardMarkup
 import com.github.ayastrebov.telegram.model.MessageEntity
+import com.github.ayastrebov.telegram.model.ParseMode
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,7 +23,7 @@ data class EditMessageTextRequest(
     val text: String,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     val entities: List<MessageEntity>? = null,
 
@@ -50,7 +51,7 @@ data class EditMessageCaptionRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,

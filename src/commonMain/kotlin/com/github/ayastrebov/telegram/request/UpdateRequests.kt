@@ -35,3 +35,12 @@ data class SetWebhookRequest(
     @SerialName("secret_token")
     val secretToken: String? = null,
 )
+
+/**
+ * Parameters for [deleteWebhook][com.github.ayastrebov.telegram.Bot.deleteWebhook].
+ */
+@Serializable
+data class DeleteWebhookRequest(
+    @SerialName("drop_pending_updates")
+    val dropPendingUpdates: Boolean = false,
+)

@@ -1,6 +1,8 @@
 package com.github.ayastrebov.telegram.request
 
 import com.github.ayastrebov.telegram.model.KeyboardMarkup
+import com.github.ayastrebov.telegram.model.ParseMode
+import com.github.ayastrebov.telegram.model.ChatAction
 import com.github.ayastrebov.telegram.model.MessageEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,7 +18,7 @@ data class SendMessageRequest(
     val text: String,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     val entities: List<MessageEntity>? = null,
 
@@ -48,7 +50,7 @@ data class SendPhotoRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
@@ -81,7 +83,7 @@ data class SendAudioRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
@@ -118,7 +120,7 @@ data class SendDocumentRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
@@ -151,7 +153,7 @@ data class SendVideoRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
@@ -188,7 +190,7 @@ data class SendAnimationRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
@@ -225,7 +227,7 @@ data class SendVoiceRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
@@ -441,7 +443,7 @@ data class CopyMessageRequest(
     val caption: String? = null,
 
     @SerialName("parse_mode")
-    val parseMode: String? = null,
+    val parseMode: ParseMode? = null,
 
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
@@ -463,6 +465,72 @@ data class CopyMessageRequest(
 )
 
 /**
+ * Parameters for [forwardMessages][com.github.ayastrebov.telegram.Bot.forwardMessages].
+ */
+@Serializable
+data class ForwardMessagesRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("from_chat_id")
+    val fromChatId: String,
+
+    @SerialName("message_ids")
+    val messageIds: List<Long>,
+
+    @SerialName("disable_notification")
+    val disableNotification: Boolean? = null,
+
+    @SerialName("protect_content")
+    val protectContent: Boolean? = null,
+)
+
+/**
+ * Parameters for [copyMessages][com.github.ayastrebov.telegram.Bot.copyMessages].
+ */
+@Serializable
+data class CopyMessagesRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("from_chat_id")
+    val fromChatId: String,
+
+    @SerialName("message_ids")
+    val messageIds: List<Long>,
+
+    @SerialName("disable_notification")
+    val disableNotification: Boolean? = null,
+
+    @SerialName("protect_content")
+    val protectContent: Boolean? = null,
+
+    @SerialName("remove_caption")
+    val removeCaption: Boolean? = null,
+)
+
+/**
+ * Parameters for [deleteMessages][com.github.ayastrebov.telegram.Bot.deleteMessages].
+ */
+@Serializable
+data class DeleteMessagesRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("message_ids")
+    val messageIds: List<Long>,
+)
+
+/**
+ * Parameters for [getFile][com.github.ayastrebov.telegram.Bot.getFile].
+ */
+@Serializable
+data class GetFileRequest(
+    @SerialName("file_id")
+    val fileId: String,
+)
+
+/**
  * Parameters for [sendChatAction][com.github.ayastrebov.telegram.Bot.sendChatAction].
  *
  * @property action Type of action: "typing", "upload_photo", "record_video", "upload_video",
@@ -474,5 +542,5 @@ data class SendChatActionRequest(
     @SerialName("chat_id")
     val chatId: String,
 
-    val action: String,
+    val action: ChatAction,
 )
