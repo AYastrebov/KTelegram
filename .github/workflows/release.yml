@@ -37,9 +37,9 @@ jobs:
       env:
         GPR_USER: ${{ github.actor }}
         GPR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
-        SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-        SIGNING_SECRET_KEY: ${{ secrets.SIGNING_SECRET_KEY }}
+        ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
+        ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
+        ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_SECRET_KEY }}
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
