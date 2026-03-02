@@ -15,7 +15,7 @@ class ResponseTest {
         val response = Response<String>(ok = false, errorCode = 404, description = "Not Found")
         val ex = assertFailsWith<TelegramApiException> { response.getOrThrow() }
         assertEquals(404, ex.errorCode)
-        assertTrue(ex.message!!.contains("Not Found"))
+        assertTrue(assertNotNull(ex.message).contains("Not Found"))
     }
 
     @Test

@@ -45,8 +45,8 @@ class SerializationTest {
         """.trimIndent()
 
         val update = json.decodeFromString<Update>(input)
-        assertNotNull(update.callbackQuery)
-        assertEquals("button_clicked", update.callbackQuery!!.data)
+        val callbackQuery = assertNotNull(update.callbackQuery)
+        assertEquals("button_clicked", callbackQuery.data)
     }
 
     @Test
@@ -64,8 +64,9 @@ class SerializationTest {
         """.trimIndent()
 
         val message = json.decodeFromString<Message>(input)
-        assertEquals(2, message.photo?.size)
-        assertEquals("photo2", message.photo!![1].fileId)
+        val photos = assertNotNull(message.photo)
+        assertEquals(2, photos.size)
+        assertEquals("photo2", photos[1].fileId)
     }
 
     @Test
@@ -114,10 +115,10 @@ class SerializationTest {
         """.trimIndent()
 
         val message = json.decodeFromString<Message>(input)
-        assertNotNull(message.location)
-        assertEquals(37.6176, message.location!!.longitude, 0.0001)
-        assertNotNull(message.dice)
-        assertEquals(3, message.dice!!.value)
+        val location = assertNotNull(message.location)
+        assertEquals(37.6176, location.longitude, 0.0001)
+        val dice = assertNotNull(message.dice)
+        assertEquals(3, dice.value)
     }
 
     @Test
@@ -155,8 +156,8 @@ class SerializationTest {
         """.trimIndent()
 
         val update = json.decodeFromString<Update>(input)
-        assertNotNull(update.myChatMember)
-        assertEquals("kicked", update.myChatMember!!.newChatMember.status)
+        val myChatMember = assertNotNull(update.myChatMember)
+        assertEquals("kicked", myChatMember.newChatMember.status)
     }
 
     @Test
@@ -186,7 +187,7 @@ class SerializationTest {
         val sticker = json.decodeFromString<Sticker>(input)
         assertEquals("stk1", sticker.fileId)
         assertTrue(sticker.isVideo)
-        assertNotNull(sticker.thumbnail)
-        assertEquals(128, sticker.thumbnail!!.width)
+        val thumbnail = assertNotNull(sticker.thumbnail)
+        assertEquals(128, thumbnail.width)
     }
 }
