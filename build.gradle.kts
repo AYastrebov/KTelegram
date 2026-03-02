@@ -1,34 +1,95 @@
-plugins {
-    alias(libs.plugins.jvm)
-    alias(libs.plugins.dokka)
-    alias(libs.plugins.caupain)
-    alias(libs.plugins.kotlinx.serialization)
-    id("convention.publication")
-}
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
-val deployVersion = findProperty("KtelegramDeployVersion") as String?
-version = deployVersion?.removePrefix("v") ?: "0.0.1-SNAPSHOT"
-group = "com.github.ayastrebov.telegram"
-description = "Kotlin telegram bot API client"
+plugins {
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.vanniktech.publish)
+}
 
 kotlin {
-    jvmToolchain(17)
+    jvm()
+
+    iosArm64()
+    iosX64()
+    iosSimulatorArm64()
+
+    macosArm64()
+    macosX64()
+
+    linuxX64()
+    mingwX64()
+
+    js {
+        browser()
+        nodejs()
+    }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        nodejs()
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.kotlinx.datetime)
+        }
+
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
+    }
 }
 
-dependencies {
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.client.logging)
-    implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.kotlinx.datetime)
+mavenPublishing {
+    coordinates(
+        groupId = "com.github.ayastrebov.telegram",
+        artifactId = "telegram-api-client",
+        version = (findProperty("KtelegramDeployVersion") as String?)?.removePrefix("v") ?: "0.0.1-SNAPSHOT"
+    )
 
-    /// Tests
-    testImplementation(kotlin("test"))
+    pom {
+        name.set("telegram")
+        description.set("Kotlin telegram bot API client")
+        url.set("https://github.com/ayastrebov/ktelegram")
+
+        licenses {
+            license {
+                name.set("MIT")
+                url.set("https://opensource.org/licenses/MIT")
+            }
+        }
+        developers {
+            developer {
+                id.set("ayastrebov")
+                name.set("Andrey Yastrebov")
+                email.set("ayastrebov@gmail.com")
+            }
+        }
+        scm {
+            connection.set("scm:git:git://github.com/ayastrebov/ktelegram.git")
+            developerConnection.set("scm:git:ssh://github.com/ayastrebov/ktelegram.git")
+            url.set("https://github.com/ayastrebov/ktelegram")
+        }
+    }
+
+    publishToMavenCentral()
+    signAllPublications()
 }
 
-publishing.publications.create<MavenPublication>("telegram") {
-    groupId = project.group.toString()
-    artifactId = project.name
-    version = project.version.toString()
-    description = project.description
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ayastrebov/ktelegram")
+            credentials {
+                username = System.getenv("GPR_USER")
+                password = System.getenv("GPR_TOKEN")
+            }
+        }
+    }
 }

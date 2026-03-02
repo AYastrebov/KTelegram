@@ -37,7 +37,6 @@ class MessageHandler : UpdateHandler() {
         for (descriptor in actions.descriptors) {
             if (descriptor.filter(messageText)) {
                 if (descriptor.action.invoke(update)) {
-                    logger.info("Handle message: $messageText")
                     return true
                 }
             }

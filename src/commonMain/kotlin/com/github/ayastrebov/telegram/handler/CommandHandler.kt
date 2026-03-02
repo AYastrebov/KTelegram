@@ -36,7 +36,6 @@ class CommandHandler(private val botName: String) : UpdateHandler() {
         update.message?.commandText?.let {
             for (descriptor in commands.descriptors) {
                 if (it.removeSuffix("@$botName").contentEquals(descriptor.command, true)) {
-                    logger.info("Handle command: $it")
                     descriptor.action.invoke(update)
                     return true
                 }

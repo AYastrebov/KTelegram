@@ -1,10 +1,9 @@
 [versions]
 
-kotlin = "2.2.20"
+kotlin = "2.3.10"
 kotlinx-datetime = "0.7.1"
-ktor = "3.3.0"
-caupain = "1.4.1"
-dokka = "2.0.0"
+ktor = "3.4.0"
+vanniktech-publish = "0.36.0"
 
 [libraries]
 
@@ -16,7 +15,6 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 
 [plugins]
 
-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-caupain = { id = "com.deezer.caupain", version.ref = "caupain" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka"  }
+vanniktech-publish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-publish" }

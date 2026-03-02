@@ -8,7 +8,6 @@ class InlineQueryHandler(
 ) : UpdateHandler() {
     override suspend fun handleUpdate(update: Update): Boolean {
         update.inlineQuery?.let { inlineQuery ->
-            logger.info("Handle inline query: $inlineQuery")
             action.invoke(inlineQuery)
             return true
         }

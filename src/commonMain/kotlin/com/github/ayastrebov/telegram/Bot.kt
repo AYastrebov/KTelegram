@@ -11,11 +11,9 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
-import org.slf4j.LoggerFactory
 
 interface Bot {
     val token: String
-    fun getLogger(): org.slf4j.Logger
 
     suspend fun getUpdates(params: UpdateRequest = UpdateRequest()): Response<List<Update>>
     suspend fun getMe(): Response<User>
@@ -33,13 +31,8 @@ interface Bot {
 }
 
 class BotImp(override val token: String) : Bot {
-    companion object {
-        val logger: org.slf4j.Logger = LoggerFactory.getLogger(BotImp::class.java)
-    }
 
-    override fun getLogger(): org.slf4j.Logger = logger
-
-    val configuration:  HttpClientConfig<*>.() -> Unit = {
+    val configuration: HttpClientConfig<*>.() -> Unit = {
         install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.INFO
