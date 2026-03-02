@@ -78,6 +78,7 @@ mavenPublishing {
         }
     }
 
+    signAllPublications()
 }
 
 publishing {
