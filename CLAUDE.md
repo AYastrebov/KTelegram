@@ -45,3 +45,11 @@ JDK 17 is required.
 - Publishing uses vanniktech/gradle-maven-publish-plugin with GPG signing
 - Publishing credentials come from env vars (`GPR_USER`, `GPR_TOKEN`)
 - Tests use ktor-client-mock `MockEngine` for HTTP mocking and kotlinx-coroutines-test `runTest`
+- GPG signing is enabled via `signAllPublications()` in the `mavenPublishing` block
+
+## CI/CD
+
+**Workflows** (`.github/workflows/`):
+
+- **`ci.yml`** — Runs `./gradlew build` on pushes to `master` and PRs targeting `master`. Uses JDK 17 (corretto) with Gradle caching.
+- **`release.yml`** — Triggered by `v*` tag pushes. Builds, publishes to GitHub Packages (`publishAllPublicationsToGitHubPackagesRepository`), and creates a GitHub Release with auto-generated notes. Version is passed via `-PKtelegramDeployVersion` from the tag name. Requires `SIGNING_KEY_ID`, `SIGNING_PASSWORD`, `SIGNING_SECRET_KEY` secrets for GPG signing.

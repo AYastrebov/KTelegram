@@ -187,6 +187,28 @@ KTelegram intentionally provides **partial** Telegram Bot API coverage focused o
 | Commands | `setMyCommands`, `getMyCommands`, `deleteMyCommands` |
 | Bot Session | `logOut`, `closeBot` |
 
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository and create a branch from `master`.
+2. Make sure JDK 17 is installed.
+3. Run the full build before submitting:
+   ```bash
+   ./gradlew build
+   ```
+4. Follow existing code conventions:
+   - Use `@Serializable` data classes with `@SerialName` for new Telegram API types in `model/`.
+   - Group request DTOs by category in `request/`.
+   - All Bot API methods should be `suspend fun` using `client.post()`.
+   - Use `Long` for IDs and `kotlin.time.Instant` (with `InstantUnixSerializer`) for timestamps.
+5. Add tests using `MockEngine` and `runTest` in `src/commonTest/kotlin/`.
+6. Open a pull request against `master`. CI will run automatically.
+
+### Releasing
+
+Releases are automated. Push a `v*` tag (e.g., `v1.2.0`) to trigger the release workflow, which publishes to GitHub Packages and creates a GitHub Release.
+
 ## License
 
 MIT
