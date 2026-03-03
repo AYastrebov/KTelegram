@@ -17,4 +17,10 @@ data class MessageEntity(
 
     @SerialName("custom_emoji_id")
     val customEmojiId: String? = null,
+
+    @SerialName("unix_time")
+    val unixTime: Int? = null,
+
+    @SerialName("date_time_format")
+    val dateTimeFormat: String? = null,
 )

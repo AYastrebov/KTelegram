@@ -89,4 +89,12 @@ data class ChatMember(
 
     @SerialName("until_date")
     val untilDate: Long? = null,
+
+    val tag: String? = null,
+
+    @SerialName("can_edit_tag")
+    val canEditTag: Boolean? = null,
+
+    @SerialName("can_manage_tags")
+    val canManageTags: Boolean? = null,
 )

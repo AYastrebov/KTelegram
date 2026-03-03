@@ -67,6 +67,9 @@ data class Message(
     @SerialName("author_signature")
     val authorSignature: String? = null,
 
+    @SerialName("sender_tag")
+    val senderTag: String? = null,
+
     val text: String? = null,
     val entities: List<MessageEntity>? = null,
     val audio: Audio? = null,

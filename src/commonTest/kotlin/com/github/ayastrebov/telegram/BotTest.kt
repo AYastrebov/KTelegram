@@ -218,6 +218,20 @@ class BotTest {
     }
 
     @Test
+    fun setChatMemberTagUsesPost() = runTestBot(
+        response = OK_TRUE_JSON,
+        assertRequest = {
+            assertEquals(HttpMethod.Post, it.method)
+            assertTrue(it.url.encodedPath.endsWith("setChatMemberTag"))
+        },
+    ) { bot ->
+        val result = bot.setChatMemberTag(
+            SetChatMemberTagRequest(chatId = "123", userId = 456, tag = "VIP")
+        ).getOrThrow()
+        assertTrue(result)
+    }
+
+    @Test
     fun sendMessageDraftUsesPost() = runTestBot(
         response = OK_TRUE_JSON,
         assertRequest = {

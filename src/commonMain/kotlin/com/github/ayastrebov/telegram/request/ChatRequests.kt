@@ -132,3 +132,17 @@ data class UnpinChatMessageRequest(
     @SerialName("message_id")
     val messageId: Long? = null,
 )
+
+/**
+ * Parameters for [setChatMemberTag][com.github.ayastrebov.telegram.Bot.setChatMemberTag].
+ */
+@Serializable
+data class SetChatMemberTagRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("user_id")
+    val userId: Long,
+
+    val tag: String,
+)

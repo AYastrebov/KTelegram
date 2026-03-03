@@ -135,6 +135,9 @@ interface Bot {
     /** Unpin a message in a chat. */
     suspend fun unpinChatMessage(params: UnpinChatMessageRequest): Response<Boolean>
 
+    /** Set a tag for a chat member. */
+    suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean>
+
     // --- Callbacks ---
 
     /** Send an answer to a callback query from an inline keyboard. */
@@ -339,6 +342,9 @@ internal class BotImp(
 
     override suspend fun unpinChatMessage(params: UnpinChatMessageRequest): Response<Boolean> =
         client.post("unpinChatMessage") { setBody(params) }.body()
+
+    override suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean> =
+        client.post("setChatMemberTag") { setBody(params) }.body()
 
     // --- Callbacks ---
 

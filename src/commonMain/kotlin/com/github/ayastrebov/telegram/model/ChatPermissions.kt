@@ -31,4 +31,7 @@ data class ChatPermissions(
 
     @SerialName("can_pin_messages")
     val canPinMessages: Boolean? = null,
+
+    @SerialName("can_edit_tag")
+    val canEditTag: Boolean? = null,
 )
