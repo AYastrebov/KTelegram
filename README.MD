@@ -65,6 +65,40 @@ while (true) {
 }
 ```
 
+## Webhook Example
+
+Instead of polling with `getUpdates`, you can receive updates via a [webhook](https://core.telegram.org/bots/api#setwebhook). You'll need your own HTTP server (e.g., Ktor server) to handle incoming POST requests from Telegram.
+
+```kotlin
+val bot = TelegramBot("YOUR_BOT_TOKEN")
+
+// 1. Register the webhook with Telegram
+bot.setWebhook(SetWebhookRequest(
+    url = "https://your-server.com/webhook"
+)).getOrThrow()
+
+// 2. In your HTTP server handler, parse the incoming Update
+//    Telegram sends a JSON-serialized Update object in the POST body.
+val json = Json { ignoreUnknownKeys = true }
+val update = json.decodeFromString<Update>(requestBody)
+
+// 3. Process the update through your handlers
+container.processUpdate(update)
+
+// 4. When shutting down, remove the webhook
+bot.deleteWebhook(DeleteWebhookRequest()).getOrThrow()
+bot.close()
+```
+
+You can check the current webhook status at any time:
+
+```kotlin
+val info = bot.getWebhookInfo().getOrThrow()
+println("Webhook URL: ${info.url}, pending updates: ${info.pendingUpdateCount}")
+```
+
+> **Note:** Webhook mode and `getUpdates` polling are mutually exclusive — Telegram will not deliver updates via `getUpdates` while a webhook is set.
+
 ## Handler System
 
 KTelegram provides a chain-of-responsibility handler system. Register handlers in order; the first one that returns `true` stops the chain.
@@ -177,9 +211,9 @@ KTelegram intentionally provides **partial** Telegram Bot API coverage focused o
 | Category | Methods |
 |----------|---------|
 | Updates | `getUpdates`, `getMe` |
-| Messages | `sendMessage`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
+| Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
 | Editing | `editMessageText`, `editMessageCaption`, `editMessageReplyMarkup`, `deleteMessage` |
-| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage` |
+| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage`, `setChatMemberTag` |
 | Callbacks | `answerCallbackQuery` |
 | Inline | `answerInlineQuery` |
 | Files | `getFile` |

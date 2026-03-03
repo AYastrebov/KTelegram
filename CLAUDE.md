@@ -23,7 +23,7 @@ JDK 17 is required.
 
 **Core components** (`src/commonMain/kotlin/com/github/ayastrebov/telegram/`):
 
-- **`Bot` interface / `BotImp`** — Telegram Bot API client (~36 methods). Wraps Ktor HTTP client with JSON content negotiation and logging. All API methods use `suspend fun` + `client.post()`. Accepts optional `HttpClientEngine` for testing. Factory function: `TelegramBot(token, engine?, configure?)`. Call `close()` to release resources.
+- **`Bot` interface / `BotImp`** — Telegram Bot API client (~36 methods). Wraps Ktor HTTP client with JSON content negotiation and logging. All API methods use `suspend fun` + `client.post()`. Supports both long-polling (`getUpdates`) and webhooks (`setWebhook`/`getWebhookInfo`/`deleteWebhook`) for receiving updates. Accepts optional `HttpClientEngine` for testing. Factory function: `TelegramBot(token, engine?, configure?)`. Call `close()` to release resources.
 
 - **`HandlersContainer` / `HandlerRegistration`** — Chain-of-responsibility pattern for processing updates. Handlers are evaluated in registration order; first handler returning `true` stops the chain. Configure via DSL: `container.registerHandlers { register(handler) }`.
 
