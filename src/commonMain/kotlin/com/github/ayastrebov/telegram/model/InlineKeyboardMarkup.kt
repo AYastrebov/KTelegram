@@ -26,5 +26,10 @@ data class InlineKeyboardButton(
     @SerialName("switch_inline_query_current_chat")
     val switchInlineQueryCurrentChat: String? = null,
 
-    val pay: Boolean? = null
+    val pay: Boolean? = null,
+
+    @SerialName("icon_custom_emoji_id")
+    val iconCustomEmojiId: String? = null,
+
+    val style: String? = null,
 )

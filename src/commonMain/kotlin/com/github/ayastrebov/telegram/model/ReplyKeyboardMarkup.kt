@@ -31,6 +31,11 @@ data class KeyboardButton(
 
     @SerialName("request_poll")
     val requestPoll: KeyboardButtonPollType? = null,
+
+    @SerialName("icon_custom_emoji_id")
+    val iconCustomEmojiId: String? = null,
+
+    val style: String? = null,
 )
 
 @Serializable

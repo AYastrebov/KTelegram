@@ -26,4 +26,7 @@ data class User(
 
     @SerialName("is_premium")
     val isPremium: Boolean? = null,
+
+    @SerialName("allows_users_to_create_topics")
+    val allowsUsersToCreateTopics: Boolean? = null,
 )

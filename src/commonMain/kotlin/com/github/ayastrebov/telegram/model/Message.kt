@@ -102,6 +102,12 @@ data class Message(
 
     @SerialName("reply_markup")
     val replyMarkup: InlineKeyboardMarkup? = null,
+
+    @SerialName("chat_owner_left")
+    val chatOwnerLeft: Boolean? = null,
+
+    @SerialName("chat_owner_changed")
+    val chatOwnerChanged: Boolean? = null,
 )
 
 /** The first bot_command entity in this message, if any. */
