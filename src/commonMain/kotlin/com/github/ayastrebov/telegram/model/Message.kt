@@ -117,6 +117,9 @@ data class Message(
 
     @SerialName("is_paid_post")
     val isPaidPost: Boolean? = null,
+
+    @SerialName("paid_star_count")
+    val paidStarCount: Int? = null,
 )
 
 /** The first bot_command entity in this message, if any. */
