@@ -218,6 +218,31 @@ class BotTest {
     }
 
     @Test
+    fun sendMessageDraftUsesPost() = runTestBot(
+        response = OK_TRUE_JSON,
+        assertRequest = {
+            assertEquals(HttpMethod.Post, it.method)
+            assertTrue(it.url.encodedPath.endsWith("sendMessageDraft"))
+        },
+    ) { bot ->
+        val result = bot.sendMessageDraft(
+            SendMessageDraftRequest(chatId = "123", draftId = 1, text = "partial...")
+        ).getOrThrow()
+        assertTrue(result)
+    }
+
+    @Test
+    fun sendMessageDraftErrorResponse() = runTestBot(
+        response = OK_FALSE_RESULT_JSON,
+    ) { bot ->
+        val response = bot.sendMessageDraft(
+            SendMessageDraftRequest(chatId = "999", draftId = 1, text = "fail")
+        )
+        assertTrue(response.isError)
+        assertEquals(400, response.errorCode)
+    }
+
+    @Test
     fun closeReleasesResources() {
         val bot = createTestBot(OK_TRUE_JSON)
         bot.close() // should not throw

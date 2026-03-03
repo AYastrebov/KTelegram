@@ -544,3 +544,22 @@ data class SendChatActionRequest(
 
     val action: ChatAction,
 )
+
+/**
+ * Parameters for [sendMessageDraft][com.github.ayastrebov.telegram.Bot.sendMessageDraft].
+ */
+@Serializable
+data class SendMessageDraftRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("draft_id")
+    val draftId: Int,
+
+    val text: String,
+
+    @SerialName("parse_mode")
+    val parseMode: ParseMode? = null,
+
+    val entities: List<MessageEntity>? = null,
+)

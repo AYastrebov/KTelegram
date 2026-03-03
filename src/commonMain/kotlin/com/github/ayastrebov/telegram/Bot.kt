@@ -83,6 +83,9 @@ interface Bot {
     /** Tell the user that something is happening on the bot's side (e.g., "typing…"). */
     suspend fun sendChatAction(params: SendChatActionRequest): Response<Boolean>
 
+    /** Send a message draft for streaming partial messages to a user (private chats only). */
+    suspend fun sendMessageDraft(params: SendMessageDraftRequest): Response<Boolean>
+
     // --- Editing ---
 
     /** Edit the text of a message. */
@@ -284,6 +287,9 @@ internal class BotImp(
 
     override suspend fun sendChatAction(params: SendChatActionRequest): Response<Boolean> =
         client.post("sendChatAction") { setBody(params) }.body()
+
+    override suspend fun sendMessageDraft(params: SendMessageDraftRequest): Response<Boolean> =
+        client.post("sendMessageDraft") { setBody(params) }.body()
 
     // --- Editing ---
 
