@@ -97,4 +97,7 @@ data class ChatMember(
 
     @SerialName("can_manage_tags")
     val canManageTags: Boolean? = null,
+
+    @SerialName("can_manage_direct_messages")
+    val canManageDirectMessages: Boolean? = null,
 )

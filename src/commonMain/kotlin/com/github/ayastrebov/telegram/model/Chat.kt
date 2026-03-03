@@ -42,6 +42,12 @@ data class Chat(
 
     @SerialName("linked_chat_id")
     val linkedChatId: Long? = null,
+
+    @SerialName("is_direct_messages")
+    val isDirectMessages: Boolean? = null,
+
+    @SerialName("parent_chat")
+    val parentChat: Chat? = null,
 )
 
 /** True if this chat is a group or supergroup. */

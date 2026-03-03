@@ -18,6 +18,9 @@ data class SendMessageRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     val text: String,
 
     @SerialName("parse_mode")
@@ -51,6 +54,9 @@ data class SendPhotoRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     val photo: String,
     val caption: String? = null,
@@ -87,6 +93,9 @@ data class SendAudioRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     val audio: String,
     val caption: String? = null,
@@ -128,6 +137,9 @@ data class SendDocumentRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     val document: String,
     val caption: String? = null,
 
@@ -163,6 +175,9 @@ data class SendVideoRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     val video: String,
     val caption: String? = null,
@@ -204,6 +219,9 @@ data class SendAnimationRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     val animation: String,
     val caption: String? = null,
 
@@ -244,6 +262,9 @@ data class SendVoiceRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     val voice: String,
     val caption: String? = null,
 
@@ -282,6 +303,9 @@ data class SendVideoNoteRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     @SerialName("video_note")
     val videoNote: String,
 
@@ -314,6 +338,9 @@ data class SendLocationRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     val latitude: Double,
     val longitude: Double,
@@ -356,6 +383,9 @@ data class SendContactRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     @SerialName("phone_number")
     val phoneNumber: String,
 
@@ -394,6 +424,9 @@ data class SendDiceRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     val emoji: String? = null,
 
     @SerialName("disable_notification")
@@ -422,6 +455,9 @@ data class SendStickerRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     val sticker: String,
 
@@ -452,6 +488,9 @@ data class ForwardMessageRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     @SerialName("from_chat_id")
     val fromChatId: String,
 
@@ -478,6 +517,9 @@ data class CopyMessageRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     @SerialName("from_chat_id")
     val fromChatId: String,
@@ -523,6 +565,9 @@ data class ForwardMessagesRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     @SerialName("from_chat_id")
     val fromChatId: String,
 
@@ -546,6 +591,9 @@ data class CopyMessagesRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     @SerialName("from_chat_id")
     val fromChatId: String,
@@ -599,6 +647,9 @@ data class SendChatActionRequest(
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
 
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
     val action: ChatAction,
 )
 
@@ -612,6 +663,9 @@ data class SendMessageDraftRequest(
 
     @SerialName("message_thread_id")
     val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
 
     @SerialName("draft_id")
     val draftId: Int,

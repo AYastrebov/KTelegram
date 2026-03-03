@@ -114,6 +114,9 @@ data class Message(
 
     @SerialName("chat_owner_changed")
     val chatOwnerChanged: Boolean? = null,
+
+    @SerialName("is_paid_post")
+    val isPaidPost: Boolean? = null,
 )
 
 /** The first bot_command entity in this message, if any. */
