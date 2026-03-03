@@ -29,4 +29,7 @@ data class User(
 
     @SerialName("allows_users_to_create_topics")
     val allowsUsersToCreateTopics: Boolean? = null,
+
+    @SerialName("has_topics_enabled")
+    val hasTopicsEnabled: Boolean? = null,
 )

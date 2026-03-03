@@ -18,6 +18,9 @@ data class Message(
 
     val from: User? = null,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     @SerialName("sender_chat")
     val senderChat: Chat? = null,
 
@@ -44,6 +47,9 @@ data class Message(
     @SerialName("forward_date")
     @Serializable(with = InstantUnixSerializer::class)
     val forwardDate: kotlin.time.Instant? = null,
+
+    @SerialName("is_topic_message")
+    val isTopicMessage: Boolean? = null,
 
     @SerialName("is_automatic_forward")
     val isAutomaticForward: Boolean? = null,

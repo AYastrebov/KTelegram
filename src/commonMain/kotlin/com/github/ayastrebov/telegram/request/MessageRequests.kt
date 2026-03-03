@@ -15,6 +15,9 @@ data class SendMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     val text: String,
 
     @SerialName("parse_mode")
@@ -45,6 +48,9 @@ data class SendMessageRequest(
 data class SendPhotoRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     val photo: String,
     val caption: String? = null,
@@ -78,6 +84,9 @@ data class SendPhotoRequest(
 data class SendAudioRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     val audio: String,
     val caption: String? = null,
@@ -116,6 +125,9 @@ data class SendDocumentRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     val document: String,
     val caption: String? = null,
 
@@ -148,6 +160,9 @@ data class SendDocumentRequest(
 data class SendVideoRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     val video: String,
     val caption: String? = null,
@@ -186,6 +201,9 @@ data class SendAnimationRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     val animation: String,
     val caption: String? = null,
 
@@ -223,6 +241,9 @@ data class SendVoiceRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     val voice: String,
     val caption: String? = null,
 
@@ -258,6 +279,9 @@ data class SendVideoNoteRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     @SerialName("video_note")
     val videoNote: String,
 
@@ -287,6 +311,9 @@ data class SendVideoNoteRequest(
 data class SendLocationRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     val latitude: Double,
     val longitude: Double,
@@ -326,6 +353,9 @@ data class SendContactRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     @SerialName("phone_number")
     val phoneNumber: String,
 
@@ -361,6 +391,9 @@ data class SendDiceRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     val emoji: String? = null,
 
     @SerialName("disable_notification")
@@ -386,6 +419,9 @@ data class SendDiceRequest(
 data class SendStickerRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     val sticker: String,
 
@@ -413,6 +449,9 @@ data class ForwardMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     @SerialName("from_chat_id")
     val fromChatId: String,
 
@@ -424,6 +463,9 @@ data class ForwardMessageRequest(
 
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
+
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -433,6 +475,9 @@ data class ForwardMessageRequest(
 data class CopyMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     @SerialName("from_chat_id")
     val fromChatId: String,
@@ -462,6 +507,9 @@ data class CopyMessageRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -471,6 +519,9 @@ data class CopyMessageRequest(
 data class ForwardMessagesRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     @SerialName("from_chat_id")
     val fromChatId: String,
@@ -492,6 +543,9 @@ data class ForwardMessagesRequest(
 data class CopyMessagesRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     @SerialName("from_chat_id")
     val fromChatId: String,
@@ -542,6 +596,9 @@ data class SendChatActionRequest(
     @SerialName("chat_id")
     val chatId: String,
 
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
     val action: ChatAction,
 )
 
@@ -552,6 +609,9 @@ data class SendChatActionRequest(
 data class SendMessageDraftRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
 
     @SerialName("draft_id")
     val draftId: Int,
