@@ -37,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.ayastrebov.telegram:telegram-api-client:<version>")
+    implementation("com.github.ayastrebov.telegram:telegram-api-client:0.4.1")
 }
 ```
 
