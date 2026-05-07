@@ -1,6 +1,7 @@
 [versions]
 
 agp = "8.13.2"
+caupain = "1.9.1"
 dokka = "2.2.0"
 kotlin = "2.3.21"
 maven-publish = "0.36.0"
@@ -21,6 +22,7 @@ ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref =
 [plugins]
 
 android-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+caupain = { id = "com.deezer.caupain", version.ref = "caupain" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
