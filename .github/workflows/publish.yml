@@ -96,7 +96,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Generate documentation
-        run: ./gradlew dokkaGenerate
+        run: ./gradlew dokkaGenerate -PKtelegramDeployVersion=${{ github.ref_name }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
