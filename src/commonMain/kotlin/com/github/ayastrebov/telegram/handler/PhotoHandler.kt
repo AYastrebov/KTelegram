@@ -7,7 +7,7 @@ import com.github.ayastrebov.telegram.model.Update
  *
  * @param action Suspend function invoked with the update when photos are detected.
  */
-class PhotoHandler(
+public class PhotoHandler(
     private val action: suspend (update: Update) -> Unit
 ) : UpdateHandler() {
 

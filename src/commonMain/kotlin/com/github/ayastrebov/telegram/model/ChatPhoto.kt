@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
  * @property bigFileUniqueId Unique file identifier of big chat photo.
  */
 @Serializable
-data class ChatPhoto(
+public data class ChatPhoto(
     @SerialName("small_file_id")
     val smallFileId: String,
 

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Audio(
+public data class Audio(
     @SerialName("file_id")
     val fileId: String,
 

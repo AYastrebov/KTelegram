@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class VideoNote(
+public data class VideoNote(
     @SerialName("file_id")
     val fileId: String,
 

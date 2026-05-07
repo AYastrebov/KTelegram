@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Represents a Telegram user or bot.
  */
 @Serializable
-data class User(
+public data class User(
     val id: Long,
 
     @SerialName("is_bot")

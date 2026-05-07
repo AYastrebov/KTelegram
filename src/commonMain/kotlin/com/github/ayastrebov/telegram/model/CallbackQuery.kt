@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CallbackQuery(
+public data class CallbackQuery(
     val id: String,
     val from: User,
     val message: Message? = null,

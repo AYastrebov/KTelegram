@@ -3,15 +3,15 @@ package com.github.ayastrebov.telegram.handler
 import com.github.ayastrebov.telegram.model.Update
 import com.github.ayastrebov.telegram.model.commandText
 
-data class CommandDescriptor(
+public data class CommandDescriptor(
     val command: String,
     val action: suspend (update: Update) -> Unit
 )
 
-class CommandRegistration internal constructor(
+public class CommandRegistration internal constructor(
     private val target: MutableList<CommandDescriptor>,
 ) {
-    fun register(command: String, action: suspend (update: Update) -> Unit) {
+    public fun register(command: String, action: suspend (update: Update) -> Unit) {
         target.add(CommandDescriptor(command, action))
     }
 }
@@ -23,11 +23,11 @@ class CommandRegistration internal constructor(
  *
  * @param botName The bot's username, used to strip `@botName` suffixes from commands.
  */
-class CommandHandler(private val botName: String) : UpdateHandler() {
+public class CommandHandler(private val botName: String) : UpdateHandler() {
 
     private val commands = mutableListOf<CommandDescriptor>()
 
-    fun registerCommands(registration: CommandRegistration.() -> Unit) {
+    public fun registerCommands(registration: CommandRegistration.() -> Unit) {
         registration.invoke(CommandRegistration(commands))
     }
 

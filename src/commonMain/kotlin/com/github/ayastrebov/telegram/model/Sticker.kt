@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Represents a sticker.
  */
 @Serializable
-data class Sticker(
+public data class Sticker(
     @SerialName("file_id")
     val fileId: String,
 

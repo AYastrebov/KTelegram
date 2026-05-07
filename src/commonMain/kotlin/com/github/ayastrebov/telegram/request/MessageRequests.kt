@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * Parameters for [sendMessage][com.github.ayastrebov.telegram.Bot.sendMessage].
  */
 @Serializable
-data class SendMessageRequest(
+public data class SendMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -48,7 +48,7 @@ data class SendMessageRequest(
  * Parameters for [sendPhoto][com.github.ayastrebov.telegram.Bot.sendPhoto].
  */
 @Serializable
-data class SendPhotoRequest(
+public data class SendPhotoRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -87,7 +87,7 @@ data class SendPhotoRequest(
  * Parameters for [sendAudio][com.github.ayastrebov.telegram.Bot.sendAudio].
  */
 @Serializable
-data class SendAudioRequest(
+public data class SendAudioRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -130,7 +130,7 @@ data class SendAudioRequest(
  * Parameters for [sendDocument][com.github.ayastrebov.telegram.Bot.sendDocument].
  */
 @Serializable
-data class SendDocumentRequest(
+public data class SendDocumentRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -169,7 +169,7 @@ data class SendDocumentRequest(
  * Parameters for [sendVideo][com.github.ayastrebov.telegram.Bot.sendVideo].
  */
 @Serializable
-data class SendVideoRequest(
+public data class SendVideoRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -212,7 +212,7 @@ data class SendVideoRequest(
  * Parameters for [sendAnimation][com.github.ayastrebov.telegram.Bot.sendAnimation].
  */
 @Serializable
-data class SendAnimationRequest(
+public data class SendAnimationRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -255,7 +255,7 @@ data class SendAnimationRequest(
  * Parameters for [sendVoice][com.github.ayastrebov.telegram.Bot.sendVoice].
  */
 @Serializable
-data class SendVoiceRequest(
+public data class SendVoiceRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -296,7 +296,7 @@ data class SendVoiceRequest(
  * Parameters for [sendVideoNote][com.github.ayastrebov.telegram.Bot.sendVideoNote].
  */
 @Serializable
-data class SendVideoNoteRequest(
+public data class SendVideoNoteRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -332,7 +332,7 @@ data class SendVideoNoteRequest(
  * Parameters for [sendLocation][com.github.ayastrebov.telegram.Bot.sendLocation].
  */
 @Serializable
-data class SendLocationRequest(
+public data class SendLocationRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -376,7 +376,7 @@ data class SendLocationRequest(
  * Parameters for [sendContact][com.github.ayastrebov.telegram.Bot.sendContact].
  */
 @Serializable
-data class SendContactRequest(
+public data class SendContactRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -417,7 +417,7 @@ data class SendContactRequest(
  * Parameters for [sendDice][com.github.ayastrebov.telegram.Bot.sendDice].
  */
 @Serializable
-data class SendDiceRequest(
+public data class SendDiceRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -449,7 +449,7 @@ data class SendDiceRequest(
  * Parameters for [sendSticker][com.github.ayastrebov.telegram.Bot.sendSticker].
  */
 @Serializable
-data class SendStickerRequest(
+public data class SendStickerRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -481,7 +481,7 @@ data class SendStickerRequest(
  * Parameters for [forwardMessage][com.github.ayastrebov.telegram.Bot.forwardMessage].
  */
 @Serializable
-data class ForwardMessageRequest(
+public data class ForwardMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -511,7 +511,7 @@ data class ForwardMessageRequest(
  * Parameters for [copyMessage][com.github.ayastrebov.telegram.Bot.copyMessage].
  */
 @Serializable
-data class CopyMessageRequest(
+public data class CopyMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -558,7 +558,7 @@ data class CopyMessageRequest(
  * Parameters for [forwardMessages][com.github.ayastrebov.telegram.Bot.forwardMessages].
  */
 @Serializable
-data class ForwardMessagesRequest(
+public data class ForwardMessagesRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -585,7 +585,7 @@ data class ForwardMessagesRequest(
  * Parameters for [copyMessages][com.github.ayastrebov.telegram.Bot.copyMessages].
  */
 @Serializable
-data class CopyMessagesRequest(
+public data class CopyMessagesRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -615,7 +615,7 @@ data class CopyMessagesRequest(
  * Parameters for [deleteMessages][com.github.ayastrebov.telegram.Bot.deleteMessages].
  */
 @Serializable
-data class DeleteMessagesRequest(
+public data class DeleteMessagesRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -627,7 +627,7 @@ data class DeleteMessagesRequest(
  * Parameters for [getFile][com.github.ayastrebov.telegram.Bot.getFile].
  */
 @Serializable
-data class GetFileRequest(
+public data class GetFileRequest(
     @SerialName("file_id")
     val fileId: String,
 )
@@ -640,7 +640,7 @@ data class GetFileRequest(
  *   "upload_video_note".
  */
 @Serializable
-data class SendChatActionRequest(
+public data class SendChatActionRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -657,7 +657,7 @@ data class SendChatActionRequest(
  * Parameters for [sendMessageDraft][com.github.ayastrebov.telegram.Bot.sendMessageDraft].
  */
 @Serializable
-data class SendMessageDraftRequest(
+public data class SendMessageDraftRequest(
     @SerialName("chat_id")
     val chatId: String,
 

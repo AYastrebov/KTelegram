@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Represents one special entity in a text message (e.g., hashtags, usernames, URLs, bot commands, etc.).
  */
 @Serializable
-data class MessageEntity(
+public data class MessageEntity(
     val offset: Int,
     val length: Int,
     val type: String,

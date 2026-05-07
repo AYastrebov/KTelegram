@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class ParseMode {
+public enum class ParseMode {
     @SerialName("MarkdownV2")
     MarkdownV2,
 
@@ -16,7 +16,7 @@ enum class ParseMode {
 }
 
 @Serializable
-enum class ChatAction {
+public enum class ChatAction {
     @SerialName("typing")
     Typing,
 

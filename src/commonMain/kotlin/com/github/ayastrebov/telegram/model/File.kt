@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class File(
+public data class File(
     @SerialName("file_id")
     val fileId: String,
 

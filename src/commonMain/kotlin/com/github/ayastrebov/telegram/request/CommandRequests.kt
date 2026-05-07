@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
  * Parameters for [setMyCommands][com.github.ayastrebov.telegram.Bot.setMyCommands].
  */
 @Serializable
-data class SetMyCommandsRequest(
+public data class SetMyCommandsRequest(
     val commands: List<BotCommand>,
 )

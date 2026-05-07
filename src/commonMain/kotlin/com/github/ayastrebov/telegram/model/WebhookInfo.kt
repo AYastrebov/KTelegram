@@ -10,7 +10,7 @@ import kotlin.time.ExperimentalTime
  */
 @OptIn(ExperimentalTime::class)
 @Serializable
-data class WebhookInfo(
+public data class WebhookInfo(
     val url: String,
 
     @SerialName("has_custom_certificate")

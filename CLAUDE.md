@@ -4,18 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-KTelegram is a Kotlin Multiplatform library providing a type-safe wrapper around the Telegram Bot API. It uses Ktor for HTTP, kotlinx-serialization for JSON, and coroutines for async operations. Targets: JVM, iOS (arm64/x64/simulatorArm64), macOS (arm64/x64), Linux x64, Windows (mingwX64), JS (browser/Node.js), WasmJS (browser/Node.js).
+KTelegram is a Kotlin Multiplatform library providing a type-safe wrapper around the Telegram Bot API. It uses Ktor for HTTP, kotlinx-serialization for JSON, and coroutines for async operations. Targets: JVM, iOS (arm64/simulatorArm64), macOS (arm64), Linux x64, Windows (mingwX64), JS (Node.js), WasmJS (Node.js).
 
 ## Build Commands
 
 ```bash
 ./gradlew build                # Build all targets and run tests
 ./gradlew jvmTest              # Run JVM tests only
+./gradlew dokkaGenerate        # Generate API documentation (Dokka HTML)
 ./gradlew publishToMavenLocal  # Publish all targets to local Maven repo
 ./gradlew publishAllPublicationsToGitHubPackagesRepository  # Publish to GitHub Packages
 ```
 
-JDK 17 is required.
+JDK 21 is required (`jvmToolchain(21)`).
 
 ## Architecture
 
@@ -37,13 +38,14 @@ JDK 17 is required.
 
 ## Key Conventions
 
+- `explicitApi()` mode enabled — all public declarations must have explicit visibility modifiers and return types
 - JSON config: `ignoreUnknownKeys = true`, `isLenient = true`, `prettyPrint = true`
 - All HTTP calls use POST (Telegram API accepts POST with JSON body for everything)
 - IDs (message, chat, user) are `Long` type
 - Timestamps use `kotlin.time.Instant` with `InstantUnixSerializer`
 - Version is derived from git tags (`v*` prefix stripped) or defaults to `0.0.1-SNAPSHOT`
 - Publishing uses vanniktech/gradle-maven-publish-plugin with GPG signing
-- Publishing credentials come from env vars (`GPR_USER`, `GPR_TOKEN`)
+- Publishing credentials come from env vars (`GITHUB_ACTOR`, `GITHUB_TOKEN`)
 - Tests use ktor-client-mock `MockEngine` for HTTP mocking and kotlinx-coroutines-test `runTest`
 - GPG signing is enabled via `signAllPublications()` in the `mavenPublishing` block
 
@@ -51,5 +53,13 @@ JDK 17 is required.
 
 **Workflows** (`.github/workflows/`):
 
-- **`ci.yml`** — Runs `./gradlew build` on pushes to `master` and PRs targeting `master`. Uses JDK 17 (corretto) with Gradle caching.
-- **`release.yml`** — Triggered by `v*` tag pushes. Builds, publishes to GitHub Packages (`publishAllPublicationsToGitHubPackagesRepository`), and creates a GitHub Release with auto-generated notes. Version is passed via `-PKtelegramDeployVersion` from the tag name. Requires `SIGNING_KEY_ID`, `SIGNING_PASSWORD`, `SIGNING_SECRET_KEY` secrets for GPG signing.
+- **`ci.yml`** — Runs `./gradlew build` on pushes to `master`/`main` and PRs. Uses JDK 21 (corretto) with Gradle caching (cache-read-only for PRs). Uploads test results as artifacts.
+- **`publish.yml`** — Triggered by `v*` tag pushes or manual dispatch. Three parallel jobs after test:
+  - **test** — Runs `./gradlew allTests`
+  - **publish** — Publishes to GitHub Packages and creates a GitHub Release with auto-generated notes. Version passed via `-PKtelegramDeployVersion`.
+  - **docs** — Generates Dokka HTML documentation and deploys to GitHub Pages.
+  - Requires `SIGNING_KEY_ID`, `SIGNING_PASSWORD`, `SIGNING_SECRET_KEY` secrets for GPG signing.
+
+## Documentation
+
+API documentation is generated with [Dokka](https://github.com/Kotlin/dokka) and deployed to GitHub Pages on each release. Source links point back to the repository master branch.

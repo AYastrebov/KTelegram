@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * At most one of the optional fields can be present in any given update.
  */
 @Serializable
-data class Update(
+public data class Update(
     @SerialName("update_id")
     val updateId: Long,
 

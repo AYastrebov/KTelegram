@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Parameters for [getChat][com.github.ayastrebov.telegram.Bot.getChat].
  */
 @Serializable
-data class GetChatRequest(
+public data class GetChatRequest(
     @SerialName("chat_id")
     val chatId: String,
 )
@@ -16,7 +16,7 @@ data class GetChatRequest(
  * Parameters for [getChatMemberCount][com.github.ayastrebov.telegram.Bot.getChatMemberCount].
  */
 @Serializable
-data class GetChatMemberCountRequest(
+public data class GetChatMemberCountRequest(
     @SerialName("chat_id")
     val chatId: String,
 )
@@ -25,7 +25,7 @@ data class GetChatMemberCountRequest(
  * Parameters for [getChatMember][com.github.ayastrebov.telegram.Bot.getChatMember].
  */
 @Serializable
-data class GetChatMemberRequest(
+public data class GetChatMemberRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -37,7 +37,7 @@ data class GetChatMemberRequest(
  * Parameters for [getChatAdministrators][com.github.ayastrebov.telegram.Bot.getChatAdministrators].
  */
 @Serializable
-data class GetChatAdministratorsRequest(
+public data class GetChatAdministratorsRequest(
     @SerialName("chat_id")
     val chatId: String,
 )
@@ -46,7 +46,7 @@ data class GetChatAdministratorsRequest(
  * Parameters for [banChatMember][com.github.ayastrebov.telegram.Bot.banChatMember].
  */
 @Serializable
-data class BanChatMemberRequest(
+public data class BanChatMemberRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -64,7 +64,7 @@ data class BanChatMemberRequest(
  * Parameters for [unbanChatMember][com.github.ayastrebov.telegram.Bot.unbanChatMember].
  */
 @Serializable
-data class UnbanChatMemberRequest(
+public data class UnbanChatMemberRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -79,7 +79,7 @@ data class UnbanChatMemberRequest(
  * Parameters for [leaveChat][com.github.ayastrebov.telegram.Bot.leaveChat].
  */
 @Serializable
-data class LeaveChatRequest(
+public data class LeaveChatRequest(
     @SerialName("chat_id")
     val chatId: String,
 )
@@ -88,7 +88,7 @@ data class LeaveChatRequest(
  * Parameters for [setChatTitle][com.github.ayastrebov.telegram.Bot.setChatTitle].
  */
 @Serializable
-data class SetChatTitleRequest(
+public data class SetChatTitleRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -99,7 +99,7 @@ data class SetChatTitleRequest(
  * Parameters for [setChatDescription][com.github.ayastrebov.telegram.Bot.setChatDescription].
  */
 @Serializable
-data class SetChatDescriptionRequest(
+public data class SetChatDescriptionRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -110,7 +110,7 @@ data class SetChatDescriptionRequest(
  * Parameters for [pinChatMessage][com.github.ayastrebov.telegram.Bot.pinChatMessage].
  */
 @Serializable
-data class PinChatMessageRequest(
+public data class PinChatMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -125,7 +125,7 @@ data class PinChatMessageRequest(
  * Parameters for [unpinChatMessage][com.github.ayastrebov.telegram.Bot.unpinChatMessage].
  */
 @Serializable
-data class UnpinChatMessageRequest(
+public data class UnpinChatMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 
@@ -137,7 +137,7 @@ data class UnpinChatMessageRequest(
  * Parameters for [setChatMemberTag][com.github.ayastrebov.telegram.Bot.setChatMemberTag].
  */
 @Serializable
-data class SetChatMemberTagRequest(
+public data class SetChatMemberTagRequest(
     @SerialName("chat_id")
     val chatId: String,
 

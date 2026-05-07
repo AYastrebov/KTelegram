@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
  * @property fileSize File size in bytes.
  */
 @Serializable
-data class Animation(
+public data class Animation(
     @SerialName("file_id")
     val fileId: String,
 

@@ -5,11 +5,11 @@ import com.github.ayastrebov.telegram.model.Update
 /**
  * Handler that triggers when a new (non-bot) member joins a chat.
  */
-class NewMemberHandler : UpdateHandler() {
+public class NewMemberHandler : UpdateHandler() {
 
     private val actions = mutableListOf<MessageDescriptor>()
 
-    fun registerActions(registration: MessageRegistration.() -> Unit) {
+    public fun registerActions(registration: MessageRegistration.() -> Unit) {
         registration.invoke(MessageRegistration(actions))
     }
 

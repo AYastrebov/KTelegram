@@ -1,41 +1,64 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.multiplatform)
+    alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.vanniktech.publish)
+    alias(libs.plugins.maven.publish)
+}
+
+val deployVersion = findProperty("KtelegramDeployVersion") as String?
+version = deployVersion?.removePrefix("v") ?: "0.0.1-SNAPSHOT"
+group = "com.github.ayastrebov.telegram"
+description = "Kotlin telegram bot API client"
+
+// Dokka configuration
+dokka {
+    moduleName.set("KTelegram")
+    moduleVersion.set(project.version.toString())
+
+    dokkaSourceSets.configureEach {
+        sourceLink {
+            localDirectory.set(projectDir.resolve("src"))
+            remoteUrl("https://github.com/ayastrebov/ktelegram/tree/master/src")
+            remoteLineSuffix.set("#L")
+        }
+    }
+
+    dokkaPublications.html {
+        outputDirectory.set(layout.buildDirectory.dir("dokka/html"))
+    }
+
+    pluginsConfiguration.html {
+        footerMessage.set("KTelegram - MIT License")
+        homepageLink.set("https://github.com/ayastrebov/ktelegram")
+    }
 }
 
 kotlin {
+    explicitApi()
+    jvmToolchain(21)
+
     jvm()
 
     iosArm64()
-    iosX64()
     iosSimulatorArm64()
 
     macosArm64()
-    macosX64()
-
     linuxX64()
     mingwX64()
 
-    js {
-        browser()
-        nodejs()
-    }
-
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        nodejs()
-    }
+    wasmJs { nodejs() }
+    js { nodejs() }
 
     sourceSets {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.logging)
-            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.serialization.json)
         }
 
         commonTest.dependencies {
@@ -47,38 +70,43 @@ kotlin {
 }
 
 mavenPublishing {
+    signAllPublications()
+
     coordinates(
-        groupId = "com.github.ayastrebov.telegram",
+        groupId = project.group.toString(),
         artifactId = "telegram-api-client",
-        version = (findProperty("KtelegramDeployVersion") as String?)?.removePrefix("v") ?: "0.0.1-SNAPSHOT"
+        version = project.version.toString()
     )
 
     pom {
-        name.set("telegram")
-        description.set("Kotlin telegram bot API client")
+        name.set("KTelegram")
+        description.set(project.description)
         url.set("https://github.com/ayastrebov/ktelegram")
+        inceptionYear.set("2024")
 
         licenses {
             license {
-                name.set("MIT")
+                name.set("MIT License")
                 url.set("https://opensource.org/licenses/MIT")
+                distribution.set("repo")
             }
         }
+
         developers {
             developer {
                 id.set("ayastrebov")
                 name.set("Andrey Yastrebov")
                 email.set("ayastrebov@gmail.com")
+                url.set("https://github.com/ayastrebov")
             }
         }
+
         scm {
+            url.set("https://github.com/ayastrebov/ktelegram")
             connection.set("scm:git:git://github.com/ayastrebov/ktelegram.git")
             developerConnection.set("scm:git:ssh://github.com/ayastrebov/ktelegram.git")
-            url.set("https://github.com/ayastrebov/ktelegram")
         }
     }
-
-    signAllPublications()
 }
 
 publishing {
@@ -87,8 +115,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/ayastrebov/ktelegram")
             credentials {
-                username = System.getenv("GPR_USER")
-                password = System.getenv("GPR_TOKEN")
+                username = System.getenv("GITHUB_ACTOR") ?: findProperty("gpr.user") as String?
+                password = System.getenv("GITHUB_TOKEN") ?: findProperty("gpr.token") as String?
             }
         }
     }

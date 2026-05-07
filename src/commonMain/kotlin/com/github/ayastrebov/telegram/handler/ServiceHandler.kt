@@ -11,14 +11,14 @@ import com.github.ayastrebov.telegram.model.isGroup
  *
  * @param restrictedChatIds Chat IDs where this handler should NOT trigger.
  */
-class ServiceHandler(
+public class ServiceHandler(
     private val restrictedChatIds: List<String>
 ) : UpdateHandler() {
 
     private val restrictedChatIdsSet = restrictedChatIds.toSet()
     private val actions = mutableListOf<MessageDescriptor>()
 
-    fun registerActions(registration: MessageRegistration.() -> Unit) {
+    public fun registerActions(registration: MessageRegistration.() -> Unit) {
         registration.invoke(MessageRegistration(actions))
     }
 

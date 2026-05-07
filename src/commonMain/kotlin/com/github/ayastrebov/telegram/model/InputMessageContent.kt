@@ -4,16 +4,16 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed class InputMessageContent {
+public sealed class InputMessageContent {
     @Serializable
-    class InputTextMessageContent(
+    public class InputTextMessageContent(
         @SerialName("message_text")
-        val messageText: String,
+        public val messageText: String,
 
         @SerialName("parse_mode")
-        val parseMode: ParseMode? = null,
+        public val parseMode: ParseMode? = null,
 
         @SerialName("entities")
-        val entities: List<MessageEntity>? = null,
+        public val entities: List<MessageEntity>? = null,
     ): InputMessageContent()
 }

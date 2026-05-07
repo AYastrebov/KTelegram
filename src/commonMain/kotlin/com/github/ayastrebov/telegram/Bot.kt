@@ -18,177 +18,177 @@ import kotlinx.serialization.json.Json
  * All methods are suspend functions that return [Response] wrappers.
  * Use [getOrThrow] or [getOrNull] extensions on the response to extract results.
  */
-interface Bot {
+public interface Bot {
     // --- Updates ---
 
     /** Receive incoming updates using long polling. */
-    suspend fun getUpdates(params: GetUpdatesRequest = GetUpdatesRequest()): Response<List<Update>>
+    public suspend fun getUpdates(params: GetUpdatesRequest = GetUpdatesRequest()): Response<List<Update>>
 
     /** Returns basic information about the bot. */
-    suspend fun getMe(): Response<User>
+    public suspend fun getMe(): Response<User>
 
     // --- Messages ---
 
     /** Send a text message. */
-    suspend fun sendMessage(params: SendMessageRequest): Response<Message>
+    public suspend fun sendMessage(params: SendMessageRequest): Response<Message>
 
     /** Send a photo by file_id or URL. */
-    suspend fun sendPhoto(params: SendPhotoRequest): Response<Message>
+    public suspend fun sendPhoto(params: SendPhotoRequest): Response<Message>
 
     /** Send an audio file. */
-    suspend fun sendAudio(params: SendAudioRequest): Response<Message>
+    public suspend fun sendAudio(params: SendAudioRequest): Response<Message>
 
     /** Send a general file (document). */
-    suspend fun sendDocument(params: SendDocumentRequest): Response<Message>
+    public suspend fun sendDocument(params: SendDocumentRequest): Response<Message>
 
     /** Send a video. */
-    suspend fun sendVideo(params: SendVideoRequest): Response<Message>
+    public suspend fun sendVideo(params: SendVideoRequest): Response<Message>
 
     /** Send an animation (GIF). */
-    suspend fun sendAnimation(params: SendAnimationRequest): Response<Message>
+    public suspend fun sendAnimation(params: SendAnimationRequest): Response<Message>
 
     /** Send a voice message. */
-    suspend fun sendVoice(params: SendVoiceRequest): Response<Message>
+    public suspend fun sendVoice(params: SendVoiceRequest): Response<Message>
 
     /** Send a video note (rounded square video). */
-    suspend fun sendVideoNote(params: SendVideoNoteRequest): Response<Message>
+    public suspend fun sendVideoNote(params: SendVideoNoteRequest): Response<Message>
 
     /** Send a location. */
-    suspend fun sendLocation(params: SendLocationRequest): Response<Message>
+    public suspend fun sendLocation(params: SendLocationRequest): Response<Message>
 
     /** Send a phone contact. */
-    suspend fun sendContact(params: SendContactRequest): Response<Message>
+    public suspend fun sendContact(params: SendContactRequest): Response<Message>
 
     /** Send a dice with random value. */
-    suspend fun sendDice(params: SendDiceRequest): Response<Message>
+    public suspend fun sendDice(params: SendDiceRequest): Response<Message>
 
     /** Send a sticker. */
-    suspend fun sendSticker(params: SendStickerRequest): Response<Message>
+    public suspend fun sendSticker(params: SendStickerRequest): Response<Message>
 
     /** Forward a message from one chat to another. */
-    suspend fun forwardMessage(params: ForwardMessageRequest): Response<Message>
+    public suspend fun forwardMessage(params: ForwardMessageRequest): Response<Message>
 
     /** Forward multiple messages from one chat to another. */
-    suspend fun forwardMessages(params: ForwardMessagesRequest): Response<List<MessageId>>
+    public suspend fun forwardMessages(params: ForwardMessagesRequest): Response<List<MessageId>>
 
     /** Copy a message (like forwarding without the "Forwarded from" header). */
-    suspend fun copyMessage(params: CopyMessageRequest): Response<MessageId>
+    public suspend fun copyMessage(params: CopyMessageRequest): Response<MessageId>
 
     /** Copy multiple messages from one chat to another. */
-    suspend fun copyMessages(params: CopyMessagesRequest): Response<List<MessageId>>
+    public suspend fun copyMessages(params: CopyMessagesRequest): Response<List<MessageId>>
 
     /** Delete multiple messages in one request. */
-    suspend fun deleteMessages(params: DeleteMessagesRequest): Response<Boolean>
+    public suspend fun deleteMessages(params: DeleteMessagesRequest): Response<Boolean>
 
     /** Tell the user that something is happening on the bot's side (e.g., "typing…"). */
-    suspend fun sendChatAction(params: SendChatActionRequest): Response<Boolean>
+    public suspend fun sendChatAction(params: SendChatActionRequest): Response<Boolean>
 
     /** Send a message draft for streaming partial messages to a user (private chats only). */
-    suspend fun sendMessageDraft(params: SendMessageDraftRequest): Response<Boolean>
+    public suspend fun sendMessageDraft(params: SendMessageDraftRequest): Response<Boolean>
 
     // --- Editing ---
 
     /** Edit the text of a message. */
-    suspend fun editMessageText(params: EditMessageTextRequest): Response<EditMessageResult>
+    public suspend fun editMessageText(params: EditMessageTextRequest): Response<EditMessageResult>
 
     /** Edit the caption of a message. */
-    suspend fun editMessageCaption(params: EditMessageCaptionRequest): Response<EditMessageResult>
+    public suspend fun editMessageCaption(params: EditMessageCaptionRequest): Response<EditMessageResult>
 
     /** Edit the reply markup of a message. */
-    suspend fun editMessageReplyMarkup(params: EditMessageReplyMarkupRequest): Response<EditMessageResult>
+    public suspend fun editMessageReplyMarkup(params: EditMessageReplyMarkupRequest): Response<EditMessageResult>
 
     /** Delete a message. */
-    suspend fun deleteMessage(params: DeleteMessageRequest): Response<Boolean>
+    public suspend fun deleteMessage(params: DeleteMessageRequest): Response<Boolean>
 
     // --- Chat management ---
 
     /** Get up-to-date information about a chat. */
-    suspend fun getChat(params: GetChatRequest): Response<Chat>
+    public suspend fun getChat(params: GetChatRequest): Response<Chat>
 
     /** Get the number of members in a chat. */
-    suspend fun getChatMemberCount(params: GetChatMemberCountRequest): Response<Int>
+    public suspend fun getChatMemberCount(params: GetChatMemberCountRequest): Response<Int>
 
     /** Get information about a member of a chat. */
-    suspend fun getChatMember(params: GetChatMemberRequest): Response<ChatMember>
+    public suspend fun getChatMember(params: GetChatMemberRequest): Response<ChatMember>
 
     /** Get the list of administrators in a chat. */
-    suspend fun getChatAdministrators(params: GetChatAdministratorsRequest): Response<List<ChatMember>>
+    public suspend fun getChatAdministrators(params: GetChatAdministratorsRequest): Response<List<ChatMember>>
 
     /** Ban a user in a group, supergroup, or channel. */
-    suspend fun banChatMember(params: BanChatMemberRequest): Response<Boolean>
+    public suspend fun banChatMember(params: BanChatMemberRequest): Response<Boolean>
 
     /** Unban a previously banned user. */
-    suspend fun unbanChatMember(params: UnbanChatMemberRequest): Response<Boolean>
+    public suspend fun unbanChatMember(params: UnbanChatMemberRequest): Response<Boolean>
 
     /** Leave a group, supergroup, or channel. */
-    suspend fun leaveChat(params: LeaveChatRequest): Response<Boolean>
+    public suspend fun leaveChat(params: LeaveChatRequest): Response<Boolean>
 
     /** Change the title of a chat. */
-    suspend fun setChatTitle(params: SetChatTitleRequest): Response<Boolean>
+    public suspend fun setChatTitle(params: SetChatTitleRequest): Response<Boolean>
 
     /** Change the description of a chat. */
-    suspend fun setChatDescription(params: SetChatDescriptionRequest): Response<Boolean>
+    public suspend fun setChatDescription(params: SetChatDescriptionRequest): Response<Boolean>
 
     /** Pin a message in a chat. */
-    suspend fun pinChatMessage(params: PinChatMessageRequest): Response<Boolean>
+    public suspend fun pinChatMessage(params: PinChatMessageRequest): Response<Boolean>
 
     /** Unpin a message in a chat. */
-    suspend fun unpinChatMessage(params: UnpinChatMessageRequest): Response<Boolean>
+    public suspend fun unpinChatMessage(params: UnpinChatMessageRequest): Response<Boolean>
 
     /** Set a tag for a chat member. */
-    suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean>
+    public suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean>
 
     // --- Callbacks ---
 
     /** Send an answer to a callback query from an inline keyboard. */
-    suspend fun answerCallbackQuery(params: AnswerCallbackQueryRequest): Response<Boolean>
+    public suspend fun answerCallbackQuery(params: AnswerCallbackQueryRequest): Response<Boolean>
 
     // --- Inline ---
 
     /** Send answers to an inline query. */
-    suspend fun answerInlineQuery(params: AnswerInlineQueryRequest): Response<Boolean>
+    public suspend fun answerInlineQuery(params: AnswerInlineQueryRequest): Response<Boolean>
 
     // --- Files ---
 
     /** Get basic info about a file and prepare it for downloading. */
-    suspend fun getFile(params: GetFileRequest): Response<File>
+    public suspend fun getFile(params: GetFileRequest): Response<File>
 
     // --- Webhooks ---
 
     /** Set a webhook to receive updates via HTTPS POST. */
-    suspend fun setWebhook(params: SetWebhookRequest): Response<Boolean>
+    public suspend fun setWebhook(params: SetWebhookRequest): Response<Boolean>
 
     /** Get current webhook status. */
-    suspend fun getWebhookInfo(): Response<WebhookInfo>
+    public suspend fun getWebhookInfo(): Response<WebhookInfo>
 
     /** Remove webhook and switch to getUpdates. */
-    suspend fun deleteWebhook(params: DeleteWebhookRequest = DeleteWebhookRequest()): Response<Boolean>
+    public suspend fun deleteWebhook(params: DeleteWebhookRequest = DeleteWebhookRequest()): Response<Boolean>
 
     // --- Commands ---
 
     /** Set the list of the bot's commands. */
-    suspend fun setMyCommands(params: SetMyCommandsRequest): Response<Boolean>
+    public suspend fun setMyCommands(params: SetMyCommandsRequest): Response<Boolean>
 
     /** Get the current list of the bot's commands. */
-    suspend fun getMyCommands(): Response<List<BotCommand>>
+    public suspend fun getMyCommands(): Response<List<BotCommand>>
 
     /** Delete the list of the bot's commands. */
-    suspend fun deleteMyCommands(): Response<Boolean>
+    public suspend fun deleteMyCommands(): Response<Boolean>
 
     /** Log out from the cloud Bot API server before running the bot locally. */
-    suspend fun logOut(): Response<Boolean>
+    public suspend fun logOut(): Response<Boolean>
 
     /**
      * Close the bot instance on Telegram Bot API side.
      *
      * Named `closeBot` to avoid conflict with [close] that closes local HTTP resources.
      */
-    suspend fun closeBot(): Response<Boolean>
+    public suspend fun closeBot(): Response<Boolean>
 
     // --- Lifecycle ---
 
     /** Close the underlying HTTP client and release resources. */
-    fun close()
+    public fun close()
 }
 
 /**
@@ -408,7 +408,7 @@ internal class BotImp(
  * @param engine Optional HTTP client engine (useful for testing with MockEngine).
  * @param configure Optional additional HttpClient configuration.
  */
-fun TelegramBot(
+public fun TelegramBot(
     token: String,
     engine: HttpClientEngine? = null,
     configure: HttpClientConfig<*>.() -> Unit = {},

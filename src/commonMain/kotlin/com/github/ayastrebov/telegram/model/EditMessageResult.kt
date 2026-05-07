@@ -20,13 +20,13 @@ import kotlinx.serialization.json.decodeFromJsonElement
  * Result payload for edit methods that may return either the edited [Message] or boolean `true`.
  */
 @Serializable(with = EditMessageResultSerializer::class)
-sealed interface EditMessageResult {
-    data class MessageResult(val message: Message) : EditMessageResult
-    data object TrueResult : EditMessageResult
+public sealed interface EditMessageResult {
+    public data class MessageResult(val message: Message) : EditMessageResult
+    public data object TrueResult : EditMessageResult
 }
 
 @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
-object EditMessageResultSerializer : KSerializer<EditMessageResult> {
+public object EditMessageResultSerializer : KSerializer<EditMessageResult> {
     override val descriptor: SerialDescriptor =
         buildSerialDescriptor("EditMessageResult", PolymorphicKind.SEALED)
 

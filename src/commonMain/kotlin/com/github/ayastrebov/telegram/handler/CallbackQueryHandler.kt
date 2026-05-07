@@ -3,7 +3,7 @@ package com.github.ayastrebov.telegram.handler
 import com.github.ayastrebov.telegram.model.CallbackQuery
 import com.github.ayastrebov.telegram.model.Update
 
-data class CallbackDescriptor(
+public data class CallbackDescriptor(
     val matcher: (data: String) -> Boolean,
     val action: suspend (callbackQuery: CallbackQuery) -> Unit,
 )
@@ -11,21 +11,21 @@ data class CallbackDescriptor(
 /**
  * Registration DSL for callback query handlers.
  */
-class CallbackRegistration internal constructor(
+public class CallbackRegistration internal constructor(
     private val target: MutableList<CallbackDescriptor>,
 ) {
     /** Register a handler that matches when callback data equals [exact]. */
-    fun onData(exact: String, action: suspend (callbackQuery: CallbackQuery) -> Unit) {
+    public fun onData(exact: String, action: suspend (callbackQuery: CallbackQuery) -> Unit) {
         target.add(CallbackDescriptor({ it == exact }, action))
     }
 
     /** Register a handler that matches when callback data starts with [prefix]. */
-    fun onPrefix(prefix: String, action: suspend (callbackQuery: CallbackQuery) -> Unit) {
+    public fun onPrefix(prefix: String, action: suspend (callbackQuery: CallbackQuery) -> Unit) {
         target.add(CallbackDescriptor({ it.startsWith(prefix) }, action))
     }
 
     /** Register a handler with a custom [matcher]. */
-    fun register(matcher: (data: String) -> Boolean, action: suspend (callbackQuery: CallbackQuery) -> Unit) {
+    public fun register(matcher: (data: String) -> Boolean, action: suspend (callbackQuery: CallbackQuery) -> Unit) {
         target.add(CallbackDescriptor(matcher, action))
     }
 }
@@ -41,11 +41,11 @@ class CallbackRegistration internal constructor(
  * }
  * ```
  */
-class CallbackQueryHandler : UpdateHandler() {
+public class CallbackQueryHandler : UpdateHandler() {
 
     private val callbacks = mutableListOf<CallbackDescriptor>()
 
-    fun registerCallbacks(registration: CallbackRegistration.() -> Unit) {
+    public fun registerCallbacks(registration: CallbackRegistration.() -> Unit) {
         registration.invoke(CallbackRegistration(callbacks))
     }
 

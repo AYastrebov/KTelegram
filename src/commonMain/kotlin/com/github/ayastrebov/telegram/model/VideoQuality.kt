@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Describes a video file of a specific quality.
  */
 @Serializable
-data class VideoQuality(
+public data class VideoQuality(
     @SerialName("file_id")
     val fileId: String,
 

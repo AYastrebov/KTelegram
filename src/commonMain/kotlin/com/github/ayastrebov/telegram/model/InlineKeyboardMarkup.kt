@@ -4,16 +4,16 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed class KeyboardMarkup
+public sealed class KeyboardMarkup
 
 @Serializable
-data class InlineKeyboardMarkup(
+public data class InlineKeyboardMarkup(
     @SerialName("inline_keyboard")
     val inlineKeyboard: List<List<InlineKeyboardButton>>
 ) : KeyboardMarkup()
 
 @Serializable
-data class InlineKeyboardButton(
+public data class InlineKeyboardButton(
     val text: String,
     val url: String? = null,
 

@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * Parameters for [answerInlineQuery][com.github.ayastrebov.telegram.Bot.answerInlineQuery].
  */
 @Serializable
-data class AnswerInlineQueryRequest(
+public data class AnswerInlineQueryRequest(
     @SerialName("inline_query_id")
     val inlineQueryId: String,
 
@@ -29,7 +29,7 @@ data class AnswerInlineQueryRequest(
  * Parameters for [answerCallbackQuery][com.github.ayastrebov.telegram.Bot.answerCallbackQuery].
  */
 @Serializable
-data class AnswerCallbackQueryRequest(
+public data class AnswerCallbackQueryRequest(
     @SerialName("callback_query_id")
     val callbackQueryId: String,
 
@@ -48,38 +48,38 @@ data class AnswerCallbackQueryRequest(
  * Base type for inline query results. Each subclass maps to a specific result type.
  */
 @Serializable
-sealed class InlineQueryResult {
-    abstract val id: String
+public sealed class InlineQueryResult {
+    public abstract val id: String
 
     @SerialName("input_message_content")
-    abstract val inputMessageContent: InputMessageContent
+    public abstract val inputMessageContent: InputMessageContent
 
     /**
      * Represents an article result for an inline query.
      */
     @Serializable
     @SerialName("article")
-    class InlineQueryResultArticle(
+    public class InlineQueryResultArticle(
         override val id: String,
 
         @SerialName("input_message_content")
         override val inputMessageContent: InputMessageContent,
 
-        val title: String,
+        public val title: String,
 
         @SerialName("reply_markup")
-        val replyMarkup: KeyboardMarkup? = null,
+        public val replyMarkup: KeyboardMarkup? = null,
 
-        val description: String? = null,
-        val url: String? = null,
+        public val description: String? = null,
+        public val url: String? = null,
 
         @SerialName("thumbnail_url")
-        val thumbnailUrl: String? = null,
+        public val thumbnailUrl: String? = null,
 
         @SerialName("thumbnail_width")
-        val thumbnailWidth: Int? = null,
+        public val thumbnailWidth: Int? = null,
 
         @SerialName("thumbnail_height")
-        val thumbnailHeight: Int? = null,
+        public val thumbnailHeight: Int? = null,
     ) : InlineQueryResult()
 }

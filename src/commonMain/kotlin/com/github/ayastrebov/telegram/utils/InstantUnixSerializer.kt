@@ -14,7 +14,7 @@ import kotlin.time.ExperimentalTime
  * Used for all timestamp fields in Telegram API responses (e.g., message dates).
  */
 @OptIn(ExperimentalTime::class)
-object InstantUnixSerializer : KSerializer<kotlin.time.Instant> {
+public object InstantUnixSerializer : KSerializer<kotlin.time.Instant> {
 
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("Instant", PrimitiveKind.LONG)

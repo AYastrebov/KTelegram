@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Describes actions that a non-administrator user is allowed to take in a chat.
  */
 @Serializable
-data class ChatPermissions(
+public data class ChatPermissions(
     @SerialName("can_send_messages")
     val canSendMessages: Boolean? = null,
 

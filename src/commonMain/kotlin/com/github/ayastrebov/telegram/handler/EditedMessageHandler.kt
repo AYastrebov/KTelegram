@@ -8,7 +8,7 @@ import com.github.ayastrebov.telegram.model.Update
  *
  * @param action Suspend function invoked with the edited message.
  */
-class EditedMessageHandler(
+public class EditedMessageHandler(
     private val action: suspend (message: Message) -> Unit
 ) : UpdateHandler() {
 

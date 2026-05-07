@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * @property description Description of the command; 1-256 characters.
  */
 @Serializable
-data class BotCommand(
+public data class BotCommand(
     val command: String,
     val description: String,
 )

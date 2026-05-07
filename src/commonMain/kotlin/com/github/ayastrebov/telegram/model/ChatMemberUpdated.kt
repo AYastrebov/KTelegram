@@ -16,7 +16,7 @@ import kotlin.time.ExperimentalTime
  * @property inviteLink Chat invite link which was used by the user to join the chat (optional).
  */
 @Serializable
-data class ChatMemberUpdated @OptIn(ExperimentalTime::class) constructor(
+public data class ChatMemberUpdated @OptIn(ExperimentalTime::class) constructor(
     val chat: Chat,
     val from: User,
 

@@ -7,8 +7,8 @@ import com.github.ayastrebov.telegram.model.Update
  *
  * Returns `true` if the update was handled (stops the chain), `false` to pass to the next handler.
  */
-interface Handler {
-    suspend fun handleUpdate(update: Update): Boolean
+public interface Handler {
+    public suspend fun handleUpdate(update: Update): Boolean
 }
 
 internal class RegistrationImp : HandlerRegistration {
@@ -32,13 +32,13 @@ internal class RegistrationImp : HandlerRegistration {
  *
  * Handlers are evaluated in registration order; the first handler returning `true` stops the chain.
  */
-interface HandlerRegistration {
-    companion object {
-        fun create(): HandlerRegistration = RegistrationImp()
+public interface HandlerRegistration {
+    public companion object {
+        public fun create(): HandlerRegistration = RegistrationImp()
     }
 
-    fun register(handler: Handler)
-    suspend fun processUpdate(update: Update)
+    public fun register(handler: Handler)
+    public suspend fun processUpdate(update: Update)
 }
 
 /**
@@ -53,9 +53,9 @@ interface HandlerRegistration {
  * container.processUpdate(update)
  * ```
  */
-class HandlersContainer {
+public class HandlersContainer {
     private val handlers = HandlerRegistration.create()
 
-    fun registerHandlers(registration: HandlerRegistration.() -> Unit) = registration.invoke(handlers)
-    suspend fun processUpdate(update: Update) = handlers.processUpdate(update)
+    public fun registerHandlers(registration: HandlerRegistration.() -> Unit): Unit = registration.invoke(handlers)
+    public suspend fun processUpdate(update: Update): Unit = handlers.processUpdate(update)
 }

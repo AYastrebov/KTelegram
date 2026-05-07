@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * Parameters for [editMessageText][com.github.ayastrebov.telegram.Bot.editMessageText].
  */
 @Serializable
-data class EditMessageTextRequest(
+public data class EditMessageTextRequest(
     @SerialName("chat_id")
     val chatId: String? = null,
 
@@ -38,7 +38,7 @@ data class EditMessageTextRequest(
  * Parameters for [editMessageCaption][com.github.ayastrebov.telegram.Bot.editMessageCaption].
  */
 @Serializable
-data class EditMessageCaptionRequest(
+public data class EditMessageCaptionRequest(
     @SerialName("chat_id")
     val chatId: String? = null,
 
@@ -64,7 +64,7 @@ data class EditMessageCaptionRequest(
  * Parameters for [editMessageReplyMarkup][com.github.ayastrebov.telegram.Bot.editMessageReplyMarkup].
  */
 @Serializable
-data class EditMessageReplyMarkupRequest(
+public data class EditMessageReplyMarkupRequest(
     @SerialName("chat_id")
     val chatId: String? = null,
 
@@ -82,7 +82,7 @@ data class EditMessageReplyMarkupRequest(
  * Parameters for [deleteMessage][com.github.ayastrebov.telegram.Bot.deleteMessage].
  */
 @Serializable
-data class DeleteMessageRequest(
+public data class DeleteMessageRequest(
     @SerialName("chat_id")
     val chatId: String,
 

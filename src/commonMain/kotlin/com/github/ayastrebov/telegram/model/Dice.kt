@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * @property value Value of the dice: 1-6 for dice/darts/bowling, 1-5 for basketball/football, 1-64 for slot machine.
  */
 @Serializable
-data class Dice(
+public data class Dice(
     val emoji: String,
     val value: Int,
 )

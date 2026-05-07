@@ -12,7 +12,7 @@ import kotlin.time.ExperimentalTime
  */
 @OptIn(ExperimentalTime::class)
 @Serializable
-data class Message(
+public data class Message(
     @SerialName("message_id")
     val messageId: Long,
 
@@ -123,13 +123,13 @@ data class Message(
 )
 
 /** The first bot_command entity in this message, if any. */
-val Message.commandEntity
+public val Message.commandEntity: MessageEntity?
     get() = entities?.firstOrNull {
         it.type == "bot_command"
     }
 
 /** The command text (without leading `/`), if this message contains a bot command. */
-val Message.commandText
+public val Message.commandText: CharSequence?
     get() =
         commandEntity?.let {
             text?.subSequence(it.offset, it.offset + it.length)

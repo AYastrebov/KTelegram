@@ -8,7 +8,7 @@ import com.github.ayastrebov.telegram.model.Update
  *
  * @param action Suspend function invoked with the inline query.
  */
-class InlineQueryHandler(
+public class InlineQueryHandler(
     private val action: suspend (inlineQuery: InlineQuery) -> Unit
 ) : UpdateHandler() {
     override suspend fun handleUpdate(update: Update): Boolean {

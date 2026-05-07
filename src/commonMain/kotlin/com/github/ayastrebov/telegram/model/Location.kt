@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
  * @property proximityAlertRadius Maximum distance for proximity alerts about approaching another chat member, in meters.
  */
 @Serializable
-data class Location(
+public data class Location(
     val longitude: Double,
     val latitude: Double,
 

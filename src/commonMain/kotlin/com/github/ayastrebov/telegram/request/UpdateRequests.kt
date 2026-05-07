@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Parameters for [getUpdates][com.github.ayastrebov.telegram.Bot.getUpdates].
  */
 @Serializable
-data class GetUpdatesRequest(
+public data class GetUpdatesRequest(
     val offset: Long? = null,
     val limit: Long? = null,
     val timeout: Long? = null,
@@ -20,7 +20,7 @@ data class GetUpdatesRequest(
  * Parameters for [setWebhook][com.github.ayastrebov.telegram.Bot.setWebhook].
  */
 @Serializable
-data class SetWebhookRequest(
+public data class SetWebhookRequest(
     val url: String,
 
     @SerialName("max_connections")
@@ -40,7 +40,7 @@ data class SetWebhookRequest(
  * Parameters for [deleteWebhook][com.github.ayastrebov.telegram.Bot.deleteWebhook].
  */
 @Serializable
-data class DeleteWebhookRequest(
+public data class DeleteWebhookRequest(
     @SerialName("drop_pending_updates")
     val dropPendingUpdates: Boolean = false,
 )

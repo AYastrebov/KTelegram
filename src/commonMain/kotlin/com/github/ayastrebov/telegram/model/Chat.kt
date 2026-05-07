@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * Represents a Telegram chat (private, group, supergroup, or channel).
  */
 @Serializable
-data class Chat(
+public data class Chat(
     val id: Long,
 
     @SerialName("first_name")
@@ -51,14 +51,14 @@ data class Chat(
 )
 
 /** True if this chat is a group or supergroup. */
-val Chat.isGroup: Boolean
+public val Chat.isGroup: Boolean
     get() = when (type) {
         "supergroup", "group" -> true
         else -> false
     }
 
 /** True if this chat is a private (one-on-one) chat. */
-val Chat.isPrivate: Boolean
+public val Chat.isPrivate: Boolean
     get() = when (type) {
         "private" -> true
         else -> false

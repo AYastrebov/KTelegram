@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ChosenInlineResult(
+public data class ChosenInlineResult(
     @SerialName("result_id")
     val resultId: String,
 

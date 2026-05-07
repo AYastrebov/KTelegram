@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
  * @property vcard Additional data about the contact in the form of a vCard.
  */
 @Serializable
-data class Contact(
+public data class Contact(
     @SerialName("phone_number")
     val phoneNumber: String,
 

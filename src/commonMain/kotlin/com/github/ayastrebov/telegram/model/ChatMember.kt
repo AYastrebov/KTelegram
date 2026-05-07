@@ -29,7 +29,7 @@ import kotlinx.serialization.Serializable
  * @property untilDate Date when restrictions will be lifted for this user (Unix timestamp). 0 means forever.
  */
 @Serializable
-data class ChatMember(
+public data class ChatMember(
     val user: User,
     val status: String,
 

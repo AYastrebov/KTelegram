@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ReplyKeyboardMarkup(
+public data class ReplyKeyboardMarkup(
     val keyboard: List<List<KeyboardButton>>,
 
     @SerialName("resize_keyboard")
@@ -20,7 +20,7 @@ data class ReplyKeyboardMarkup(
 ) : KeyboardMarkup()
 
 @Serializable
-data class KeyboardButton(
+public data class KeyboardButton(
     val text: String,
 
     @SerialName("request_contact")
@@ -39,12 +39,12 @@ data class KeyboardButton(
 )
 
 @Serializable
-data class KeyboardButtonPollType(
+public data class KeyboardButtonPollType(
     val type: String? = null,
 )
 
 @Serializable
-data class ReplyKeyboardRemove(
+public data class ReplyKeyboardRemove(
     @SerialName("remove_keyboard")
     val removeKeyboard: Boolean = true,
 
@@ -52,7 +52,7 @@ data class ReplyKeyboardRemove(
 ) : KeyboardMarkup()
 
 @Serializable
-data class ForceReply(
+public data class ForceReply(
     @SerialName("force_reply")
     val forceReply: Boolean,
 
