@@ -1,9 +1,11 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
+import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.multiplatform)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.maven.publish)
@@ -41,6 +43,10 @@ kotlin {
     explicitApi()
     jvmToolchain(21)
 
+    androidLibrary {
+        namespace = "com.github.ayastrebov.telegram"
+        compileSdk = 36
+    }
     jvm()
 
     iosArm64()

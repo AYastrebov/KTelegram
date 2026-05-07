@@ -8,14 +8,14 @@
   <img src="https://img.shields.io/badge/Kotlin-2.3.21-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin 2.3.21"/>
   <img src="https://img.shields.io/badge/JDK-21-orange" alt="JDK 21"/>
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT"/>
-  <img src="https://img.shields.io/badge/Platforms-JVM%20%7C%20iOS%20%7C%20macOS%20%7C%20Linux%20%7C%20Windows%20%7C%20JS%20%7C%20Wasm-lightgrey" alt="Platforms"/>
+  <img src="https://img.shields.io/badge/Platforms-Android%20%7C%20JVM%20%7C%20iOS%20%7C%20macOS%20%7C%20Linux%20%7C%20Windows%20%7C%20JS%20%7C%20Wasm-lightgrey" alt="Platforms"/>
 </p>
 
 ---
 
 ## Features
 
-- **Multiplatform** — Write once, run on JVM, iOS, macOS, Linux, Windows, JS, and WebAssembly
+- **Multiplatform** — Write once, run on Android, JVM, iOS, macOS, Linux, Windows, JS, and WebAssembly
 - **Type-Safe** — Kotlin data classes for all request/response models with compile-time safety
 - **Coroutine-Based** — Fully asynchronous with Kotlin coroutines
 - **Handler System** — Chain-of-responsibility pattern for processing updates with built-in handlers for commands, messages, callbacks, inline queries, and more
@@ -64,6 +64,7 @@ bot.close()
 
 | Platform | Target |
 |----------|--------|
+| Android | `android` |
 | JVM | `jvm` |
 | iOS | `iosArm64`, `iosSimulatorArm64` |
 | macOS | `macosArm64` |

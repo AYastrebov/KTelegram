@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-KTelegram is a Kotlin Multiplatform library providing a type-safe wrapper around the Telegram Bot API. It uses Ktor for HTTP, kotlinx-serialization for JSON, and coroutines for async operations. Targets: JVM, iOS (arm64/simulatorArm64), macOS (arm64), Linux x64, Windows (mingwX64), JS (Node.js), WasmJS (Node.js).
+KTelegram is a Kotlin Multiplatform library providing a type-safe wrapper around the Telegram Bot API. It uses Ktor for HTTP, kotlinx-serialization for JSON, and coroutines for async operations. Targets: Android, JVM, iOS (arm64/simulatorArm64), macOS (arm64), Linux x64, Windows (mingwX64), JS (Node.js), WasmJS (Node.js). Uses `com.android.kotlin.multiplatform.library` plugin (AGP 9.0-ready).
 
 ## Build Commands
 
