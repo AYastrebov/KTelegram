@@ -65,6 +65,9 @@ public interface Bot {
     /** Send a sticker. */
     public suspend fun sendSticker(params: SendStickerRequest): Response<Message>
 
+    /** Send a native poll. */
+    public suspend fun sendPoll(params: SendPollRequest): Response<Message>
+
     /** Forward a message from one chat to another. */
     public suspend fun forwardMessage(params: ForwardMessageRequest): Response<Message>
 
@@ -135,6 +138,9 @@ public interface Bot {
     /** Unpin a message in a chat. */
     public suspend fun unpinChatMessage(params: UnpinChatMessageRequest): Response<Boolean>
 
+    /** Promote or demote a user in a supergroup or channel. */
+    public suspend fun promoteChatMember(params: PromoteChatMemberRequest): Response<Boolean>
+
     /** Set a tag for a chat member. */
     public suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean>
 
@@ -174,6 +180,25 @@ public interface Bot {
 
     /** Delete the list of the bot's commands. */
     public suspend fun deleteMyCommands(): Response<Boolean>
+
+    // --- Managed Bots ---
+
+    /** Get the token of a managed bot. */
+    public suspend fun getManagedBotToken(params: GetManagedBotTokenRequest): Response<String>
+
+    /** Revoke the current token of a managed bot and generate a new one. */
+    public suspend fun replaceManagedBotToken(params: ReplaceManagedBotTokenRequest): Response<String>
+
+    /** Save a prepared keyboard button for use in a Mini App. */
+    public suspend fun savePreparedKeyboardButton(params: SavePreparedKeyboardButtonRequest): Response<PreparedKeyboardButton>
+
+    // --- Profile ---
+
+    /** Change the bot's profile photo. */
+    public suspend fun setMyProfilePhoto(params: SetMyProfilePhotoRequest): Response<Boolean>
+
+    /** Remove the bot's profile photo. */
+    public suspend fun removeMyProfilePhoto(): Response<Boolean>
 
     /** Log out from the cloud Bot API server before running the bot locally. */
     public suspend fun logOut(): Response<Boolean>
@@ -273,6 +298,9 @@ internal class BotImp(
     override suspend fun sendSticker(params: SendStickerRequest): Response<Message> =
         client.post("sendSticker") { setBody(params) }.body()
 
+    override suspend fun sendPoll(params: SendPollRequest): Response<Message> =
+        client.post("sendPoll") { setBody(params) }.body()
+
     override suspend fun forwardMessage(params: ForwardMessageRequest): Response<Message> =
         client.post("forwardMessage") { setBody(params) }.body()
 
@@ -343,6 +371,9 @@ internal class BotImp(
     override suspend fun unpinChatMessage(params: UnpinChatMessageRequest): Response<Boolean> =
         client.post("unpinChatMessage") { setBody(params) }.body()
 
+    override suspend fun promoteChatMember(params: PromoteChatMemberRequest): Response<Boolean> =
+        client.post("promoteChatMember") { setBody(params) }.body()
+
     override suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean> =
         client.post("setChatMemberTag") { setBody(params) }.body()
 
@@ -382,6 +413,25 @@ internal class BotImp(
 
     override suspend fun deleteMyCommands(): Response<Boolean> =
         client.post("deleteMyCommands").body()
+
+    // --- Managed Bots ---
+
+    override suspend fun getManagedBotToken(params: GetManagedBotTokenRequest): Response<String> =
+        client.post("getManagedBotToken") { setBody(params) }.body()
+
+    override suspend fun replaceManagedBotToken(params: ReplaceManagedBotTokenRequest): Response<String> =
+        client.post("replaceManagedBotToken") { setBody(params) }.body()
+
+    override suspend fun savePreparedKeyboardButton(params: SavePreparedKeyboardButtonRequest): Response<PreparedKeyboardButton> =
+        client.post("savePreparedKeyboardButton") { setBody(params) }.body()
+
+    // --- Profile ---
+
+    override suspend fun setMyProfilePhoto(params: SetMyProfilePhotoRequest): Response<Boolean> =
+        client.post("setMyProfilePhoto") { setBody(params) }.body()
+
+    override suspend fun removeMyProfilePhoto(): Response<Boolean> =
+        client.post("removeMyProfilePhoto").body()
 
     override suspend fun logOut(): Response<Boolean> =
         client.post("logOut").body()

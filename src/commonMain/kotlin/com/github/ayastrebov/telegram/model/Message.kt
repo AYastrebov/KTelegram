@@ -109,11 +109,25 @@ public data class Message(
     @SerialName("reply_markup")
     val replyMarkup: InlineKeyboardMarkup? = null,
 
+    val poll: Poll? = null,
+
     @SerialName("chat_owner_left")
-    val chatOwnerLeft: Boolean? = null,
+    val chatOwnerLeft: ChatOwnerLeft? = null,
 
     @SerialName("chat_owner_changed")
-    val chatOwnerChanged: Boolean? = null,
+    val chatOwnerChanged: ChatOwnerChanged? = null,
+
+    @SerialName("managed_bot_created")
+    val managedBotCreated: ManagedBotCreated? = null,
+
+    @SerialName("poll_option_added")
+    val pollOptionAdded: PollOptionAdded? = null,
+
+    @SerialName("poll_option_deleted")
+    val pollOptionDeleted: PollOptionDeleted? = null,
+
+    @SerialName("reply_to_poll_option_id")
+    val replyToPollOptionId: String? = null,
 
     @SerialName("is_paid_post")
     val isPaidPost: Boolean? = null,

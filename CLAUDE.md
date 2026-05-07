@@ -24,15 +24,15 @@ JDK 21 is required (`jvmToolchain(21)`).
 
 **Core components** (`src/commonMain/kotlin/com/github/ayastrebov/telegram/`):
 
-- **`Bot` interface / `BotImp`** — Telegram Bot API client (~36 methods). Wraps Ktor HTTP client with JSON content negotiation and logging. All API methods use `suspend fun` + `client.post()`. Supports both long-polling (`getUpdates`) and webhooks (`setWebhook`/`getWebhookInfo`/`deleteWebhook`) for receiving updates. Accepts optional `HttpClientEngine` for testing. Factory function: `TelegramBot(token, engine?, configure?)`. Call `close()` to release resources.
+- **`Bot` interface / `BotImp`** — Telegram Bot API client (~45 methods). Wraps Ktor HTTP client with JSON content negotiation and logging. All API methods use `suspend fun` + `client.post()`. Supports both long-polling (`getUpdates`) and webhooks (`setWebhook`/`getWebhookInfo`/`deleteWebhook`) for receiving updates. Accepts optional `HttpClientEngine` for testing. Factory function: `TelegramBot(token, engine?, configure?)`. Call `close()` to release resources.
 
 - **`HandlersContainer` / `HandlerRegistration`** — Chain-of-responsibility pattern for processing updates. Handlers are evaluated in registration order; first handler returning `true` stops the chain. Configure via DSL: `container.registerHandlers { register(handler) }`.
 
 - **`handler/`** — Specialized handlers extending `UpdateHandler`: `CommandHandler` (slash commands), `MessageHandler` (text filters), `PhotoHandler`, `InlineQueryHandler`, `CallbackQueryHandler` (inline keyboards with `onData`/`onPrefix`), `EditedMessageHandler`, `ServiceHandler`, `NewMemberHandler`.
 
-- **`model/`** — `@Serializable` data classes mapping to Telegram API types. All use `@SerialName` for JSON field mapping. `Response<T>` wraps all API responses with `getOrThrow()`, `getOrNull()`, `isError` extensions. `TelegramApiException` for error handling.
+- **`model/`** — `@Serializable` data classes mapping to Telegram API types. All use `@SerialName` for JSON field mapping. `Response<T>` wraps all API responses with `getOrThrow()`, `getOrNull()`, `isError` extensions. `TelegramApiException` for error handling. Includes: `Poll`, `PollOption`, `PollAnswer`, `ManagedBotCreated`, `ManagedBotUpdated`, `ChatOwnerLeft`, `ChatOwnerChanged`, `VideoQuality`, `InputPollOption`, `PreparedKeyboardButton`.
 
-- **`request/`** — Request DTOs grouped by category: `MessageRequests.kt`, `EditRequests.kt`, `ChatRequests.kt`, `InlineRequests.kt`, `UpdateRequests.kt`, `CommandRequests.kt`.
+- **`request/`** — Request DTOs grouped by category: `MessageRequests.kt`, `EditRequests.kt`, `ChatRequests.kt`, `InlineRequests.kt`, `UpdateRequests.kt`, `CommandRequests.kt`, `PollRequests.kt`, `ManagedBotRequests.kt`.
 
 - **`utils/InstantUnixSerializer`** — Custom serializer converting Unix timestamps to `kotlin.time.Instant` (stdlib, no extra dependencies).
 
@@ -48,6 +48,7 @@ JDK 21 is required (`jvmToolchain(21)`).
 - Publishing credentials come from env vars (`GITHUB_ACTOR`, `GITHUB_TOKEN`)
 - Tests use ktor-client-mock `MockEngine` for HTTP mocking and kotlinx-coroutines-test `runTest`
 - GPG signing is enabled via `signAllPublications()` in the `mavenPublishing` block
+- Artifacts are signed with GPG key `D0B3B155`
 
 ## CI/CD
 

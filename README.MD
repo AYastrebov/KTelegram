@@ -1,30 +1,41 @@
-# KTelegram
+<h1 align="center">KTelegram</h1>
 
-A **Kotlin Multiplatform** library providing a type-safe, coroutine-based client for the [Telegram Bot API](https://core.telegram.org/bots/api).
+<p align="center">
+  <strong>Kotlin Multiplatform library for the Telegram Bot API</strong>
+</p>
 
-## Supported Platforms
+<p align="center">
+  <img src="https://img.shields.io/badge/Kotlin-2.3.21-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin 2.3.21"/>
+  <img src="https://img.shields.io/badge/JDK-21-orange" alt="JDK 21"/>
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT"/>
+  <img src="https://img.shields.io/badge/Platforms-JVM%20%7C%20iOS%20%7C%20macOS%20%7C%20Linux%20%7C%20Windows%20%7C%20JS%20%7C%20Wasm-lightgrey" alt="Platforms"/>
+</p>
 
-JVM, iOS (arm64/x64/simulatorArm64), macOS (arm64/x64), Linux x64, Windows (mingwX64), JS (browser/Node.js), WasmJS (browser/Node.js).
+---
+
+## Features
+
+- **Multiplatform** — Write once, run on JVM, iOS, macOS, Linux, Windows, JS, and WebAssembly
+- **Type-Safe** — Kotlin data classes for all request/response models with compile-time safety
+- **Coroutine-Based** — Fully asynchronous with Kotlin coroutines
+- **Handler System** — Chain-of-responsibility pattern for processing updates with built-in handlers for commands, messages, callbacks, inline queries, and more
+- **Explicit API** — All public declarations have explicit visibility modifiers
 
 ## Installation
 
-### 1. Add the GitHub Packages Repository
+Add the GitHub Packages repository and dependency to your project:
 
 ```kotlin
 repositories {
     maven {
         url = uri("https://maven.pkg.github.com/ayastrebov/ktelegram")
         credentials {
-            username = findProperty("gpr.user") as String? ?: System.getenv("GPR_USER")
-            password = findProperty("gpr.token") as String? ?: System.getenv("GPR_TOKEN")
+            username = providers.gradleProperty("gpr.user").orNull ?: System.getenv("GITHUB_ACTOR")
+            password = providers.gradleProperty("gpr.token").orNull ?: System.getenv("GITHUB_TOKEN")
         }
     }
 }
-```
 
-### 2. Add the Dependency
-
-```kotlin
 dependencies {
     implementation("com.github.ayastrebov.telegram:telegram-api-client:<version>")
 }
@@ -49,6 +60,18 @@ bot.sendMessage(SendMessageRequest(
 bot.close()
 ```
 
+## Supported Platforms
+
+| Platform | Target |
+|----------|--------|
+| JVM | `jvm` |
+| iOS | `iosArm64`, `iosSimulatorArm64` |
+| macOS | `macosArm64` |
+| Linux | `linuxX64` |
+| Windows | `mingwX64` |
+| JavaScript | `js` (Node.js) |
+| WebAssembly | `wasmJs` |
+
 ## Polling Example
 
 ```kotlin
@@ -59,7 +82,6 @@ while (true) {
     val updates = bot.getUpdates(GetUpdatesRequest(offset = offset, timeout = 30)).getOrThrow()
     for (update in updates) {
         offset = update.updateId + 1
-        // Process each update
         container.processUpdate(update)
     }
 }
@@ -78,7 +100,6 @@ bot.setWebhook(SetWebhookRequest(
 )).getOrThrow()
 
 // 2. In your HTTP server handler, parse the incoming Update
-//    Telegram sends a JSON-serialized Update object in the POST body.
 val json = Json { ignoreUnknownKeys = true }
 val update = json.decodeFromString<Update>(requestBody)
 
@@ -88,13 +109,6 @@ container.processUpdate(update)
 // 4. When shutting down, remove the webhook
 bot.deleteWebhook(DeleteWebhookRequest()).getOrThrow()
 bot.close()
-```
-
-You can check the current webhook status at any time:
-
-```kotlin
-val info = bot.getWebhookInfo().getOrThrow()
-println("Webhook URL: ${info.url}, pending updates: ${info.pendingUpdateCount}")
 ```
 
 > **Note:** Webhook mode and `getUpdates` polling are mutually exclusive — Telegram will not deliver updates via `getUpdates` while a webhook is set.
@@ -206,27 +220,137 @@ assertEquals("Test", me.firstName)
 
 ## API Coverage
 
-KTelegram intentionally provides **partial** Telegram Bot API coverage focused on the most commonly used bot workflows.
-
 | Category | Methods |
 |----------|---------|
 | Updates | `getUpdates`, `getMe` |
-| Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
+| Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `sendPoll`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
 | Editing | `editMessageText`, `editMessageCaption`, `editMessageReplyMarkup`, `deleteMessage` |
-| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage`, `setChatMemberTag` |
+| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage`, `promoteChatMember`, `setChatMemberTag` |
 | Callbacks | `answerCallbackQuery` |
 | Inline | `answerInlineQuery` |
 | Files | `getFile` |
 | Webhooks | `setWebhook`, `getWebhookInfo`, `deleteWebhook` |
 | Commands | `setMyCommands`, `getMyCommands`, `deleteMyCommands` |
+| Managed Bots | `getManagedBotToken`, `replaceManagedBotToken`, `savePreparedKeyboardButton` |
+| Profile | `setMyProfilePhoto`, `removeMyProfilePhoto` |
 | Bot Session | `logOut`, `closeBot` |
+
+## Documentation
+
+Generate API documentation using [Dokka](https://kotlinlang.org/docs/dokka-get-started.html):
+
+```bash
+./gradlew dokkaGenerate
+```
+
+Output: `build/dokka/html/index.html`
+
+Documentation is also deployed to GitHub Pages on each release.
+
+## Testing
+
+```bash
+# Run all platform tests
+./gradlew allTests
+
+# Run JVM tests only
+./gradlew jvmTest
+```
+
+<details>
+<summary><strong>Publishing</strong></summary>
+
+### Publish to MavenLocal
+
+```bash
+./gradlew publishToMavenLocal
+```
+
+Artifacts: `~/.m2/repository/com/github/ayastrebov/telegram/`
+
+### Publish to GitHub Packages
+
+```bash
+export GITHUB_ACTOR=your-github-username
+export GITHUB_TOKEN=your-github-token
+./gradlew publishAllPublicationsToGitHubPackagesRepository
+```
+
+Or set in `local.properties`:
+```properties
+gpr.user=your-github-username
+gpr.token=your-github-token
+```
+
+### Version Override
+
+```bash
+./gradlew publish -PKtelegramDeployVersion=1.0.0
+```
+
+</details>
+
+## Artifact Verification
+
+Published artifacts are signed with GPG. To verify signatures, import the public key:
+
+```bash
+gpg --keyserver keyserver.ubuntu.com --recv-keys D0B3B155
+```
+
+Or import manually:
+
+<details>
+<summary>Public Key</summary>
+
+```
+Fingerprint: 7E64 1A77 C010 DEB3 0E77  0A26 E324 0D17 D0B3 B155
+Key ID: D0B3B155
+```
+
+```bash
+gpg --import <<'EOF'
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQINBGn7XzcBEACqtfHxqRBbHwPZF+SkcP9ns0lxLqRiONZge1NIwfjvlGELPpWv
+Rf2e6rGGlu17ppqmpWAN9dK2y+dHogEDXcOxquGNsQAb1tL72yfxPam7WihLkaTJ
+tUo6fX7L/wGZSJeV9Us+SasvN3xqZsVtxb0k5qAu0083VlDFcztCaP/pse5AEJ3M
+F4EbhIG47EofFMaSbY0ysyL7PvgcVfqxUmGeZH5rufR5Sl9a3JNF65pOryyQWh3J
+PPzqWTXGD3sbG4HKaKIdIhqFQYvC5crf+mhZFxPnZuN3X8z+5Ccc/+Hvuw4TMgEl
+U50Jqg2YQilabtsputTzoxfRCcibov5S1oiZd+dijYQ9PotGupp5TCYb/UIqOSP9
+Wh6xdzXZKMVjJxVYrJesvrt5Zrb672tKZutu17mOaZvt3gF4/B33uEX81Fjr6yKT
+KTqSQYqBDC+tgX9xQ8R5N9mNNlmJvG181q7MqjvKVEG4mwzJ5ELj81w1va7y7wN9
+QTv4o9WTAEV9n18HVBXJkuYb5eeHhflIcNvuxxWLPx2kU8FIFsXvqWoCloRRXtmv
+q5D9gvcCstX4nHz4Bwp5TmxNl5zMuLMF7IohO+oMRgXwhMSeqtUyDY1gzYTiS/iH
+tWLaC/BWfduw/UtmpACl8PeSo7FiL3giIBWyJkBxXVTiY13WFf14zSiNUwARAQAB
+tD9BbmRyZXkgWWFzdHJlYm92IChNYXZlbiBzaWduaW5nIGtleSBSU0EpIDxheWFz
+dHJlYm92QGdtYWlsLmNvbT6JAm4EEwEIAFgWIQR+ZBp3wBDesw53CibjJA0X0LOx
+VQUCaftfNxsUgAAAAAAEAA5tYW51MiwyLjUrMS4xMiwwLDMDGy8EBQsJCAcCAiIC
+BhUKCQgLAgQWAgMBAh4HAheAAAoJEOMkDRfQs7FVm1MP/isy1rZCh3L4p7PbUSTQ
+OMJs0QS+fC8YwFJTG1B6ZJmRPJWGoniOtG9pG1I2JKWYlUM32jFuUAdNjFehbL8q
+pBzsdEuAn7c586d6t+tHghFBV5JHf8G9006UPHtDXRugNpU4AiKjQ543CaF9kPIX
+Chyd99NXbKFkGrH2ILjL9NHkfBh5DsaiHvymIPIgqLh4lexMD9Az5FKD3/jsF+IW
++NxhchGGOz1nHCKEPmXZYWVQhC2YI/GWLOlcqsn8A9RJmxJFICuKyHbwMy3zcayo
+K9D1Q3D4ShbiRGL32cjblTwZrehZjc5znOugW3poa9MXJOT7Lv3orkEOB9HPKAVl
+wgoS5g8BbbYgKDniFZIAyfVlW+Zmmeyt2VGdNOu2kQbc166MsKd6neUWN1FVCMoy
+oIpvFnWoVtAhghhRNa6g7YXtgS9CcqH2wHUsOmOCiFiGej9iBTcRqjQWBCkkrrii
+4KZRus+VL6ihI4IDLplu1KNc1dk+6z3lMlg9EKE5lmr8cbkKWv5I3fXPUGYbHDqn
+OUcDq4fGLMyLrBbD2469BuH1vkn6Tfr7zCWb4JlCur+/oH1sa9va5rS+nSmOc4NY
+sIRZEunN6f9TpE4Iik5YrpS6y+OnKCSICG5RycJFp9msyDl745HUYN0sRD5U6UuC
+jnazxtucoAKo26CUAGUsRpjO
+=tPzu
+-----END PGP PUBLIC KEY BLOCK-----
+EOF
+```
+
+</details>
 
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
 
 1. Fork the repository and create a branch from `master`.
-2. Make sure JDK 17 is installed.
+2. Make sure JDK 21 is installed.
 3. Run the full build before submitting:
    ```bash
    ./gradlew build
@@ -236,12 +360,13 @@ Contributions are welcome! Please follow these steps:
    - Group request DTOs by category in `request/`.
    - All Bot API methods should be `suspend fun` using `client.post()`.
    - Use `Long` for IDs and `kotlin.time.Instant` (with `InstantUnixSerializer`) for timestamps.
+   - All public declarations must have explicit `public` visibility modifiers.
 5. Add tests using `MockEngine` and `runTest` in `src/commonTest/kotlin/`.
 6. Open a pull request against `master`. CI will run automatically.
 
 ### Releasing
 
-Releases are automated. Push a `v*` tag (e.g., `v1.2.0`) to trigger the release workflow, which publishes to GitHub Packages and creates a GitHub Release.
+Releases are automated. Push a `v*` tag (e.g., `v1.2.0`) to trigger the publish workflow, which publishes to GitHub Packages, creates a GitHub Release, and deploys documentation to GitHub Pages.
 
 ## License
 

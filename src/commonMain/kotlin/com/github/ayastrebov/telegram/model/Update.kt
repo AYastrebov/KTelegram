@@ -38,4 +38,15 @@ public data class Update(
 
     @SerialName("chat_member")
     val chatMember: ChatMemberUpdated? = null,
+
+    @SerialName("chat_join_request")
+    val chatJoinRequest: ChatMemberUpdated? = null,
+
+    val poll: Poll? = null,
+
+    @SerialName("poll_answer")
+    val pollAnswer: PollAnswer? = null,
+
+    @SerialName("managed_bot")
+    val managedBot: ManagedBotUpdated? = null,
 )
