@@ -6,6 +6,9 @@ on:
     tags:
       - 'v*'
 
+env:
+  DEPLOY_VERSION: ${{ github.ref_name }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -56,7 +59,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Publish to GitHub Packages
-        run: ./gradlew publishAllPublicationsToGitHubPackagesRepository -PKtelegramDeployVersion=${{ github.ref_name }}
+        run: ./gradlew publishAllPublicationsToGitHubPackagesRepository -PKtelegramDeployVersion=${{ env.DEPLOY_VERSION }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -96,7 +99,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Generate documentation
-        run: ./gradlew dokkaGenerate -PKtelegramDeployVersion=${{ github.ref_name }}
+        run: ./gradlew dokkaGenerate -PKtelegramDeployVersion=${{ env.DEPLOY_VERSION }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
