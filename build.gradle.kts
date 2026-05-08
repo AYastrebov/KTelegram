@@ -38,6 +38,8 @@ dokka {
         externalDocumentationLinks.register("kotlinx-serialization") {
             url("https://kotlinlang.org/api/kotlinx.serialization/")
         }
+
+        includes.from("MODULE.md")
     }
 
     dokkaPublications.html {
