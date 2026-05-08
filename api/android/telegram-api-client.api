@@ -1855,6 +1855,48 @@ public final class com/github/ayastrebov/telegram/model/ReplyKeyboardRemove$Comp
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/github/ayastrebov/telegram/model/ReplyParameters {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/ReplyParameters$Companion;
+	public fun <init> (JLjava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (JLjava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()J
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/util/List;
+	public final fun component7 ()Ljava/lang/Integer;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun copy (JLjava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;)Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/model/ReplyParameters;JLjava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
+	public final fun getChatId ()Ljava/lang/String;
+	public final fun getMessageId ()J
+	public final fun getPollOptionId ()Ljava/lang/String;
+	public final fun getQuote ()Ljava/lang/String;
+	public final fun getQuoteEntities ()Ljava/util/List;
+	public final fun getQuoteParseMode ()Ljava/lang/String;
+	public final fun getQuotePosition ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/model/ReplyParameters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/model/ReplyParameters$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/model/ReplyParameters;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/ReplyParameters$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/github/ayastrebov/telegram/model/Response {
 	public static final field Companion Lcom/github/ayastrebov/telegram/model/Response$Companion;
 	public fun <init> (ZLjava/lang/Object;Ljava/lang/String;Ljava/lang/Integer;)V
@@ -3172,15 +3214,16 @@ public final class com/github/ayastrebov/telegram/request/SavePreparedKeyboardBu
 
 public final class com/github/ayastrebov/telegram/request/SendAnimationRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendAnimationRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Integer;
 	public final fun component11 ()Ljava/lang/Boolean;
 	public final fun component12 ()Ljava/lang/Boolean;
 	public final fun component13 ()Ljava/lang/Long;
 	public final fun component14 ()Ljava/lang/Boolean;
-	public final fun component15 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component15 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component16 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3189,8 +3232,8 @@ public final class com/github/ayastrebov/telegram/request/SendAnimationRequest {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendAnimationRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendAnimationRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendAnimationRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendAnimationRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendAnimationRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendAnimationRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getAnimation ()Ljava/lang/String;
@@ -3205,6 +3248,7 @@ public final class com/github/ayastrebov/telegram/request/SendAnimationRequest {
 	public final fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getWidth ()Ljava/lang/Integer;
 	public fun hashCode ()I
@@ -3228,15 +3272,16 @@ public final class com/github/ayastrebov/telegram/request/SendAnimationRequest$C
 
 public final class com/github/ayastrebov/telegram/request/SendAudioRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendAudioRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/String;
 	public final fun component11 ()Ljava/lang/Boolean;
 	public final fun component12 ()Ljava/lang/Boolean;
 	public final fun component13 ()Ljava/lang/Long;
 	public final fun component14 ()Ljava/lang/Boolean;
-	public final fun component15 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component15 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component16 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3245,8 +3290,8 @@ public final class com/github/ayastrebov/telegram/request/SendAudioRequest {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendAudioRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendAudioRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendAudioRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendAudioRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendAudioRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendAudioRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getAudio ()Ljava/lang/String;
@@ -3261,6 +3306,7 @@ public final class com/github/ayastrebov/telegram/request/SendAudioRequest {
 	public final fun getPerformer ()Ljava/lang/String;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getTitle ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -3318,12 +3364,13 @@ public final class com/github/ayastrebov/telegram/request/SendChatActionRequest$
 
 public final class com/github/ayastrebov/telegram/request/SendContactRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendContactRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Long;
 	public final fun component11 ()Ljava/lang/Boolean;
-	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component13 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3332,8 +3379,8 @@ public final class com/github/ayastrebov/telegram/request/SendContactRequest {
 	public final fun component7 ()Ljava/lang/String;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendContactRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendContactRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendContactRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendContactRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendContactRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendContactRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getChatId ()Ljava/lang/String;
@@ -3345,6 +3392,7 @@ public final class com/github/ayastrebov/telegram/request/SendContactRequest {
 	public final fun getPhoneNumber ()Ljava/lang/String;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getVcard ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -3368,9 +3416,10 @@ public final class com/github/ayastrebov/telegram/request/SendContactRequest$Com
 
 public final class com/github/ayastrebov/telegram/request/SendDiceRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendDiceRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3378,9 +3427,9 @@ public final class com/github/ayastrebov/telegram/request/SendDiceRequest {
 	public final fun component6 ()Ljava/lang/Boolean;
 	public final fun component7 ()Ljava/lang/Long;
 	public final fun component8 ()Ljava/lang/Boolean;
-	public final fun component9 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendDiceRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendDiceRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendDiceRequest;
+	public final fun component9 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendDiceRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendDiceRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendDiceRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getChatId ()Ljava/lang/String;
@@ -3390,6 +3439,7 @@ public final class com/github/ayastrebov/telegram/request/SendDiceRequest {
 	public final fun getMessageThreadId ()Ljava/lang/Integer;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -3412,12 +3462,13 @@ public final class com/github/ayastrebov/telegram/request/SendDiceRequest$Compan
 
 public final class com/github/ayastrebov/telegram/request/SendDocumentRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendDocumentRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Long;
 	public final fun component11 ()Ljava/lang/Boolean;
-	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component13 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3426,8 +3477,8 @@ public final class com/github/ayastrebov/telegram/request/SendDocumentRequest {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendDocumentRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendDocumentRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendDocumentRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendDocumentRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendDocumentRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendDocumentRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getCaption ()Ljava/lang/String;
@@ -3440,6 +3491,7 @@ public final class com/github/ayastrebov/telegram/request/SendDocumentRequest {
 	public final fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -3462,14 +3514,15 @@ public final class com/github/ayastrebov/telegram/request/SendDocumentRequest$Co
 
 public final class com/github/ayastrebov/telegram/request/SendLocationRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendLocationRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/lang/Boolean;
 	public final fun component12 ()Ljava/lang/Long;
 	public final fun component13 ()Ljava/lang/Boolean;
-	public final fun component14 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component14 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component15 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()D
@@ -3478,8 +3531,8 @@ public final class com/github/ayastrebov/telegram/request/SendLocationRequest {
 	public final fun component7 ()Ljava/lang/Integer;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendLocationRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendLocationRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendLocationRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendLocationRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendLocationRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;DDLjava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendLocationRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getChatId ()Ljava/lang/String;
@@ -3494,6 +3547,7 @@ public final class com/github/ayastrebov/telegram/request/SendLocationRequest {
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getProximityAlertRadius ()Ljava/lang/Integer;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -3556,11 +3610,12 @@ public final class com/github/ayastrebov/telegram/request/SendMessageDraftReques
 
 public final class com/github/ayastrebov/telegram/request/SendMessageRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendMessageRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
-	public final fun component11 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component11 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3569,8 +3624,8 @@ public final class com/github/ayastrebov/telegram/request/SendMessageRequest {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Long;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendMessageRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendMessageRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendMessageRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendMessageRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendMessageRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendMessageRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getChatId ()Ljava/lang/String;
@@ -3581,6 +3636,7 @@ public final class com/github/ayastrebov/telegram/request/SendMessageRequest {
 	public final fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getText ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -3604,12 +3660,13 @@ public final class com/github/ayastrebov/telegram/request/SendMessageRequest$Com
 
 public final class com/github/ayastrebov/telegram/request/SendPhotoRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendPhotoRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/lang/Boolean;
-	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component13 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3618,8 +3675,8 @@ public final class com/github/ayastrebov/telegram/request/SendPhotoRequest {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Long;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendPhotoRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendPhotoRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendPhotoRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendPhotoRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendPhotoRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendPhotoRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getCaption ()Ljava/lang/String;
@@ -3632,6 +3689,7 @@ public final class com/github/ayastrebov/telegram/request/SendPhotoRequest {
 	public final fun getPhoto ()Ljava/lang/String;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -3654,8 +3712,8 @@ public final class com/github/ayastrebov/telegram/request/SendPhotoRequest$Compa
 
 public final class com/github/ayastrebov/telegram/request/SendPollRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendPollRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/util/List;
@@ -3675,7 +3733,8 @@ public final class com/github/ayastrebov/telegram/request/SendPollRequest {
 	public final fun component24 ()Ljava/util/List;
 	public final fun component25 ()Ljava/lang/Boolean;
 	public final fun component26 ()Ljava/lang/Boolean;
-	public final fun component27 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component27 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component28 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component3 ()Ljava/util/List;
 	public final fun component4 ()Ljava/lang/Integer;
 	public final fun component5 ()Ljava/lang/Integer;
@@ -3683,8 +3742,8 @@ public final class com/github/ayastrebov/telegram/request/SendPollRequest {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendPollRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendPollRequest;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendPollRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendPollRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendPollRequest;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendPollRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowAddingOptions ()Ljava/lang/Boolean;
 	public final fun getAllowsMultipleAnswers ()Ljava/lang/Boolean;
@@ -3709,6 +3768,7 @@ public final class com/github/ayastrebov/telegram/request/SendPollRequest {
 	public final fun getQuestionEntities ()Ljava/util/List;
 	public final fun getQuestionParseMode ()Ljava/lang/String;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getShuffleOptions ()Ljava/lang/Boolean;
 	public final fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -3734,9 +3794,10 @@ public final class com/github/ayastrebov/telegram/request/SendPollRequest$Compan
 
 public final class com/github/ayastrebov/telegram/request/SendStickerRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendStickerRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3744,9 +3805,9 @@ public final class com/github/ayastrebov/telegram/request/SendStickerRequest {
 	public final fun component6 ()Ljava/lang/Boolean;
 	public final fun component7 ()Ljava/lang/Long;
 	public final fun component8 ()Ljava/lang/Boolean;
-	public final fun component9 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendStickerRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendStickerRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendStickerRequest;
+	public final fun component9 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendStickerRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendStickerRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendStickerRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getChatId ()Ljava/lang/String;
@@ -3755,6 +3816,7 @@ public final class com/github/ayastrebov/telegram/request/SendStickerRequest {
 	public final fun getMessageThreadId ()Ljava/lang/Integer;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getSticker ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -3778,11 +3840,12 @@ public final class com/github/ayastrebov/telegram/request/SendStickerRequest$Com
 
 public final class com/github/ayastrebov/telegram/request/SendVideoNoteRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendVideoNoteRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
-	public final fun component11 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component11 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component12 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3791,8 +3854,8 @@ public final class com/github/ayastrebov/telegram/request/SendVideoNoteRequest {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Long;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendVideoNoteRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendVideoNoteRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendVideoNoteRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendVideoNoteRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendVideoNoteRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendVideoNoteRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getChatId ()Ljava/lang/String;
@@ -3803,6 +3866,7 @@ public final class com/github/ayastrebov/telegram/request/SendVideoNoteRequest {
 	public final fun getMessageThreadId ()Ljava/lang/Integer;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getVideoNote ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -3826,15 +3890,16 @@ public final class com/github/ayastrebov/telegram/request/SendVideoNoteRequest$C
 
 public final class com/github/ayastrebov/telegram/request/SendVideoRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendVideoRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Integer;
 	public final fun component11 ()Ljava/lang/Boolean;
 	public final fun component12 ()Ljava/lang/Boolean;
 	public final fun component13 ()Ljava/lang/Long;
 	public final fun component14 ()Ljava/lang/Boolean;
-	public final fun component15 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component15 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component16 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3843,8 +3908,8 @@ public final class com/github/ayastrebov/telegram/request/SendVideoRequest {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendVideoRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendVideoRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendVideoRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendVideoRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendVideoRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendVideoRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getCaption ()Ljava/lang/String;
@@ -3858,6 +3923,7 @@ public final class com/github/ayastrebov/telegram/request/SendVideoRequest {
 	public final fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getVideo ()Ljava/lang/String;
 	public final fun getWidth ()Ljava/lang/Integer;
@@ -3882,13 +3948,14 @@ public final class com/github/ayastrebov/telegram/request/SendVideoRequest$Compa
 
 public final class com/github/ayastrebov/telegram/request/SendVoiceRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendVoiceRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/lang/Long;
 	public final fun component12 ()Ljava/lang/Boolean;
-	public final fun component13 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun component13 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun component14 ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
 	public final fun component4 ()Ljava/lang/String;
@@ -3897,8 +3964,8 @@ public final class com/github/ayastrebov/telegram/request/SendVoiceRequest {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Integer;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendVoiceRequest;
-	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendVoiceRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendVoiceRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;)Lcom/github/ayastrebov/telegram/request/SendVoiceRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendVoiceRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendVoiceRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowSendingWithoutReply ()Ljava/lang/Boolean;
 	public final fun getCaption ()Ljava/lang/String;
@@ -3911,6 +3978,7 @@ public final class com/github/ayastrebov/telegram/request/SendVoiceRequest {
 	public final fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
 	public final fun getProtectContent ()Ljava/lang/Boolean;
 	public final fun getReplyMarkup ()Lcom/github/ayastrebov/telegram/model/KeyboardMarkup;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
 	public final fun getReplyToMessageId ()Ljava/lang/Long;
 	public final fun getVoice ()Ljava/lang/String;
 	public fun hashCode ()I

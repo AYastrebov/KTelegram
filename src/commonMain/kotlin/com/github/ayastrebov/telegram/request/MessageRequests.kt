@@ -4,6 +4,7 @@ import com.github.ayastrebov.telegram.model.KeyboardMarkup
 import com.github.ayastrebov.telegram.model.ParseMode
 import com.github.ayastrebov.telegram.model.ChatAction
 import com.github.ayastrebov.telegram.model.MessageEntity
+import com.github.ayastrebov.telegram.model.ReplyParameters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -39,6 +40,9 @@ public data class SendMessageRequest(
 
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
+
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
@@ -78,6 +82,9 @@ public data class SendPhotoRequest(
 
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
+
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
@@ -122,6 +129,9 @@ public data class SendAudioRequest(
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
 )
@@ -160,6 +170,9 @@ public data class SendDocumentRequest(
 
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
+
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
@@ -204,6 +217,9 @@ public data class SendVideoRequest(
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
 )
@@ -247,6 +263,9 @@ public data class SendAnimationRequest(
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
 )
@@ -288,6 +307,9 @@ public data class SendVoiceRequest(
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
 )
@@ -323,6 +345,9 @@ public data class SendVideoNoteRequest(
 
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
+
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
@@ -368,6 +393,9 @@ public data class SendLocationRequest(
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
 )
@@ -409,6 +437,9 @@ public data class SendContactRequest(
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
 )
@@ -441,6 +472,9 @@ public data class SendDiceRequest(
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
 )
@@ -472,6 +506,9 @@ public data class SendStickerRequest(
 
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
+
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,

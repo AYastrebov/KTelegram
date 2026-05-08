@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.request
 import com.github.ayastrebov.telegram.model.InputPollOption
 import com.github.ayastrebov.telegram.model.KeyboardMarkup
 import com.github.ayastrebov.telegram.model.MessageEntity
+import com.github.ayastrebov.telegram.model.ReplyParameters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -83,6 +84,9 @@ public data class SendPollRequest(
 
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
+
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
