@@ -37,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.ayastrebov.telegram:telegram-api-client:0.4.1")
+    implementation("com.github.ayastrebov.telegram:telegram-api-client:0.5.0")
 }
 ```
 
@@ -224,9 +224,10 @@ assertEquals("Test", me.firstName)
 | Category | Methods |
 |----------|---------|
 | Updates | `getUpdates`, `getMe` |
-| Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `sendPoll`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
+| Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `sendPoll`, `sendMediaGroup`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
 | Editing | `editMessageText`, `editMessageCaption`, `editMessageReplyMarkup`, `deleteMessage` |
-| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage`, `promoteChatMember`, `setChatMemberTag` |
+| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `restrictChatMember`, `promoteChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage`, `setChatMemberTag`, `exportChatInviteLink`, `createChatInviteLink`, `approveChatJoinRequest`, `declineChatJoinRequest` |
+| Forum Topics | `createForumTopic` |
 | Callbacks | `answerCallbackQuery` |
 | Inline | `answerInlineQuery` |
 | Files | `getFile` |
