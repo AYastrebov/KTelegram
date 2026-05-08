@@ -1,11 +1,15 @@
 public abstract interface class com/github/ayastrebov/telegram/Bot {
 	public abstract fun answerCallbackQuery (Lcom/github/ayastrebov/telegram/request/AnswerCallbackQueryRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun answerInlineQuery (Lcom/github/ayastrebov/telegram/request/AnswerInlineQueryRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun approveChatJoinRequest (Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun banChatMember (Lcom/github/ayastrebov/telegram/request/BanChatMemberRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun close ()V
 	public abstract fun closeBot (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun copyMessage (Lcom/github/ayastrebov/telegram/request/CopyMessageRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun copyMessages (Lcom/github/ayastrebov/telegram/request/CopyMessagesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createChatInviteLink (Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun createForumTopic (Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun declineChatJoinRequest (Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun deleteMessage (Lcom/github/ayastrebov/telegram/request/DeleteMessageRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun deleteMessages (Lcom/github/ayastrebov/telegram/request/DeleteMessagesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun deleteMyCommands (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -14,6 +18,7 @@ public abstract interface class com/github/ayastrebov/telegram/Bot {
 	public abstract fun editMessageCaption (Lcom/github/ayastrebov/telegram/request/EditMessageCaptionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun editMessageReplyMarkup (Lcom/github/ayastrebov/telegram/request/EditMessageReplyMarkupRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun editMessageText (Lcom/github/ayastrebov/telegram/request/EditMessageTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun exportChatInviteLink (Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun forwardMessage (Lcom/github/ayastrebov/telegram/request/ForwardMessageRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun forwardMessages (Lcom/github/ayastrebov/telegram/request/ForwardMessagesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getChat (Lcom/github/ayastrebov/telegram/request/GetChatRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33,6 +38,7 @@ public abstract interface class com/github/ayastrebov/telegram/Bot {
 	public abstract fun promoteChatMember (Lcom/github/ayastrebov/telegram/request/PromoteChatMemberRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun removeMyProfilePhoto (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun replaceManagedBotToken (Lcom/github/ayastrebov/telegram/request/ReplaceManagedBotTokenRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun restrictChatMember (Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun savePreparedKeyboardButton (Lcom/github/ayastrebov/telegram/request/SavePreparedKeyboardButtonRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendAnimation (Lcom/github/ayastrebov/telegram/request/SendAnimationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendAudio (Lcom/github/ayastrebov/telegram/request/SendAudioRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -41,6 +47,7 @@ public abstract interface class com/github/ayastrebov/telegram/Bot {
 	public abstract fun sendDice (Lcom/github/ayastrebov/telegram/request/SendDiceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendDocument (Lcom/github/ayastrebov/telegram/request/SendDocumentRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendLocation (Lcom/github/ayastrebov/telegram/request/SendLocationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun sendMediaGroup (Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendMessage (Lcom/github/ayastrebov/telegram/request/SendMessageRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendMessageDraft (Lcom/github/ayastrebov/telegram/request/SendMessageDraftRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun sendPhoto (Lcom/github/ayastrebov/telegram/request/SendPhotoRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -429,6 +436,50 @@ public final class com/github/ayastrebov/telegram/model/ChatAction : java/lang/E
 }
 
 public final class com/github/ayastrebov/telegram/model/ChatAction$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/ChatInviteLink {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/ChatInviteLink$Companion;
+	public fun <init> (Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/User;ZZZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/User;ZZZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lcom/github/ayastrebov/telegram/model/User;
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/Long;
+	public final fun component8 ()Ljava/lang/Integer;
+	public final fun component9 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/User;ZZZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Integer;)Lcom/github/ayastrebov/telegram/model/ChatInviteLink;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/model/ChatInviteLink;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/User;ZZZLjava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/model/ChatInviteLink;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatesJoinRequest ()Z
+	public final fun getCreator ()Lcom/github/ayastrebov/telegram/model/User;
+	public final fun getExpireDate ()Ljava/lang/Long;
+	public final fun getInviteLink ()Ljava/lang/String;
+	public final fun getMemberLimit ()Ljava/lang/Integer;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPendingJoinRequestCount ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public final fun isPrimary ()Z
+	public final fun isRevoked ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/model/ChatInviteLink$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/model/ChatInviteLink$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/model/ChatInviteLink;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/model/ChatInviteLink;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/ChatInviteLink$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -940,6 +991,40 @@ public final class com/github/ayastrebov/telegram/model/ForceReply$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/github/ayastrebov/telegram/model/ForumTopic {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/ForumTopic$Companion;
+	public fun <init> (ILjava/lang/String;ILjava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()I
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;ILjava/lang/String;)Lcom/github/ayastrebov/telegram/model/ForumTopic;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/model/ForumTopic;ILjava/lang/String;ILjava/lang/String;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/model/ForumTopic;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIconColor ()I
+	public final fun getIconCustomEmojiId ()Ljava/lang/String;
+	public final fun getMessageThreadId ()I
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/model/ForumTopic$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/model/ForumTopic$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/model/ForumTopic;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/model/ForumTopic;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/ForumTopic$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/github/ayastrebov/telegram/model/InlineKeyboardButton {
 	public static final field Companion Lcom/github/ayastrebov/telegram/model/InlineKeyboardButton$Companion;
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;)V
@@ -1042,6 +1127,170 @@ public final synthetic class com/github/ayastrebov/telegram/model/InlineQuery$$s
 }
 
 public final class com/github/ayastrebov/telegram/model/InlineQuery$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class com/github/ayastrebov/telegram/model/InputMedia {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/InputMedia$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public abstract fun getCaption ()Ljava/lang/String;
+	public abstract fun getMedia ()Ljava/lang/String;
+	public abstract fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public abstract fun getType ()Ljava/lang/String;
+	public static final synthetic fun write$Self (Lcom/github/ayastrebov/telegram/model/InputMedia;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMedia$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaAudio : com/github/ayastrebov/telegram/model/InputMedia {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/InputMediaAudio$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)Lcom/github/ayastrebov/telegram/model/InputMediaAudio;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/model/InputMediaAudio;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/model/InputMediaAudio;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCaption ()Ljava/lang/String;
+	public final fun getDuration ()Ljava/lang/Integer;
+	public fun getMedia ()Ljava/lang/String;
+	public fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public final fun getPerformer ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+	public fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/model/InputMediaAudio$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/model/InputMediaAudio$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/model/InputMediaAudio;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/model/InputMediaAudio;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaAudio$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaDocument : com/github/ayastrebov/telegram/model/InputMedia {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/InputMediaDocument$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;)Lcom/github/ayastrebov/telegram/model/InputMediaDocument;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/model/InputMediaDocument;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/model/InputMediaDocument;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCaption ()Ljava/lang/String;
+	public fun getMedia ()Ljava/lang/String;
+	public fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/model/InputMediaDocument$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/model/InputMediaDocument$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/model/InputMediaDocument;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/model/InputMediaDocument;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaDocument$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaPhoto : com/github/ayastrebov/telegram/model/InputMedia {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/InputMediaPhoto$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public final fun component4 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Boolean;)Lcom/github/ayastrebov/telegram/model/InputMediaPhoto;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/model/InputMediaPhoto;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/model/InputMediaPhoto;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCaption ()Ljava/lang/String;
+	public final fun getHasSpoiler ()Ljava/lang/Boolean;
+	public fun getMedia ()Ljava/lang/String;
+	public fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/model/InputMediaPhoto$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/model/InputMediaPhoto$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/model/InputMediaPhoto;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/model/InputMediaPhoto;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaPhoto$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaVideo : com/github/ayastrebov/telegram/model/InputMedia {
+	public static final field Companion Lcom/github/ayastrebov/telegram/model/InputMediaVideo$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Integer;
+	public final fun component6 ()Ljava/lang/Integer;
+	public final fun component7 ()Ljava/lang/Boolean;
+	public final fun component8 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lcom/github/ayastrebov/telegram/model/InputMediaVideo;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/model/InputMediaVideo;Ljava/lang/String;Ljava/lang/String;Lcom/github/ayastrebov/telegram/model/ParseMode;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/model/InputMediaVideo;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCaption ()Ljava/lang/String;
+	public final fun getDuration ()Ljava/lang/Integer;
+	public final fun getHasSpoiler ()Ljava/lang/Boolean;
+	public final fun getHeight ()Ljava/lang/Integer;
+	public fun getMedia ()Ljava/lang/String;
+	public fun getParseMode ()Lcom/github/ayastrebov/telegram/model/ParseMode;
+	public final fun getSupportsStreaming ()Ljava/lang/Boolean;
+	public fun getType ()Ljava/lang/String;
+	public final fun getWidth ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/model/InputMediaVideo$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/model/InputMediaVideo$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/model/InputMediaVideo;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/model/InputMediaVideo;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/model/InputMediaVideo$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -2375,6 +2624,35 @@ public final class com/github/ayastrebov/telegram/request/AnswerInlineQueryReque
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams {
+	public static final field Companion Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams$Companion;
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams;Ljava/lang/String;JILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()Ljava/lang/String;
+	public final fun getUserId ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/ApproveChatJoinRequestParams$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/github/ayastrebov/telegram/request/BanChatMemberRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/BanChatMemberRequest$Companion;
 	public fun <init> (Ljava/lang/String;JLjava/lang/Long;Ljava/lang/Boolean;)V
@@ -2502,6 +2780,105 @@ public final synthetic class com/github/ayastrebov/telegram/request/CopyMessages
 }
 
 public final class com/github/ayastrebov/telegram/request/CopyMessagesRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest {
+	public static final field Companion Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Boolean;)Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Integer;Ljava/lang/Boolean;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()Ljava/lang/String;
+	public final fun getCreatesJoinRequest ()Ljava/lang/Boolean;
+	public final fun getExpireDate ()Ljava/lang/Long;
+	public final fun getMemberLimit ()Ljava/lang/Integer;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/CreateChatInviteLinkRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/CreateForumTopicRequest {
+	public static final field Companion Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()Ljava/lang/String;
+	public final fun getIconColor ()Ljava/lang/Integer;
+	public final fun getIconCustomEmojiId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/request/CreateForumTopicRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/request/CreateForumTopicRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/CreateForumTopicRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams {
+	public static final field Companion Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams$Companion;
+	public fun <init> (Ljava/lang/String;J)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun copy (Ljava/lang/String;J)Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams;Ljava/lang/String;JILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()Ljava/lang/String;
+	public final fun getUserId ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/DeclineChatJoinRequestParams$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -2707,6 +3084,33 @@ public final synthetic class com/github/ayastrebov/telegram/request/EditMessageT
 }
 
 public final class com/github/ayastrebov/telegram/request/EditMessageTextRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest {
+	public static final field Companion Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest;Ljava/lang/String;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/ExportChatInviteLinkRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -3183,6 +3587,42 @@ public final class com/github/ayastrebov/telegram/request/ReplaceManagedBotToken
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class com/github/ayastrebov/telegram/request/RestrictChatMemberRequest {
+	public static final field Companion Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest$Companion;
+	public fun <init> (Ljava/lang/String;JLcom/github/ayastrebov/telegram/model/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Long;)V
+	public synthetic fun <init> (Ljava/lang/String;JLcom/github/ayastrebov/telegram/model/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()J
+	public final fun component3 ()Lcom/github/ayastrebov/telegram/model/ChatPermissions;
+	public final fun component4 ()Ljava/lang/Boolean;
+	public final fun component5 ()Ljava/lang/Long;
+	public final fun copy (Ljava/lang/String;JLcom/github/ayastrebov/telegram/model/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Long;)Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest;Ljava/lang/String;JLcom/github/ayastrebov/telegram/model/ChatPermissions;Ljava/lang/Boolean;Ljava/lang/Long;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()Ljava/lang/String;
+	public final fun getPermissions ()Lcom/github/ayastrebov/telegram/model/ChatPermissions;
+	public final fun getUntilDate ()Ljava/lang/Long;
+	public final fun getUseIndependentChatPermissions ()Ljava/lang/Boolean;
+	public final fun getUserId ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/request/RestrictChatMemberRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/request/RestrictChatMemberRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/RestrictChatMemberRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/github/ayastrebov/telegram/request/SavePreparedKeyboardButtonRequest {
 	public static final field Companion Lcom/github/ayastrebov/telegram/request/SavePreparedKeyboardButtonRequest$Companion;
 	public fun <init> (JLcom/github/ayastrebov/telegram/model/KeyboardButton;)V
@@ -3565,6 +4005,46 @@ public final synthetic class com/github/ayastrebov/telegram/request/SendLocation
 }
 
 public final class com/github/ayastrebov/telegram/request/SendLocationRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/SendMediaGroupRequest {
+	public static final field Companion Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun component7 ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;)Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest;
+	public static synthetic fun copy$default (Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Lcom/github/ayastrebov/telegram/model/ReplyParameters;ILjava/lang/Object;)Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChatId ()Ljava/lang/String;
+	public final fun getDirectMessagesTopicId ()Ljava/lang/Integer;
+	public final fun getDisableNotification ()Ljava/lang/Boolean;
+	public final fun getMedia ()Ljava/util/List;
+	public final fun getMessageThreadId ()Ljava/lang/Integer;
+	public final fun getProtectContent ()Ljava/lang/Boolean;
+	public final fun getReplyParameters ()Lcom/github/ayastrebov/telegram/model/ReplyParameters;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final synthetic class com/github/ayastrebov/telegram/request/SendMediaGroupRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/github/ayastrebov/telegram/request/SendMediaGroupRequest;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/github/ayastrebov/telegram/request/SendMediaGroupRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

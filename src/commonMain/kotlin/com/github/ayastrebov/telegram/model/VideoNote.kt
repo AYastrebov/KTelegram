@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** Represents a video message (rounded square video). */
 @Serializable
 public data class VideoNote(
     @SerialName("file_id")

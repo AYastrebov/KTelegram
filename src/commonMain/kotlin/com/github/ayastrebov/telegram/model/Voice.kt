@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** Represents a voice note. */
 @Serializable
 public data class Voice(
     @SerialName("file_id")

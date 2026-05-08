@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** Represents an audio file to be treated as music by the Telegram clients. */
 @Serializable
 public data class Audio(
     @SerialName("file_id")

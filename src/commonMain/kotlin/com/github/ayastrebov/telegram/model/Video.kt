@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** Represents a video file. */
 @Serializable
 public data class Video(
     @SerialName("file_id")

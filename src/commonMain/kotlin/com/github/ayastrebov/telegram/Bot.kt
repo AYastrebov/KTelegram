@@ -80,6 +80,9 @@ public interface Bot {
     /** Copy multiple messages from one chat to another. */
     public suspend fun copyMessages(params: CopyMessagesRequest): Response<List<MessageId>>
 
+    /** Send a group of photos, videos, documents or audios as an album. */
+    public suspend fun sendMediaGroup(params: SendMediaGroupRequest): Response<List<Message>>
+
     /** Delete multiple messages in one request. */
     public suspend fun deleteMessages(params: DeleteMessagesRequest): Response<Boolean>
 
@@ -123,6 +126,9 @@ public interface Bot {
     /** Unban a previously banned user. */
     public suspend fun unbanChatMember(params: UnbanChatMemberRequest): Response<Boolean>
 
+    /** Restrict a user in a supergroup. */
+    public suspend fun restrictChatMember(params: RestrictChatMemberRequest): Response<Boolean>
+
     /** Leave a group, supergroup, or channel. */
     public suspend fun leaveChat(params: LeaveChatRequest): Response<Boolean>
 
@@ -143,6 +149,23 @@ public interface Bot {
 
     /** Set a tag for a chat member. */
     public suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean>
+
+    /** Generate a new primary invite link for a chat. */
+    public suspend fun exportChatInviteLink(params: ExportChatInviteLinkRequest): Response<String>
+
+    /** Create an additional invite link for a chat. */
+    public suspend fun createChatInviteLink(params: CreateChatInviteLinkRequest): Response<ChatInviteLink>
+
+    /** Approve a chat join request. */
+    public suspend fun approveChatJoinRequest(params: ApproveChatJoinRequestParams): Response<Boolean>
+
+    /** Decline a chat join request. */
+    public suspend fun declineChatJoinRequest(params: DeclineChatJoinRequestParams): Response<Boolean>
+
+    // --- Forum Topics ---
+
+    /** Create a topic in a forum supergroup chat. */
+    public suspend fun createForumTopic(params: CreateForumTopicRequest): Response<ForumTopic>
 
     // --- Callbacks ---
 
@@ -313,6 +336,9 @@ internal class BotImp(
     override suspend fun copyMessages(params: CopyMessagesRequest): Response<List<MessageId>> =
         client.post("copyMessages") { setBody(params) }.body()
 
+    override suspend fun sendMediaGroup(params: SendMediaGroupRequest): Response<List<Message>> =
+        client.post("sendMediaGroup") { setBody(params) }.body()
+
     override suspend fun deleteMessages(params: DeleteMessagesRequest): Response<Boolean> =
         client.post("deleteMessages") { setBody(params) }.body()
 
@@ -356,6 +382,9 @@ internal class BotImp(
     override suspend fun unbanChatMember(params: UnbanChatMemberRequest): Response<Boolean> =
         client.post("unbanChatMember") { setBody(params) }.body()
 
+    override suspend fun restrictChatMember(params: RestrictChatMemberRequest): Response<Boolean> =
+        client.post("restrictChatMember") { setBody(params) }.body()
+
     override suspend fun leaveChat(params: LeaveChatRequest): Response<Boolean> =
         client.post("leaveChat") { setBody(params) }.body()
 
@@ -376,6 +405,23 @@ internal class BotImp(
 
     override suspend fun setChatMemberTag(params: SetChatMemberTagRequest): Response<Boolean> =
         client.post("setChatMemberTag") { setBody(params) }.body()
+
+    override suspend fun exportChatInviteLink(params: ExportChatInviteLinkRequest): Response<String> =
+        client.post("exportChatInviteLink") { setBody(params) }.body()
+
+    override suspend fun createChatInviteLink(params: CreateChatInviteLinkRequest): Response<ChatInviteLink> =
+        client.post("createChatInviteLink") { setBody(params) }.body()
+
+    override suspend fun approveChatJoinRequest(params: ApproveChatJoinRequestParams): Response<Boolean> =
+        client.post("approveChatJoinRequest") { setBody(params) }.body()
+
+    override suspend fun declineChatJoinRequest(params: DeclineChatJoinRequestParams): Response<Boolean> =
+        client.post("declineChatJoinRequest") { setBody(params) }.body()
+
+    // --- Forum Topics ---
+
+    override suspend fun createForumTopic(params: CreateForumTopicRequest): Response<ForumTopic> =
+        client.post("createForumTopic") { setBody(params) }.body()
 
     // --- Callbacks ---
 

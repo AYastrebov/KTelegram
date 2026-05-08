@@ -1,5 +1,6 @@
 package com.github.ayastrebov.telegram.request
 
+import com.github.ayastrebov.telegram.model.ChatPermissions
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -208,4 +209,94 @@ public data class SetChatMemberTagRequest(
     val userId: Long,
 
     val tag: String,
+)
+
+/**
+ * Parameters for [restrictChatMember][com.github.ayastrebov.telegram.Bot.restrictChatMember].
+ */
+@Serializable
+public data class RestrictChatMemberRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("user_id")
+    val userId: Long,
+
+    val permissions: ChatPermissions,
+
+    @SerialName("use_independent_chat_permissions")
+    val useIndependentChatPermissions: Boolean? = null,
+
+    @SerialName("until_date")
+    val untilDate: Long? = null,
+)
+
+/**
+ * Parameters for [exportChatInviteLink][com.github.ayastrebov.telegram.Bot.exportChatInviteLink].
+ */
+@Serializable
+public data class ExportChatInviteLinkRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+)
+
+/**
+ * Parameters for [createChatInviteLink][com.github.ayastrebov.telegram.Bot.createChatInviteLink].
+ */
+@Serializable
+public data class CreateChatInviteLinkRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    val name: String? = null,
+
+    @SerialName("expire_date")
+    val expireDate: Long? = null,
+
+    @SerialName("member_limit")
+    val memberLimit: Int? = null,
+
+    @SerialName("creates_join_request")
+    val createsJoinRequest: Boolean? = null,
+)
+
+/**
+ * Parameters for [approveChatJoinRequest][com.github.ayastrebov.telegram.Bot.approveChatJoinRequest].
+ */
+@Serializable
+public data class ApproveChatJoinRequestParams(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("user_id")
+    val userId: Long,
+)
+
+/**
+ * Parameters for [declineChatJoinRequest][com.github.ayastrebov.telegram.Bot.declineChatJoinRequest].
+ */
+@Serializable
+public data class DeclineChatJoinRequestParams(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    @SerialName("user_id")
+    val userId: Long,
+)
+
+/**
+ * Parameters for [createForumTopic][com.github.ayastrebov.telegram.Bot.createForumTopic].
+ */
+@Serializable
+public data class CreateForumTopicRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    val name: String,
+
+    @SerialName("icon_color")
+    val iconColor: Int? = null,
+
+    @SerialName("icon_custom_emoji_id")
+    val iconCustomEmojiId: String? = null,
 )

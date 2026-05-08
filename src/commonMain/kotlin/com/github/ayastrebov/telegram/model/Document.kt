@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** Represents a general file (as opposed to photos, voice messages and audio files). */
 @Serializable
 public data class Document(
     @SerialName("file_id")

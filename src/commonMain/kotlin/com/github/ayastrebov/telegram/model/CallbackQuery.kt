@@ -3,6 +3,11 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents an incoming callback query from a callback button in an inline keyboard.
+ *
+ * Exactly one of [data] or [gameShortName] will be present.
+ */
 @Serializable
 public data class CallbackQuery(
     val id: String,

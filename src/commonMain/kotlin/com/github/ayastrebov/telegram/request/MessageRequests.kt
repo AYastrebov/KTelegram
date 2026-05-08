@@ -1,5 +1,6 @@
 package com.github.ayastrebov.telegram.request
 
+import com.github.ayastrebov.telegram.model.InputMedia
 import com.github.ayastrebov.telegram.model.KeyboardMarkup
 import com.github.ayastrebov.telegram.model.ParseMode
 import com.github.ayastrebov.telegram.model.ChatAction
@@ -658,6 +659,32 @@ public data class DeleteMessagesRequest(
 
     @SerialName("message_ids")
     val messageIds: List<Long>,
+)
+
+/**
+ * Parameters for [sendMediaGroup][com.github.ayastrebov.telegram.Bot.sendMediaGroup].
+ */
+@Serializable
+public data class SendMediaGroupRequest(
+    @SerialName("chat_id")
+    val chatId: String,
+
+    val media: List<InputMedia>,
+
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
+    @SerialName("disable_notification")
+    val disableNotification: Boolean? = null,
+
+    @SerialName("protect_content")
+    val protectContent: Boolean? = null,
+
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 )
 
 /**

@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** Represents a custom keyboard with reply options. */
 @Serializable
 public data class ReplyKeyboardMarkup(
     val keyboard: List<List<KeyboardButton>>,
@@ -19,6 +20,7 @@ public data class ReplyKeyboardMarkup(
     val selective: Boolean? = null,
 ) : KeyboardMarkup()
 
+/** Represents one button of the reply keyboard. */
 @Serializable
 public data class KeyboardButton(
     val text: String,
@@ -41,11 +43,13 @@ public data class KeyboardButton(
     val style: String? = null,
 )
 
+/** Represents type of a poll, which is allowed to be created when the corresponding button is pressed. */
 @Serializable
 public data class KeyboardButtonPollType(
     val type: String? = null,
 )
 
+/** Requests clients to remove the custom keyboard and display the default letter-keyboard. */
 @Serializable
 public data class ReplyKeyboardRemove(
     @SerialName("remove_keyboard")
@@ -54,6 +58,7 @@ public data class ReplyKeyboardRemove(
     val selective: Boolean? = null,
 ) : KeyboardMarkup()
 
+/** Displays a reply interface to the user (act as if the user has selected the bot's message and tapped "Reply"). */
 @Serializable
 public data class ForceReply(
     @SerialName("force_reply")

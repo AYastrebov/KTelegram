@@ -3,6 +3,7 @@ package com.github.ayastrebov.telegram.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/** Represents an incoming inline query. */
 @Serializable
 public data class InlineQuery(
     val id: String,
