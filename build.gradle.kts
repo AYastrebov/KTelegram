@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.maven.publish)
+    alias(libs.plugins.kotlinx.binary.validator)
 }
 
 val deployVersion = findProperty("KtelegramDeployVersion") as String?
@@ -27,10 +28,21 @@ dokka {
             remoteUrl("https://github.com/ayastrebov/ktelegram/tree/master/src")
             remoteLineSuffix.set("#L")
         }
+
+        externalDocumentationLinks.register("ktor") {
+            url("https://api.ktor.io/")
+        }
+        externalDocumentationLinks.register("kotlinx-coroutines") {
+            url("https://kotlinlang.org/api/kotlinx.coroutines/")
+        }
+        externalDocumentationLinks.register("kotlinx-serialization") {
+            url("https://kotlinlang.org/api/kotlinx.serialization/")
+        }
     }
 
     dokkaPublications.html {
         outputDirectory.set(layout.buildDirectory.dir("dokka/html"))
+        failOnWarning.set(true)
     }
 
     pluginsConfiguration.html {
