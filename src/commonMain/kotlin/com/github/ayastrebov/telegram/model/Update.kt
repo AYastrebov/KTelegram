@@ -40,7 +40,7 @@ public data class Update(
     val chatMember: ChatMemberUpdated? = null,
 
     @SerialName("chat_join_request")
-    val chatJoinRequest: ChatMemberUpdated? = null,
+    val chatJoinRequest: ChatJoinRequest? = null,
 
     val poll: Poll? = null,
 
