@@ -1,7 +1,7 @@
 <h1 align="center">KTelegram</h1>
 
 <p align="center">
-  <strong>Kotlin Multiplatform library for the Telegram Bot API</strong>
+  <strong>Kotlin Multiplatform client for the Telegram Bot API</strong>
 </p>
 
 <p align="center">
@@ -13,17 +13,11 @@
 
 ---
 
-## Features
-
-- **Multiplatform** — Write once, run on Android, JVM, iOS, macOS, Linux, Windows, JS, and WebAssembly
-- **Type-Safe** — Kotlin data classes for all request/response models with compile-time safety
-- **Coroutine-Based** — Fully asynchronous with Kotlin coroutines
-- **Handler System** — Chain-of-responsibility pattern for processing updates with built-in handlers for commands, messages, callbacks, inline queries, and more
-- **Explicit API** — All public declarations have explicit visibility modifiers
+A Kotlin Multiplatform wrapper around the Telegram Bot API. Runs on Android, JVM, iOS, macOS, Linux, Windows, JS, and WebAssembly from a single codebase. Uses Ktor for HTTP, kotlinx-serialization for JSON, and coroutines for async. All public API is under `explicitApi()` mode with binary compatibility tracking.
 
 ## Installation
 
-Add the GitHub Packages repository and dependency to your project:
+The library is on GitHub Packages. Add the repository and dependency:
 
 ```kotlin
 repositories {
@@ -41,12 +35,12 @@ dependencies {
 }
 ```
 
-## Quick Start
+## Quick start
 
 ```kotlin
 val bot = TelegramBot("YOUR_BOT_TOKEN")
 
-// Get bot info
+// Verify the connection
 val me = bot.getMe().getOrThrow()
 println("Bot: ${me.firstName} (@${me.username})")
 
@@ -60,7 +54,7 @@ bot.sendMessage(SendMessageRequest(
 bot.close()
 ```
 
-## Supported Platforms
+## Supported platforms
 
 | Platform | Target |
 |----------|--------|
@@ -73,7 +67,7 @@ bot.close()
 | JavaScript | `js` (Node.js) |
 | WebAssembly | `wasmJs` |
 
-## Polling Example
+## Polling
 
 ```kotlin
 val bot = TelegramBot("YOUR_BOT_TOKEN")
@@ -88,35 +82,35 @@ while (true) {
 }
 ```
 
-## Webhook Example
+## Webhooks
 
-Instead of polling with `getUpdates`, you can receive updates via a [webhook](https://core.telegram.org/bots/api#setwebhook). You'll need your own HTTP server (e.g., Ktor server) to handle incoming POST requests from Telegram.
+If you have an HTTPS server (Ktor, Spring, etc.), you can register a webhook so Telegram pushes updates to you:
 
 ```kotlin
 val bot = TelegramBot("YOUR_BOT_TOKEN")
 
-// 1. Register the webhook with Telegram
+// Register the webhook
 bot.setWebhook(SetWebhookRequest(
     url = "https://your-server.com/webhook"
 )).getOrThrow()
 
-// 2. In your HTTP server handler, parse the incoming Update
+// In your HTTP handler, deserialize the incoming JSON
 val json = Json { ignoreUnknownKeys = true }
 val update = json.decodeFromString<Update>(requestBody)
 
-// 3. Process the update through your handlers
+// Process it
 container.processUpdate(update)
 
-// 4. When shutting down, remove the webhook
+// When shutting down
 bot.deleteWebhook(DeleteWebhookRequest()).getOrThrow()
 bot.close()
 ```
 
-> **Note:** Webhook mode and `getUpdates` polling are mutually exclusive — Telegram will not deliver updates via `getUpdates` while a webhook is set.
+Webhook mode and `getUpdates` polling are mutually exclusive. Telegram won't send updates via polling while a webhook is set.
 
-## Handler System
+## Handlers
 
-KTelegram provides a chain-of-responsibility handler system. Register handlers in order; the first one that returns `true` stops the chain.
+KTelegram has a chain-of-responsibility handler system. Register handlers in order; the first one returning `true` stops the chain.
 
 ### Commands
 
@@ -156,7 +150,7 @@ messageHandler.registerActions {
 }
 ```
 
-### Callback Queries (Inline Keyboards)
+### Callback queries (inline keyboards)
 
 ```kotlin
 val callbackHandler = CallbackQueryHandler()
@@ -173,7 +167,7 @@ callbackHandler.registerCallbacks {
 }
 ```
 
-### Wiring It Together
+### Wiring it together
 
 ```kotlin
 val container = HandlersContainer()
@@ -184,9 +178,9 @@ container.registerHandlers {
 }
 ```
 
-## Error Handling
+## Error handling
 
-All API methods return `Response<T>`. Use the extensions:
+All API methods return `Response<T>`:
 
 ```kotlin
 // Throw on error
@@ -204,7 +198,7 @@ if (response.isError) {
 
 ## Testing with MockEngine
 
-The bot accepts an optional Ktor `HttpClientEngine` for testing:
+Pass a Ktor `MockEngine` to avoid hitting the real API in tests:
 
 ```kotlin
 val mockEngine = MockEngine { request ->
@@ -219,7 +213,7 @@ val me = bot.getMe().getOrThrow()
 assertEquals("Test", me.firstName)
 ```
 
-## API Coverage
+## API coverage
 
 | Category | Methods |
 |----------|---------|
@@ -227,87 +221,59 @@ assertEquals("Test", me.firstName)
 | Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `sendPoll`, `sendMediaGroup`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
 | Editing | `editMessageText`, `editMessageCaption`, `editMessageReplyMarkup`, `deleteMessage` |
 | Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `restrictChatMember`, `promoteChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage`, `setChatMemberTag`, `exportChatInviteLink`, `createChatInviteLink`, `approveChatJoinRequest`, `declineChatJoinRequest` |
-| Forum Topics | `createForumTopic` |
+| Forum topics | `createForumTopic` |
 | Callbacks | `answerCallbackQuery` |
 | Inline | `answerInlineQuery` |
 | Files | `getFile` |
 | Webhooks | `setWebhook`, `getWebhookInfo`, `deleteWebhook` |
 | Commands | `setMyCommands`, `getMyCommands`, `deleteMyCommands` |
-| Managed Bots | `getManagedBotToken`, `replaceManagedBotToken`, `savePreparedKeyboardButton` |
+| Managed bots | `getManagedBotToken`, `replaceManagedBotToken`, `savePreparedKeyboardButton` |
 | Profile | `setMyProfilePhoto`, `removeMyProfilePhoto` |
-| Bot Session | `logOut`, `closeBot` |
+| Bot session | `logOut`, `closeBot` |
 
 ## Documentation
 
-Generate API documentation using [Dokka](https://kotlinlang.org/docs/dokka-get-started.html):
+[Dokka](https://kotlinlang.org/docs/dokka-get-started.html) docs are deployed to GitHub Pages on each release.
 
-```bash
-./gradlew dokkaGenerate
-```
-
-Output: `build/dokka/html/index.html`
-
-Documentation is also deployed to GitHub Pages on each release.
+To build locally: `./gradlew dokkaGenerate` (output in `build/dokka/html/`).
 
 ## Testing
 
 ```bash
-# Run all platform tests
-./gradlew allTests
-
-# Run JVM tests only
-./gradlew jvmTest
+./gradlew allTests   # all platforms
+./gradlew jvmTest    # JVM only (fastest)
 ```
 
 <details>
 <summary><strong>Publishing</strong></summary>
 
-### Publish to MavenLocal
+Tag a release to publish automatically:
 
 ```bash
-./gradlew publishToMavenLocal
+git tag v1.0.0 && git push origin v1.0.0
 ```
 
-Artifacts: `~/.m2/repository/com/github/ayastrebov/telegram/`
+This runs tests, publishes to GitHub Packages, creates a GitHub Release, and deploys docs.
 
-### Publish to GitHub Packages
+For local testing: `./gradlew publishToMavenLocal`
 
-```bash
-export GITHUB_ACTOR=your-github-username
-export GITHUB_TOKEN=your-github-token
-./gradlew publishAllPublicationsToGitHubPackagesRepository
-```
-
-Or set in `local.properties`:
-```properties
-gpr.user=your-github-username
-gpr.token=your-github-token
-```
-
-### Version Override
-
-```bash
-./gradlew publish -PKtelegramDeployVersion=1.0.0
-```
+Version override: `./gradlew publish -PKtelegramDeployVersion=1.0.0`
 
 </details>
 
-## Artifact Verification
+## Artifact verification
 
-Published artifacts are signed with GPG. To verify signatures, import the public key:
+Published artifacts are GPG-signed (key `D0B3B155`):
 
 ```bash
 gpg --keyserver keyserver.ubuntu.com --recv-keys D0B3B155
 ```
 
-Or import manually:
-
 <details>
-<summary>Public Key</summary>
+<summary>Full public key</summary>
 
 ```
 Fingerprint: 7E64 1A77 C010 DEB3 0E77  0A26 E324 0D17 D0B3 B155
-Key ID: D0B3B155
 ```
 
 ```bash
@@ -349,26 +315,21 @@ EOF
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository and create a branch from `master`.
-2. Make sure JDK 21 is installed.
-3. Run the full build before submitting:
-   ```bash
-   ./gradlew build
-   ```
-4. Follow existing code conventions:
-   - Use `@Serializable` data classes with `@SerialName` for new Telegram API types in `model/`.
-   - Group request DTOs by category in `request/`.
-   - All Bot API methods should be `suspend fun` using `client.post()`.
-   - Use `Long` for IDs and `kotlin.time.Instant` (with `InstantUnixSerializer`) for timestamps.
-   - All public declarations must have explicit `public` visibility modifiers.
-5. Add tests using `MockEngine` and `runTest` in `src/commonTest/kotlin/`.
-6. Open a pull request against `master`. CI will run automatically.
+1. Fork the repository and create a branch from `master`
+2. JDK 21 required
+3. Run `./gradlew build` before submitting
+4. Follow existing conventions:
+   - `@Serializable` data classes with `@SerialName` for Telegram types in `model/`
+   - Request DTOs grouped by category in `request/`
+   - Bot methods are `suspend fun` using `client.post()`
+   - `Long` for IDs, `kotlin.time.Instant` for timestamps
+   - Explicit `public` on all public declarations
+5. Add tests with `MockEngine` and `runTest` in `src/commonTest/kotlin/`
+6. Open a PR against `master`. CI runs automatically.
 
 ### Releasing
 
-Releases are automated. Push a `v*` tag (e.g., `v1.2.0`) to trigger the publish workflow, which publishes to GitHub Packages, creates a GitHub Release, and deploys documentation to GitHub Pages.
+Push a `v*` tag (e.g., `v1.2.0`) to publish to GitHub Packages, create a GitHub Release, and deploy docs to GitHub Pages.
 
 ## License
 
