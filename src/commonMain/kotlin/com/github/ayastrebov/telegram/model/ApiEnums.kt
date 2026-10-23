@@ -51,4 +51,7 @@ public enum class ChatAction {
 
     @SerialName("upload_video_note")
     UploadVideoNote,
+
+    @SerialName("choose_sticker")
+    ChooseSticker,
 }

@@ -1,5 +1,6 @@
 package com.github.ayastrebov.telegram.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -12,4 +13,8 @@ import kotlinx.serialization.Serializable
 public data class BotCommand(
     val command: String,
     val description: String,
+
+    /** True, if the command sends an ephemeral message, which can be seen only by the sender of the message and the bot. */
+    @SerialName("is_ephemeral")
+    val isEphemeral: Boolean? = null,
 )

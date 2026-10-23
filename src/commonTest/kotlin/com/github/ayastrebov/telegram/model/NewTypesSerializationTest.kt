@@ -148,8 +148,9 @@ class NewTypesSerializationTest {
 
     @Test
     fun deserializeChatOwnerChanged() {
-        val input = "{}"
-        json.decodeFromString<ChatOwnerChanged>(input)
+        val input = """{"new_owner": {"id": 7, "is_bot": false, "first_name": "Owner"}}"""
+        val changed = json.decodeFromString<ChatOwnerChanged>(input)
+        assertEquals(7L, changed.newOwner.id)
     }
 
     // --- ChatJoinRequest ---

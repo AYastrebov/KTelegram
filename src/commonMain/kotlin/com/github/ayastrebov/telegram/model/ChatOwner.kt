@@ -1,19 +1,20 @@
 package com.github.ayastrebov.telegram.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-/**
- * Service message: the chat owner has left the chat.
- *
- * This object currently holds no information.
- */
+/** Describes a service message about the chat owner leaving the chat. */
 @Serializable
-public class ChatOwnerLeft
+public data class ChatOwnerLeft(
+    /** The user who will become the new owner of the chat if the previous owner does not return to the chat. */
+    @SerialName("new_owner")
+    val newOwner: User? = null,
+)
 
-/**
- * Service message: the chat owner has changed.
- *
- * This object currently holds no information.
- */
+/** Describes a service message about an ownership change in the chat. */
 @Serializable
-public class ChatOwnerChanged
+public data class ChatOwnerChanged(
+    /** The new owner of the chat. */
+    @SerialName("new_owner")
+    val newOwner: User,
+)

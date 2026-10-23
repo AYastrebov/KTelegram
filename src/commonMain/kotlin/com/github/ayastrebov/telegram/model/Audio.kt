@@ -25,5 +25,9 @@ public data class Audio(
     @SerialName("file_size")
     val fileSize: Long? = null,
 
+    @Deprecated("Renamed to thumbnail in Bot API 6.6", ReplaceWith("thumbnail"))
     val thumb: PhotoSize? = null,
+
+    /** Thumbnail of the album cover to which the music file belongs. */
+    val thumbnail: PhotoSize? = null,
 )

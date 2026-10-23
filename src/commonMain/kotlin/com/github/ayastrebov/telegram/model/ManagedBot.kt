@@ -1,5 +1,6 @@
 package com.github.ayastrebov.telegram.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -28,6 +29,14 @@ public data class ManagedBotUpdated(
 public data class KeyboardButtonRequestManagedBot(
     @kotlinx.serialization.SerialName("request_id")
     val requestId: Int,
+
+    /** Suggested name for the bot. */
+    @SerialName("suggested_name")
+    val suggestedName: String? = null,
+
+    /** Suggested username for the bot. */
+    @SerialName("suggested_username")
+    val suggestedUsername: String? = null,
 )
 
 /**

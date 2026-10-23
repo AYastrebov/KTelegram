@@ -15,8 +15,12 @@ public data class VideoNote(
     val duration: Int,
     val length: Int,
 
+    @Deprecated("Renamed to thumbnail in Bot API 6.6", ReplaceWith("thumbnail"))
     val thumb: PhotoSize? = null,
 
     @SerialName("file_size")
     val fileSize: Long? = null,
+
+    /** Video thumbnail. */
+    val thumbnail: PhotoSize? = null,
 )

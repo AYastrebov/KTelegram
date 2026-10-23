@@ -13,4 +13,7 @@ public data class InlineQuery(
 
     @SerialName("chat_type")
     val chatType: String? = null,
+
+    /** Sender location, only for bots that request user location. */
+    val location: Location? = null,
 )

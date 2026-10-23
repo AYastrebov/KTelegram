@@ -198,11 +198,11 @@ public interface Bot {
     /** Set the list of the bot's commands. */
     public suspend fun setMyCommands(params: SetMyCommandsRequest): Response<Boolean>
 
-    /** Get the current list of the bot's commands. */
-    public suspend fun getMyCommands(): Response<List<BotCommand>>
+    /** Get the current list of the bot's commands for the given scope and language. */
+    public suspend fun getMyCommands(params: GetMyCommandsRequest = GetMyCommandsRequest()): Response<List<BotCommand>>
 
-    /** Delete the list of the bot's commands. */
-    public suspend fun deleteMyCommands(): Response<Boolean>
+    /** Delete the list of the bot's commands for the given scope and language. */
+    public suspend fun deleteMyCommands(params: DeleteMyCommandsRequest = DeleteMyCommandsRequest()): Response<Boolean>
 
     // --- Managed Bots ---
 
@@ -232,6 +232,120 @@ public interface Bot {
      * Named `closeBot` to avoid conflict with [close] that closes local HTTP resources.
      */
     public suspend fun closeBot(): Response<Boolean>
+
+    // --- Messages (additional) ---
+
+    /** Send information about a venue. */
+    public suspend fun sendVenue(params: SendVenueRequest): Response<Message>
+
+    // --- Editing (additional) ---
+
+    /** Edit animation, audio, document, photo, or video messages. */
+    public suspend fun editMessageMedia(params: EditMessageMediaRequest): Response<EditMessageResult>
+
+    /** Edit a live location message. */
+    public suspend fun editMessageLiveLocation(params: EditMessageLiveLocationRequest): Response<EditMessageResult>
+
+    /** Stop updating a live location message before live_period expires. */
+    public suspend fun stopMessageLiveLocation(params: StopMessageLiveLocationRequest): Response<EditMessageResult>
+
+    /** Change the chosen reactions on a message. */
+    public suspend fun setMessageReaction(params: SetMessageReactionRequest): Response<Boolean>
+
+    /** Stop a poll which was sent by the bot. */
+    public suspend fun stopPoll(params: StopPollRequest): Response<Poll>
+
+    // --- Chat management (additional) ---
+
+    /** Set default chat permissions for all members. */
+    public suspend fun setChatPermissions(params: SetChatPermissionsRequest): Response<Boolean>
+
+    /** Set a custom title for an administrator promoted by the bot. */
+    public suspend fun setChatAdministratorCustomTitle(params: SetChatAdministratorCustomTitleRequest): Response<Boolean>
+
+    /** Ban a channel chat in a supergroup or a channel. */
+    public suspend fun banChatSenderChat(params: BanChatSenderChatRequest): Response<Boolean>
+
+    /** Unban a previously banned channel chat. */
+    public suspend fun unbanChatSenderChat(params: UnbanChatSenderChatRequest): Response<Boolean>
+
+    /** Delete a chat photo. */
+    public suspend fun deleteChatPhoto(params: DeleteChatPhotoRequest): Response<Boolean>
+
+    /** Clear the list of pinned messages in a chat. */
+    public suspend fun unpinAllChatMessages(params: UnpinAllChatMessagesRequest): Response<Boolean>
+
+    /** Edit a non-primary invite link created by the bot. */
+    public suspend fun editChatInviteLink(params: EditChatInviteLinkRequest): Response<ChatInviteLink>
+
+    /** Revoke an invite link created by the bot. */
+    public suspend fun revokeChatInviteLink(params: RevokeChatInviteLinkRequest): Response<ChatInviteLink>
+
+    /** Get a list of profile pictures for a user. */
+    public suspend fun getUserProfilePhotos(params: GetUserProfilePhotosRequest): Response<UserProfilePhotos>
+
+    /** Get the list of boosts added to a chat by a user. */
+    public suspend fun getUserChatBoosts(params: GetUserChatBoostsRequest): Response<UserChatBoosts>
+
+    /** Get information about the connection of the bot with a business account. */
+    public suspend fun getBusinessConnection(params: GetBusinessConnectionRequest): Response<BusinessConnection>
+
+    // --- Forum Topics (additional) ---
+
+    /** Edit name and icon of a topic in a forum supergroup chat. */
+    public suspend fun editForumTopic(params: EditForumTopicRequest): Response<Boolean>
+
+    /** Close an open topic in a forum supergroup chat. */
+    public suspend fun closeForumTopic(params: CloseForumTopicRequest): Response<Boolean>
+
+    /** Reopen a closed topic in a forum supergroup chat. */
+    public suspend fun reopenForumTopic(params: ReopenForumTopicRequest): Response<Boolean>
+
+    /** Delete a forum topic along with all its messages. */
+    public suspend fun deleteForumTopic(params: DeleteForumTopicRequest): Response<Boolean>
+
+    /** Clear the list of pinned messages in a forum topic. */
+    public suspend fun unpinAllForumTopicMessages(params: UnpinAllForumTopicMessagesRequest): Response<Boolean>
+
+    // --- Commands (additional) ---
+
+    /** Change the bot's name. */
+    public suspend fun setMyName(params: SetMyNameRequest): Response<Boolean>
+
+    /** Get the current bot name for the given user language. */
+    public suspend fun getMyName(params: GetMyNameRequest = GetMyNameRequest()): Response<BotName>
+
+    /** Change the bot's description shown in the chat with the bot if the chat is empty. */
+    public suspend fun setMyDescription(params: SetMyDescriptionRequest): Response<Boolean>
+
+    /** Get the current bot description for the given user language. */
+    public suspend fun getMyDescription(params: GetMyDescriptionRequest = GetMyDescriptionRequest()): Response<BotDescription>
+
+    /** Change the bot's short description shown on the bot's profile page. */
+    public suspend fun setMyShortDescription(params: SetMyShortDescriptionRequest): Response<Boolean>
+
+    /** Get the current bot short description for the given user language. */
+    public suspend fun getMyShortDescription(params: GetMyShortDescriptionRequest = GetMyShortDescriptionRequest()): Response<BotShortDescription>
+
+    /** Change the default administrator rights requested by the bot when it's added as an administrator. */
+    public suspend fun setMyDefaultAdministratorRights(params: SetMyDefaultAdministratorRightsRequest): Response<Boolean>
+
+    /** Get the current default administrator rights of the bot. */
+    public suspend fun getMyDefaultAdministratorRights(params: GetMyDefaultAdministratorRightsRequest = GetMyDefaultAdministratorRightsRequest()): Response<ChatAdministratorRights>
+
+    /** Change the bot's menu button in a private chat, or the default menu button. */
+    public suspend fun setChatMenuButton(params: SetChatMenuButtonRequest): Response<Boolean>
+
+    /** Get the current value of the bot's menu button in a private chat, or the default menu button. */
+    public suspend fun getChatMenuButton(params: GetChatMenuButtonRequest = GetChatMenuButtonRequest()): Response<MenuButton>
+
+    // --- Payments (additional) ---
+
+    /** Respond to a pre-checkout query (must be answered within 10 seconds). */
+    public suspend fun answerPreCheckoutQuery(params: AnswerPreCheckoutQueryRequest): Response<Boolean>
+
+    /** Reply to a shipping query for invoices with flexible price. */
+    public suspend fun answerShippingQuery(params: AnswerShippingQueryRequest): Response<Boolean>
 
     // --- Lifecycle ---
 
@@ -263,6 +377,8 @@ internal class BotImp(
             json(this@BotImp.json)
         }
 
+        install(HttpTimeout)
+
         defaultRequest {
             contentType(ContentType.Application.Json)
             url {
@@ -278,7 +394,12 @@ internal class BotImp(
     // --- Updates ---
 
     override suspend fun getUpdates(params: GetUpdatesRequest): Response<List<Update>> =
-        client.post("getUpdates") { setBody(params) }.body()
+        client.post("getUpdates") {
+            setBody(params)
+            // Long polling: give the request the Telegram timeout plus a grace period, otherwise
+            // engine defaults (e.g. 15 s on CIO) abort the poll before Telegram answers.
+            params.timeout?.let { timeout { requestTimeoutMillis = (it + LONG_POLL_GRACE_SECONDS) * 1000 } }
+        }.body()
 
     override suspend fun getMe(): Response<User> =
         client.post("getMe").body()
@@ -454,11 +575,11 @@ internal class BotImp(
     override suspend fun setMyCommands(params: SetMyCommandsRequest): Response<Boolean> =
         client.post("setMyCommands") { setBody(params) }.body()
 
-    override suspend fun getMyCommands(): Response<List<BotCommand>> =
-        client.post("getMyCommands").body()
+    override suspend fun getMyCommands(params: GetMyCommandsRequest): Response<List<BotCommand>> =
+        client.post("getMyCommands") { setBody(params) }.body()
 
-    override suspend fun deleteMyCommands(): Response<Boolean> =
-        client.post("deleteMyCommands").body()
+    override suspend fun deleteMyCommands(params: DeleteMyCommandsRequest): Response<Boolean> =
+        client.post("deleteMyCommands") { setBody(params) }.body()
 
     // --- Managed Bots ---
 
@@ -485,6 +606,120 @@ internal class BotImp(
     override suspend fun closeBot(): Response<Boolean> =
         client.post("close").body()
 
+    // --- Messages (additional) ---
+
+    override suspend fun sendVenue(params: SendVenueRequest): Response<Message> =
+        client.post("sendVenue") { setBody(params) }.body()
+
+    // --- Editing (additional) ---
+
+    override suspend fun editMessageMedia(params: EditMessageMediaRequest): Response<EditMessageResult> =
+        client.post("editMessageMedia") { setBody(params) }.body()
+
+    override suspend fun editMessageLiveLocation(params: EditMessageLiveLocationRequest): Response<EditMessageResult> =
+        client.post("editMessageLiveLocation") { setBody(params) }.body()
+
+    override suspend fun stopMessageLiveLocation(params: StopMessageLiveLocationRequest): Response<EditMessageResult> =
+        client.post("stopMessageLiveLocation") { setBody(params) }.body()
+
+    override suspend fun setMessageReaction(params: SetMessageReactionRequest): Response<Boolean> =
+        client.post("setMessageReaction") { setBody(params) }.body()
+
+    override suspend fun stopPoll(params: StopPollRequest): Response<Poll> =
+        client.post("stopPoll") { setBody(params) }.body()
+
+    // --- Chat management (additional) ---
+
+    override suspend fun setChatPermissions(params: SetChatPermissionsRequest): Response<Boolean> =
+        client.post("setChatPermissions") { setBody(params) }.body()
+
+    override suspend fun setChatAdministratorCustomTitle(params: SetChatAdministratorCustomTitleRequest): Response<Boolean> =
+        client.post("setChatAdministratorCustomTitle") { setBody(params) }.body()
+
+    override suspend fun banChatSenderChat(params: BanChatSenderChatRequest): Response<Boolean> =
+        client.post("banChatSenderChat") { setBody(params) }.body()
+
+    override suspend fun unbanChatSenderChat(params: UnbanChatSenderChatRequest): Response<Boolean> =
+        client.post("unbanChatSenderChat") { setBody(params) }.body()
+
+    override suspend fun deleteChatPhoto(params: DeleteChatPhotoRequest): Response<Boolean> =
+        client.post("deleteChatPhoto") { setBody(params) }.body()
+
+    override suspend fun unpinAllChatMessages(params: UnpinAllChatMessagesRequest): Response<Boolean> =
+        client.post("unpinAllChatMessages") { setBody(params) }.body()
+
+    override suspend fun editChatInviteLink(params: EditChatInviteLinkRequest): Response<ChatInviteLink> =
+        client.post("editChatInviteLink") { setBody(params) }.body()
+
+    override suspend fun revokeChatInviteLink(params: RevokeChatInviteLinkRequest): Response<ChatInviteLink> =
+        client.post("revokeChatInviteLink") { setBody(params) }.body()
+
+    override suspend fun getUserProfilePhotos(params: GetUserProfilePhotosRequest): Response<UserProfilePhotos> =
+        client.post("getUserProfilePhotos") { setBody(params) }.body()
+
+    override suspend fun getUserChatBoosts(params: GetUserChatBoostsRequest): Response<UserChatBoosts> =
+        client.post("getUserChatBoosts") { setBody(params) }.body()
+
+    override suspend fun getBusinessConnection(params: GetBusinessConnectionRequest): Response<BusinessConnection> =
+        client.post("getBusinessConnection") { setBody(params) }.body()
+
+    // --- Forum Topics (additional) ---
+
+    override suspend fun editForumTopic(params: EditForumTopicRequest): Response<Boolean> =
+        client.post("editForumTopic") { setBody(params) }.body()
+
+    override suspend fun closeForumTopic(params: CloseForumTopicRequest): Response<Boolean> =
+        client.post("closeForumTopic") { setBody(params) }.body()
+
+    override suspend fun reopenForumTopic(params: ReopenForumTopicRequest): Response<Boolean> =
+        client.post("reopenForumTopic") { setBody(params) }.body()
+
+    override suspend fun deleteForumTopic(params: DeleteForumTopicRequest): Response<Boolean> =
+        client.post("deleteForumTopic") { setBody(params) }.body()
+
+    override suspend fun unpinAllForumTopicMessages(params: UnpinAllForumTopicMessagesRequest): Response<Boolean> =
+        client.post("unpinAllForumTopicMessages") { setBody(params) }.body()
+
+    // --- Commands (additional) ---
+
+    override suspend fun setMyName(params: SetMyNameRequest): Response<Boolean> =
+        client.post("setMyName") { setBody(params) }.body()
+
+    override suspend fun getMyName(params: GetMyNameRequest): Response<BotName> =
+        client.post("getMyName") { setBody(params) }.body()
+
+    override suspend fun setMyDescription(params: SetMyDescriptionRequest): Response<Boolean> =
+        client.post("setMyDescription") { setBody(params) }.body()
+
+    override suspend fun getMyDescription(params: GetMyDescriptionRequest): Response<BotDescription> =
+        client.post("getMyDescription") { setBody(params) }.body()
+
+    override suspend fun setMyShortDescription(params: SetMyShortDescriptionRequest): Response<Boolean> =
+        client.post("setMyShortDescription") { setBody(params) }.body()
+
+    override suspend fun getMyShortDescription(params: GetMyShortDescriptionRequest): Response<BotShortDescription> =
+        client.post("getMyShortDescription") { setBody(params) }.body()
+
+    override suspend fun setMyDefaultAdministratorRights(params: SetMyDefaultAdministratorRightsRequest): Response<Boolean> =
+        client.post("setMyDefaultAdministratorRights") { setBody(params) }.body()
+
+    override suspend fun getMyDefaultAdministratorRights(params: GetMyDefaultAdministratorRightsRequest): Response<ChatAdministratorRights> =
+        client.post("getMyDefaultAdministratorRights") { setBody(params) }.body()
+
+    override suspend fun setChatMenuButton(params: SetChatMenuButtonRequest): Response<Boolean> =
+        client.post("setChatMenuButton") { setBody(params) }.body()
+
+    override suspend fun getChatMenuButton(params: GetChatMenuButtonRequest): Response<MenuButton> =
+        client.post("getChatMenuButton") { setBody(params) }.body()
+
+    // --- Payments (additional) ---
+
+    override suspend fun answerPreCheckoutQuery(params: AnswerPreCheckoutQueryRequest): Response<Boolean> =
+        client.post("answerPreCheckoutQuery") { setBody(params) }.body()
+
+    override suspend fun answerShippingQuery(params: AnswerShippingQueryRequest): Response<Boolean> =
+        client.post("answerShippingQuery") { setBody(params) }.body()
+
     // --- Lifecycle ---
 
     override fun close() {
@@ -509,3 +744,6 @@ public fun TelegramBot(
     engine: HttpClientEngine? = null,
     configure: HttpClientConfig<*>.() -> Unit = {},
 ): Bot = BotImp(token, engine, configure)
+
+/** Extra seconds added to the HTTP request timeout on top of the getUpdates long-poll timeout. */
+private const val LONG_POLL_GRACE_SECONDS = 10L

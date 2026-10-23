@@ -33,4 +33,12 @@ public data class ReplyParameters(
 
     @SerialName("poll_option_id")
     val pollOptionId: String? = null,
+
+    /** Identifier of the incoming ephemeral message that will be replied to in the current chat. */
+    @SerialName("ephemeral_message_id")
+    val ephemeralMessageId: Long? = null,
+
+    /** Identifier of the specific checklist task to be replied to. */
+    @SerialName("checklist_task_id")
+    val checklistTaskId: Int? = null,
 )

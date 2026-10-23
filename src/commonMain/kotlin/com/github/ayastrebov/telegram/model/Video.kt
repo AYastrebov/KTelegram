@@ -16,6 +16,7 @@ public data class Video(
     val width: Int,
     val height: Int,
 
+    @Deprecated("Renamed to thumbnail in Bot API 6.6", ReplaceWith("thumbnail"))
     val thumb: PhotoSize? = null,
 
     @SerialName("file_name")
@@ -28,4 +29,14 @@ public data class Video(
     val fileSize: Long? = null,
 
     val qualities: List<VideoQuality>? = null,
+
+    /** Video thumbnail. */
+    val thumbnail: PhotoSize? = null,
+
+    /** Available sizes of the cover of the video in the message. */
+    val cover: List<PhotoSize>? = null,
+
+    /** Timestamp in seconds from which the video will play in the message. */
+    @SerialName("start_timestamp")
+    val startTimestamp: Int? = null,
 )

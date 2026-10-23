@@ -14,5 +14,8 @@ public data class ChosenInlineResult(
     @SerialName("inline_message_id")
     val inlineMessageId: String? = null,
 
-    val query: String
+    val query: String,
+
+    /** Sender location, only for bots that require user location. */
+    val location: Location? = null,
 )

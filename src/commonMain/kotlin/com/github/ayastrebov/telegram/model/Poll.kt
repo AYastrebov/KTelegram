@@ -1,11 +1,14 @@
 package com.github.ayastrebov.telegram.model
 
+import com.github.ayastrebov.telegram.utils.InstantUnixSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.ExperimentalTime
 
 /**
  * Contains information about a poll.
  */
+@OptIn(ExperimentalTime::class)
 @Serializable
 public data class Poll(
     val id: String,
@@ -45,17 +48,27 @@ public data class Poll(
     val openPeriod: Int? = null,
 
     @SerialName("close_date")
-    val closeDate: Int? = null,
+    @Serializable(with = InstantUnixSerializer::class)
+    val closeDate: kotlin.time.Instant? = null,
 
     val description: String? = null,
 
     @SerialName("description_entities")
     val descriptionEntities: List<MessageEntity>? = null,
+
+    /** True if voting is limited to users who have been members of the chat where the poll was originally sent for more than 24 hours. */
+    @SerialName("members_only")
+    val membersOnly: Boolean = false,
+
+    /** A list of two-letter ISO 3166-1 alpha-2 country codes indicating the countries from which users can vote in the poll. */
+    @SerialName("country_codes")
+    val countryCodes: List<String>? = null,
 )
 
 /**
  * Contains information about one answer option in a poll.
  */
+@OptIn(ExperimentalTime::class)
 @Serializable
 public data class PollOption(
     @SerialName("persistent_id")
@@ -76,7 +89,8 @@ public data class PollOption(
     val addedByChat: Chat? = null,
 
     @SerialName("addition_date")
-    val additionDate: Int? = null,
+    @Serializable(with = InstantUnixSerializer::class)
+    val additionDate: kotlin.time.Instant? = null,
 )
 
 /**
@@ -112,6 +126,8 @@ public data class PollOptionAdded(
 
     @SerialName("option_text_entities")
     val optionTextEntities: List<MessageEntity>? = null,
+
+
 )
 
 /**
@@ -127,4 +143,6 @@ public data class PollOptionDeleted(
 
     @SerialName("option_text_entities")
     val optionTextEntities: List<MessageEntity>? = null,
+
+
 )

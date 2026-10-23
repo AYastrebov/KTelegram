@@ -53,4 +53,12 @@ public data class User(
 
     @SerialName("can_manage_bots")
     val canManageBots: Boolean? = null,
+
+    /** True, if the bot supports guest queries from chats it is not a member of. */
+    @SerialName("supports_guest_queries")
+    val supportsGuestQueries: Boolean? = null,
+
+    /** True, if the bot supports join request queries and can be assigned to process them. */
+    @SerialName("supports_join_request_queries")
+    val supportsJoinRequestQueries: Boolean? = null,
 )

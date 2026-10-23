@@ -1,7 +1,9 @@
 package com.github.ayastrebov.telegram.model
 
+import com.github.ayastrebov.telegram.utils.InstantUnixSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.time.ExperimentalTime
 
 /**
  * Represents a member of a chat with their status and permissions.
@@ -28,6 +30,7 @@ import kotlinx.serialization.Serializable
  * @property canAddWebPagePreviews True if the user can add web page previews to their messages.
  * @property untilDate Date when restrictions will be lifted for this user (Unix timestamp). 0 means forever.
  */
+@OptIn(ExperimentalTime::class)
 @Serializable
 public data class ChatMember(
     val user: User,
@@ -88,7 +91,8 @@ public data class ChatMember(
     val canAddWebPagePreviews: Boolean? = null,
 
     @SerialName("until_date")
-    val untilDate: Long? = null,
+    @Serializable(with = InstantUnixSerializer::class)
+    val untilDate: kotlin.time.Instant? = null,
 
     val tag: String? = null,
 

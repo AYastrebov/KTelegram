@@ -34,6 +34,10 @@ public data class SetWebhookRequest(
 
     @SerialName("secret_token")
     val secretToken: String? = null,
+
+    /** The fixed IP address which will be used to send webhook requests instead of the IP address resolved through DNS. */
+    @SerialName("ip_address")
+    val ipAddress: String? = null,
 )
 
 /**

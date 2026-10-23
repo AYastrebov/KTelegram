@@ -1,10 +1,12 @@
 package com.github.ayastrebov.telegram.request
 
+import com.github.ayastrebov.telegram.model.ChatAction
+import com.github.ayastrebov.telegram.model.EphemeralMessageParameters
 import com.github.ayastrebov.telegram.model.InputMedia
 import com.github.ayastrebov.telegram.model.KeyboardMarkup
-import com.github.ayastrebov.telegram.model.ParseMode
-import com.github.ayastrebov.telegram.model.ChatAction
+import com.github.ayastrebov.telegram.model.LinkPreviewOptions
 import com.github.ayastrebov.telegram.model.MessageEntity
+import com.github.ayastrebov.telegram.model.ParseMode
 import com.github.ayastrebov.telegram.model.ReplyParameters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -33,9 +35,11 @@ public data class SendMessageRequest(
     @SerialName("disable_notification")
     val disableNotification: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
@@ -47,6 +51,26 @@ public data class SendMessageRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Link preview generation options for the message. */
+    @SerialName("link_preview_options")
+    val linkPreviewOptions: LinkPreviewOptions? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -72,9 +96,11 @@ public data class SendPhotoRequest(
     @SerialName("caption_entities")
     val captionEntities: List<MessageEntity>? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
@@ -89,6 +115,30 @@ public data class SendPhotoRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Pass True if the caption must be shown above the message media. */
+    @SerialName("show_caption_above_media")
+    val showCaptionAboveMedia: Boolean? = null,
+
+    /** Pass True if the photo needs to be covered with a spoiler animation. */
+    @SerialName("has_spoiler")
+    val hasSpoiler: Boolean? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -124,9 +174,11 @@ public data class SendAudioRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -135,6 +187,25 @@ public data class SendAudioRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. */
+    val thumbnail: String? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -166,9 +237,11 @@ public data class SendDocumentRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -177,6 +250,29 @@ public data class SendDocumentRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. */
+    val thumbnail: String? = null,
+
+    /** Disables automatic server-side content type detection for files uploaded using multipart/form-data. */
+    @SerialName("disable_content_type_detection")
+    val disableContentTypeDetection: Boolean? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -212,9 +308,11 @@ public data class SendVideoRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -223,6 +321,44 @@ public data class SendVideoRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. */
+    val thumbnail: String? = null,
+
+    /** Cover for the video in the message. */
+    val cover: String? = null,
+
+    /** Start timestamp for the video in the message. */
+    @SerialName("start_timestamp")
+    val startTimestamp: Int? = null,
+
+    /** Pass True if the caption must be shown above the message media. */
+    @SerialName("show_caption_above_media")
+    val showCaptionAboveMedia: Boolean? = null,
+
+    /** Pass True if the video needs to be covered with a spoiler animation. */
+    @SerialName("has_spoiler")
+    val hasSpoiler: Boolean? = null,
+
+    /** Pass True if the uploaded video is suitable for streaming. */
+    @SerialName("supports_streaming")
+    val supportsStreaming: Boolean? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -258,9 +394,11 @@ public data class SendAnimationRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -269,6 +407,33 @@ public data class SendAnimationRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. */
+    val thumbnail: String? = null,
+
+    /** Pass True if the caption must be shown above the message media. */
+    @SerialName("show_caption_above_media")
+    val showCaptionAboveMedia: Boolean? = null,
+
+    /** Pass True if the animation needs to be covered with a spoiler animation. */
+    @SerialName("has_spoiler")
+    val hasSpoiler: Boolean? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -302,9 +467,11 @@ public data class SendVoiceRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -313,6 +480,22 @@ public data class SendVoiceRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -341,9 +524,11 @@ public data class SendVideoNoteRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -352,6 +537,25 @@ public data class SendVideoNoteRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. */
+    val thumbnail: String? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -388,9 +592,11 @@ public data class SendLocationRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -399,6 +605,22 @@ public data class SendLocationRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -432,9 +654,11 @@ public data class SendContactRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -443,6 +667,22 @@ public data class SendContactRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -467,9 +707,11 @@ public data class SendDiceRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -478,6 +720,18 @@ public data class SendDiceRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -502,9 +756,11 @@ public data class SendStickerRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -513,6 +769,25 @@ public data class SendStickerRequest(
 
     @SerialName("reply_markup")
     val replyMarkup: KeyboardMarkup? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Emoji associated with the sticker; only for just uploaded stickers. */
+    val emoji: String? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -543,6 +818,10 @@ public data class ForwardMessageRequest(
 
     @SerialName("message_effect_id")
     val messageEffectId: String? = null,
+
+    /** New start timestamp for the forwarded video in the message. */
+    @SerialName("video_start_timestamp")
+    val videoStartTimestamp: Int? = null,
 )
 
 /**
@@ -579,9 +858,11 @@ public data class CopyMessageRequest(
     @SerialName("protect_content")
     val protectContent: Boolean? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("reply_to_message_id")
     val replyToMessageId: Long? = null,
 
+    @Deprecated("Replaced by replyParameters in Bot API 7.0", ReplaceWith("replyParameters"))
     @SerialName("allow_sending_without_reply")
     val allowSendingWithoutReply: Boolean? = null,
 
@@ -590,6 +871,22 @@ public data class CopyMessageRequest(
 
     @SerialName("message_effect_id")
     val messageEffectId: String? = null,
+
+    /** New start timestamp for the copied video in the message. */
+    @SerialName("video_start_timestamp")
+    val videoStartTimestamp: Int? = null,
+
+    /** Pass True if the caption must be shown above the message media. */
+    @SerialName("show_caption_above_media")
+    val showCaptionAboveMedia: Boolean? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Description of the message to reply to. */
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
 )
 
 /**
@@ -685,6 +982,18 @@ public data class SendMediaGroupRequest(
 
     @SerialName("reply_parameters")
     val replyParameters: ReplyParameters? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
 )
 
 /**
@@ -715,6 +1024,10 @@ public data class SendChatActionRequest(
     val directMessagesTopicId: Int? = null,
 
     val action: ChatAction,
+
+    /** Unique identifier of the business connection on behalf of which the action will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
 )
 
 /**
@@ -740,4 +1053,91 @@ public data class SendMessageDraftRequest(
     val parseMode: ParseMode? = null,
 
     val entities: List<MessageEntity>? = null,
+
+    /** Pass True to show the user a button to stop further drafts. */
+    @SerialName("can_stop")
+    val canStop: Boolean? = null,
+
+    /** Pass True to keep the draft in the chat when the button is pressed. */
+    @SerialName("keep_on_stop")
+    val keepOnStop: Boolean? = null,
+)
+
+/**
+ * Parameters for [sendVenue][com.github.ayastrebov.telegram.Bot.sendVenue].
+ */
+// Not yet modelled: suggested_post_parameters
+@Serializable
+public data class SendVenueRequest(
+    /** Unique identifier for the target chat or username of the target bot, supergroup or channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Latitude of the venue. */
+    val latitude: Double,
+
+    /** Longitude of the venue. */
+    val longitude: Double,
+
+    /** Name of the venue. */
+    val title: String,
+
+    /** Address of the venue. */
+    val address: String,
+
+    /** Unique identifier of the business connection on behalf of which the message will be sent. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
+
+    /** Unique identifier for the target message thread (topic) of a forum; for forum supergroups and private chats of bots with forum topic mode enabled only. */
+    @SerialName("message_thread_id")
+    val messageThreadId: Int? = null,
+
+    /** Identifier of the direct messages topic to which the message will be sent; required if the message is sent to a direct messages chat. */
+    @SerialName("direct_messages_topic_id")
+    val directMessagesTopicId: Int? = null,
+
+    /** A JSON-serialized object containing the parameters of the ephemeral message to send. */
+    @SerialName("ephemeral_message_parameters")
+    val ephemeralMessageParameters: EphemeralMessageParameters? = null,
+
+    /** Foursquare identifier of the venue. */
+    @SerialName("foursquare_id")
+    val foursquareId: String? = null,
+
+    /** Foursquare type of the venue, if known. */
+    @SerialName("foursquare_type")
+    val foursquareType: String? = null,
+
+    /** Google Places identifier of the venue. */
+    @SerialName("google_place_id")
+    val googlePlaceId: String? = null,
+
+    /** Google Places type of the venue. */
+    @SerialName("google_place_type")
+    val googlePlaceType: String? = null,
+
+    /** Sends the message silently. */
+    @SerialName("disable_notification")
+    val disableNotification: Boolean? = null,
+
+    /** Protects the contents of the sent message from forwarding and saving. */
+    @SerialName("protect_content")
+    val protectContent: Boolean? = null,
+
+    /** Pass True to allow up to 1000 messages per second, ignoring broadcasting limits for a fee of 0.1 Telegram Stars per message. */
+    @SerialName("allow_paid_broadcast")
+    val allowPaidBroadcast: Boolean? = null,
+
+    /** Unique identifier of the message effect to be added to the message; for private chats only. */
+    @SerialName("message_effect_id")
+    val messageEffectId: String? = null,
+
+    /** Description of the message to reply to. */
+    @SerialName("reply_parameters")
+    val replyParameters: ReplyParameters? = null,
+
+    /** Additional interface options. */
+    @SerialName("reply_markup")
+    val replyMarkup: KeyboardMarkup? = null,
 )

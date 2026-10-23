@@ -1,5 +1,6 @@
 package com.github.ayastrebov.telegram.request
 
+import com.github.ayastrebov.telegram.model.InlineQueryResultsButton
 import com.github.ayastrebov.telegram.model.InputMessageContent
 import com.github.ayastrebov.telegram.model.KeyboardMarkup
 import kotlinx.serialization.SerialName
@@ -23,6 +24,9 @@ public data class AnswerInlineQueryRequest(
 
     @SerialName("next_offset")
     val nextOffset: String? = null,
+
+    /** A JSON-serialized object describing a button to be shown above inline query results. */
+    val button: InlineQueryResultsButton? = null,
 )
 
 /**

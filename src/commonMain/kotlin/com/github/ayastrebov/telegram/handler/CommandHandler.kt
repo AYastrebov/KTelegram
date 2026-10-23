@@ -1,6 +1,7 @@
 package com.github.ayastrebov.telegram.handler
 
 import com.github.ayastrebov.telegram.model.Update
+import com.github.ayastrebov.telegram.model.commandEntity
 import com.github.ayastrebov.telegram.model.commandText
 
 public data class CommandDescriptor(
@@ -19,7 +20,8 @@ public class CommandRegistration internal constructor(
 /**
  * Handler for slash commands (e.g., `/start`, `/help`).
  *
- * Strips the `@botName` suffix and matches commands case-insensitively.
+ * Only reacts to a command that starts the message text (entity offset 0), strips the `@botName`
+ * suffix and matches commands case-insensitively.
  *
  * @param botName The bot's username, used to strip `@botName` suffixes from commands.
  */
@@ -32,7 +34,9 @@ public class CommandHandler(private val botName: String) : UpdateHandler() {
     }
 
     override suspend fun handleUpdate(update: Update): Boolean {
-        val rawCommand = update.message?.commandText?.toString() ?: return false
+        val message = update.message ?: return false
+        if (message.commandEntity?.offset != 0) return false
+        val rawCommand = message.commandText?.toString() ?: return false
         val commandBotName = rawCommand.substringAfter('@', missingDelimiterValue = "")
         if (commandBotName.isNotEmpty() && commandBotName.equals(botName, ignoreCase = true).not()) {
             return false

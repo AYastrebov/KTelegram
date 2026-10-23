@@ -41,6 +41,10 @@ public data class GetChatMemberRequest(
 public data class GetChatAdministratorsRequest(
     @SerialName("chat_id")
     val chatId: String,
+
+    /** Pass True to additionally receive all bots that are administrators of the chat. */
+    @SerialName("return_bots")
+    val returnBots: Boolean? = null,
 )
 
 /**
@@ -120,6 +124,10 @@ public data class PinChatMessageRequest(
 
     @SerialName("disable_notification")
     val disableNotification: Boolean? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be pinned. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
 )
 
 /**
@@ -132,6 +140,10 @@ public data class UnpinChatMessageRequest(
 
     @SerialName("message_id")
     val messageId: Long? = null,
+
+    /** Unique identifier of the business connection on behalf of which the message will be unpinned. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String? = null,
 )
 
 /**
@@ -195,6 +207,10 @@ public data class PromoteChatMemberRequest(
 
     @SerialName("can_manage_tags")
     val canManageTags: Boolean? = null,
+
+    /** Pass True if the administrator can manage chat welcome messages or directly send them in the case of bots. */
+    @SerialName("can_send_welcome_messages")
+    val canSendWelcomeMessages: Boolean? = null,
 )
 
 /**
@@ -299,4 +315,247 @@ public data class CreateForumTopicRequest(
 
     @SerialName("icon_custom_emoji_id")
     val iconCustomEmojiId: String? = null,
+)
+
+/**
+ * Parameters for [setChatPermissions][com.github.ayastrebov.telegram.Bot.setChatPermissions].
+ */
+@Serializable
+public data class SetChatPermissionsRequest(
+    /** Unique identifier for the target chat or username of the target supergroup in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** A JSON-serialized object for new default chat permissions. */
+    val permissions: ChatPermissions,
+
+    /** Pass True if chat permissions are set independently. */
+    @SerialName("use_independent_chat_permissions")
+    val useIndependentChatPermissions: Boolean? = null,
+)
+
+/**
+ * Parameters for [editChatInviteLink][com.github.ayastrebov.telegram.Bot.editChatInviteLink].
+ */
+@Serializable
+public data class EditChatInviteLinkRequest(
+    /** Unique identifier for the target chat or username of the target channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** The invite link to edit. */
+    @SerialName("invite_link")
+    val inviteLink: String,
+
+    /** Invite link name; 0-32 characters. */
+    val name: String? = null,
+
+    /** Point in time (Unix timestamp) when the link will expire. */
+    @SerialName("expire_date")
+    val expireDate: Long? = null,
+
+    /** The maximum number of users that can be members of the chat simultaneously after joining the chat via this invite link; 1-99999. */
+    @SerialName("member_limit")
+    val memberLimit: Int? = null,
+
+    /** True, if users joining the chat via the link need to be approved by chat administrators. */
+    @SerialName("creates_join_request")
+    val createsJoinRequest: Boolean? = null,
+)
+
+/**
+ * Parameters for [revokeChatInviteLink][com.github.ayastrebov.telegram.Bot.revokeChatInviteLink].
+ */
+@Serializable
+public data class RevokeChatInviteLinkRequest(
+    /** Unique identifier of the target chat or username of the target channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** The invite link to revoke. */
+    @SerialName("invite_link")
+    val inviteLink: String,
+)
+
+/**
+ * Parameters for [unpinAllChatMessages][com.github.ayastrebov.telegram.Bot.unpinAllChatMessages].
+ */
+@Serializable
+public data class UnpinAllChatMessagesRequest(
+    /** Unique identifier for the target chat or username of the target channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+)
+
+/**
+ * Parameters for [deleteChatPhoto][com.github.ayastrebov.telegram.Bot.deleteChatPhoto].
+ */
+@Serializable
+public data class DeleteChatPhotoRequest(
+    /** Unique identifier for the target chat or username of the target channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+)
+
+/**
+ * Parameters for [setChatAdministratorCustomTitle][com.github.ayastrebov.telegram.Bot.setChatAdministratorCustomTitle].
+ */
+@Serializable
+public data class SetChatAdministratorCustomTitleRequest(
+    /** Unique identifier for the target chat or username of the target supergroup in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier of the target user. */
+    @SerialName("user_id")
+    val userId: Long,
+
+    /** New custom title for the administrator; 0-16 characters, emoji are not allowed. */
+    @SerialName("custom_title")
+    val customTitle: String,
+)
+
+/**
+ * Parameters for [banChatSenderChat][com.github.ayastrebov.telegram.Bot.banChatSenderChat].
+ */
+@Serializable
+public data class BanChatSenderChatRequest(
+    /** Unique identifier for the target chat or username of the target channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier of the target sender chat. */
+    @SerialName("sender_chat_id")
+    val senderChatId: Long,
+)
+
+/**
+ * Parameters for [unbanChatSenderChat][com.github.ayastrebov.telegram.Bot.unbanChatSenderChat].
+ */
+@Serializable
+public data class UnbanChatSenderChatRequest(
+    /** Unique identifier for the target chat or username of the target channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier of the target sender chat. */
+    @SerialName("sender_chat_id")
+    val senderChatId: Long,
+)
+
+/**
+ * Parameters for [editForumTopic][com.github.ayastrebov.telegram.Bot.editForumTopic].
+ */
+@Serializable
+public data class EditForumTopicRequest(
+    /** Unique identifier for the target chat or username of the target supergroup in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier for the target message thread of the forum topic. */
+    @SerialName("message_thread_id")
+    val messageThreadId: Int,
+
+    /** New topic name, 0-128 characters. */
+    val name: String? = null,
+
+    /** New unique identifier of the custom emoji shown as the topic icon. */
+    @SerialName("icon_custom_emoji_id")
+    val iconCustomEmojiId: String? = null,
+)
+
+/**
+ * Parameters for [closeForumTopic][com.github.ayastrebov.telegram.Bot.closeForumTopic].
+ */
+@Serializable
+public data class CloseForumTopicRequest(
+    /** Unique identifier for the target chat or username of the target supergroup in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier for the target message thread of the forum topic. */
+    @SerialName("message_thread_id")
+    val messageThreadId: Int,
+)
+
+/**
+ * Parameters for [reopenForumTopic][com.github.ayastrebov.telegram.Bot.reopenForumTopic].
+ */
+@Serializable
+public data class ReopenForumTopicRequest(
+    /** Unique identifier for the target chat or username of the target supergroup in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier for the target message thread of the forum topic. */
+    @SerialName("message_thread_id")
+    val messageThreadId: Int,
+)
+
+/**
+ * Parameters for [deleteForumTopic][com.github.ayastrebov.telegram.Bot.deleteForumTopic].
+ */
+@Serializable
+public data class DeleteForumTopicRequest(
+    /** Unique identifier for the target chat or username of the target supergroup in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier for the target message thread of the forum topic. */
+    @SerialName("message_thread_id")
+    val messageThreadId: Int,
+)
+
+/**
+ * Parameters for [unpinAllForumTopicMessages][com.github.ayastrebov.telegram.Bot.unpinAllForumTopicMessages].
+ */
+@Serializable
+public data class UnpinAllForumTopicMessagesRequest(
+    /** Unique identifier for the target chat or username of the target supergroup in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier for the target message thread of the forum topic. */
+    @SerialName("message_thread_id")
+    val messageThreadId: Int,
+)
+
+/**
+ * Parameters for [getUserProfilePhotos][com.github.ayastrebov.telegram.Bot.getUserProfilePhotos].
+ */
+@Serializable
+public data class GetUserProfilePhotosRequest(
+    /** Unique identifier of the target user. */
+    @SerialName("user_id")
+    val userId: Long,
+
+    /** Sequential number of the first photo to be returned. */
+    val offset: Int? = null,
+
+    /** Limits the number of photos to be retrieved. */
+    val limit: Int? = null,
+)
+
+/**
+ * Parameters for [getUserChatBoosts][com.github.ayastrebov.telegram.Bot.getUserChatBoosts].
+ */
+@Serializable
+public data class GetUserChatBoostsRequest(
+    /** Unique identifier for the chat or username of the channel in the format @username. */
+    @SerialName("chat_id")
+    val chatId: String,
+
+    /** Unique identifier of the target user. */
+    @SerialName("user_id")
+    val userId: Long,
+)
+
+/**
+ * Parameters for [getBusinessConnection][com.github.ayastrebov.telegram.Bot.getBusinessConnection].
+ */
+@Serializable
+public data class GetBusinessConnectionRequest(
+    /** Unique identifier of the business connection. */
+    @SerialName("business_connection_id")
+    val businessConnectionId: String,
 )

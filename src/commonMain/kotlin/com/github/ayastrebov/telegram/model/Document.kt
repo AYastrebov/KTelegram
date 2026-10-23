@@ -12,6 +12,7 @@ public data class Document(
     @SerialName("file_unique_id")
     val fileUniqueId: String,
 
+    @Deprecated("Renamed to thumbnail in Bot API 6.6", ReplaceWith("thumbnail"))
     val thumb: PhotoSize? = null,
 
     @SerialName("file_name")
@@ -22,4 +23,7 @@ public data class Document(
 
     @SerialName("file_size")
     val fileSize: Long? = null,
+
+    /** Document thumbnail as defined by the sender. */
+    val thumbnail: PhotoSize? = null,
 )
