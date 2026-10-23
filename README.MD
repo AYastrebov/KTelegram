@@ -5,19 +5,17 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Kotlin-2.3.21-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin 2.3.21"/>
+  <img src="https://img.shields.io/badge/Kotlin-2.4.21-7F52FF?logo=kotlin&logoColor=white" alt="Kotlin 2.4.21"/>
   <img src="https://img.shields.io/badge/JDK-21-orange" alt="JDK 21"/>
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT"/>
   <img src="https://img.shields.io/badge/Platforms-Android%20%7C%20JVM%20%7C%20iOS%20%7C%20macOS%20%7C%20Linux%20%7C%20Windows%20%7C%20JS%20%7C%20Wasm-lightgrey" alt="Platforms"/>
 </p>
 
----
-
-A Kotlin Multiplatform wrapper around the Telegram Bot API. Runs on Android, JVM, iOS, macOS, Linux, Windows, JS, and WebAssembly from a single codebase. Uses Ktor for HTTP, kotlinx-serialization for JSON, and coroutines for async. All public API is under `explicitApi()` mode with binary compatibility tracking.
+KTelegram is a Kotlin Multiplatform client for the Telegram Bot API. One codebase runs on Android, JVM, iOS, macOS, Linux, Windows, JS and WebAssembly. HTTP goes through Ktor, JSON through kotlinx-serialization, and every call is a suspend function. The public API uses `explicitApi()` and is checked for binary compatibility on every build.
 
 ## Installation
 
-The library is on GitHub Packages. Add the repository and dependency:
+The library is published to GitHub Packages, which needs a token even for public packages. Add the repository, the library, and a Ktor engine:
 
 ```kotlin
 repositories {
@@ -31,9 +29,15 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.ayastrebov.telegram:telegram-api-client:0.5.0")
+    implementation("com.github.ayastrebov.telegram:telegram-api-client:0.6.0")
+    // KTelegram does not bundle an HTTP engine; add the Ktor engine for your platform, e.g.:
+    implementation("io.ktor:ktor-client-cio:3.6.0")      // JVM / Android / Native
+    // implementation("io.ktor:ktor-client-js:3.6.0")    // JS / WasmJS
+    // implementation("io.ktor:ktor-client-darwin:3.6.0") // iOS / macOS
 }
 ```
+
+KTelegram does not ship an HTTP engine. Without one on the classpath, `TelegramBot(...)` fails at construction with `Failed to find HTTP client engine implementation`. You can also pass one in: `TelegramBot(token, engine = CIO.create())`.
 
 ## Quick start
 
@@ -84,7 +88,7 @@ while (true) {
 
 ## Webhooks
 
-If you have an HTTPS server (Ktor, Spring, etc.), you can register a webhook so Telegram pushes updates to you:
+If you run an HTTPS server (Ktor, Spring, anything), register a webhook and Telegram will push updates to it:
 
 ```kotlin
 val bot = TelegramBot("YOUR_BOT_TOKEN")
@@ -106,11 +110,13 @@ bot.deleteWebhook(DeleteWebhookRequest()).getOrThrow()
 bot.close()
 ```
 
-Webhook mode and `getUpdates` polling are mutually exclusive. Telegram won't send updates via polling while a webhook is set.
+For long polling, `getUpdates` raises the HTTP request timeout to the poll `timeout` plus 10 seconds, so the engine does not cut the poll short. Every other call uses the engine's default timeout. Change it in the `configure` block: `TelegramBot(token) { install(HttpTimeout) { requestTimeoutMillis = 30_000 } }`.
+
+Polling and webhooks cannot be used together. While a webhook is set, Telegram returns nothing from `getUpdates`.
 
 ## Handlers
 
-KTelegram has a chain-of-responsibility handler system. Register handlers in order; the first one returning `true` stops the chain.
+Updates go through a chain of handlers in registration order. The first handler that returns `true` stops the chain, so register specific handlers before general ones.
 
 ### Commands
 
@@ -180,7 +186,7 @@ container.registerHandlers {
 
 ## Error handling
 
-All API methods return `Response<T>`:
+Every API method returns a `Response<T>`. Pick how strict you want to be:
 
 ```kotlin
 // Throw on error
@@ -198,7 +204,7 @@ if (response.isError) {
 
 ## Testing with MockEngine
 
-Pass a Ktor `MockEngine` to avoid hitting the real API in tests:
+Pass a Ktor `MockEngine` to test against canned responses instead of the real API:
 
 ```kotlin
 val mockEngine = MockEngine { request ->
@@ -215,27 +221,30 @@ assertEquals("Test", me.firstName)
 
 ## API coverage
 
+Models and methods follow [Bot API 10.3](https://core.telegram.org/bots/api) from August 2026.
+
 | Category | Methods |
 |----------|---------|
 | Updates | `getUpdates`, `getMe` |
-| Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendContact`, `sendDice`, `sendSticker`, `sendPoll`, `sendMediaGroup`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
-| Editing | `editMessageText`, `editMessageCaption`, `editMessageReplyMarkup`, `deleteMessage` |
-| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `restrictChatMember`, `promoteChatMember`, `leaveChat`, `setChatTitle`, `setChatDescription`, `pinChatMessage`, `unpinChatMessage`, `setChatMemberTag`, `exportChatInviteLink`, `createChatInviteLink`, `approveChatJoinRequest`, `declineChatJoinRequest` |
-| Forum topics | `createForumTopic` |
+| Messages | `sendMessage`, `sendMessageDraft`, `sendPhoto`, `sendAudio`, `sendDocument`, `sendVideo`, `sendAnimation`, `sendVoice`, `sendVideoNote`, `sendLocation`, `sendVenue`, `sendContact`, `sendDice`, `sendSticker`, `sendPoll`, `sendMediaGroup`, `forwardMessage`, `forwardMessages`, `copyMessage`, `copyMessages`, `deleteMessages`, `sendChatAction` |
+| Editing | `editMessageText`, `editMessageCaption`, `editMessageMedia`, `editMessageReplyMarkup`, `editMessageLiveLocation`, `stopMessageLiveLocation`, `setMessageReaction`, `stopPoll`, `deleteMessage` |
+| Chat | `getChat`, `getChatMemberCount`, `getChatMember`, `getChatAdministrators`, `banChatMember`, `unbanChatMember`, `restrictChatMember`, `promoteChatMember`, `setChatAdministratorCustomTitle`, `banChatSenderChat`, `unbanChatSenderChat`, `setChatPermissions`, `leaveChat`, `setChatTitle`, `setChatDescription`, `deleteChatPhoto`, `pinChatMessage`, `unpinChatMessage`, `unpinAllChatMessages`, `setChatMemberTag`, `exportChatInviteLink`, `createChatInviteLink`, `editChatInviteLink`, `revokeChatInviteLink`, `approveChatJoinRequest`, `declineChatJoinRequest`, `getUserProfilePhotos`, `getUserChatBoosts`, `getBusinessConnection` |
+| Forum topics | `createForumTopic`, `editForumTopic`, `closeForumTopic`, `reopenForumTopic`, `deleteForumTopic`, `unpinAllForumTopicMessages` |
 | Callbacks | `answerCallbackQuery` |
 | Inline | `answerInlineQuery` |
+| Payments | `answerPreCheckoutQuery`, `answerShippingQuery` |
 | Files | `getFile` |
 | Webhooks | `setWebhook`, `getWebhookInfo`, `deleteWebhook` |
-| Commands | `setMyCommands`, `getMyCommands`, `deleteMyCommands` |
+| Commands & bot info | `setMyCommands`, `getMyCommands`, `deleteMyCommands`, `setMyName`, `getMyName`, `setMyDescription`, `getMyDescription`, `setMyShortDescription`, `getMyShortDescription`, `setMyDefaultAdministratorRights`, `getMyDefaultAdministratorRights`, `setChatMenuButton`, `getChatMenuButton` |
 | Managed bots | `getManagedBotToken`, `replaceManagedBotToken`, `savePreparedKeyboardButton` |
 | Profile | `setMyProfilePhoto`, `removeMyProfilePhoto` |
 | Bot session | `logOut`, `closeBot` |
 
+Still missing: stickers, invoices and Stars (`sendInvoice`, `createInvoiceLink`, `refundStarPayment` and friends), gifts, business account management, stories, ephemeral messages, rich messages, checklists, paid media, games, passport, and multipart file uploads. Pull requests for any of these are welcome.
+
 ## Documentation
 
-[Dokka](https://kotlinlang.org/docs/dokka-get-started.html) docs are deployed to GitHub Pages on each release.
-
-To build locally: `./gradlew dokkaGenerate` (output in `build/dokka/html/`).
+API docs are generated with [Dokka](https://kotlinlang.org/docs/dokka-get-started.html) and deployed to GitHub Pages on each release. To build them locally, run `./gradlew dokkaGenerate`; the output lands in `build/dokka/html/`.
 
 ## Testing
 
@@ -245,25 +254,23 @@ To build locally: `./gradlew dokkaGenerate` (output in `build/dokka/html/`).
 ```
 
 <details>
-<summary><strong>Publishing</strong></summary>
+<summary>Publishing</summary>
 
-Tag a release to publish automatically:
+Push a tag and the release workflow does the rest:
 
 ```bash
 git tag v1.0.0 && git push origin v1.0.0
 ```
 
-This runs tests, publishes to GitHub Packages, creates a GitHub Release, and deploys docs.
+The workflow runs the tests, publishes to GitHub Packages, creates a GitHub Release and deploys the docs.
 
-For local testing: `./gradlew publishToMavenLocal`
-
-Version override: `./gradlew publish -PKtelegramDeployVersion=1.0.0`
+To try a publish locally, run `./gradlew publishToMavenLocal`. To publish under a specific version, run `./gradlew publish -PKtelegramDeployVersion=1.0.0`.
 
 </details>
 
 ## Artifact verification
 
-Published artifacts are GPG-signed (key `D0B3B155`):
+Published artifacts are signed with GPG key `D0B3B155`. Import it with:
 
 ```bash
 gpg --keyserver keyserver.ubuntu.com --recv-keys D0B3B155
@@ -315,21 +322,15 @@ EOF
 
 ## Contributing
 
-1. Fork the repository and create a branch from `master`
-2. JDK 21 required
-3. Run `./gradlew build` before submitting
-4. Follow existing conventions:
-   - `@Serializable` data classes with `@SerialName` for Telegram types in `model/`
-   - Request DTOs grouped by category in `request/`
-   - Bot methods are `suspend fun` using `client.post()`
-   - `Long` for IDs, `kotlin.time.Instant` for timestamps
-   - Explicit `public` on all public declarations
-5. Add tests with `MockEngine` and `runTest` in `src/commonTest/kotlin/`
-6. Open a PR against `master`. CI runs automatically.
+Fork the repository, branch from `master`, and open a pull request against `master`. You need JDK 21, and the Android target needs an SDK (`ANDROID_HOME` or `sdk.dir` in `local.properties`). Run `./gradlew build` before you submit; CI runs the same command.
+
+The conventions for models, request DTOs, Bot methods and tests are in [`AGENTS.md`](AGENTS.md). That file is written for AI coding agents (Claude Code, Gemini in Android Studio, Codex, Junie and others read it automatically), and it is the single source of truth for humans too. Step-by-step procedures for adding Telegram types and methods live in `.claude/skills/ktelegram/SKILL.md`.
+
+If you change the public API, run `./gradlew apiDump` and commit the updated `api/` files. If you add Bot methods, add them to the coverage table above.
 
 ### Releasing
 
-Push a `v*` tag (e.g., `v1.2.0`) to publish to GitHub Packages, create a GitHub Release, and deploy docs to GitHub Pages.
+Push a `v*` tag such as `v1.2.0`. The publish workflow uploads to GitHub Packages, creates a GitHub Release, and deploys the docs to GitHub Pages.
 
 ## License
 

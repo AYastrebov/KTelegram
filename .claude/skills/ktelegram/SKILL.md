@@ -2,8 +2,7 @@
 name: ktelegram
 description: >
   Expert skill for developing the KTelegram library — a Kotlin Multiplatform Telegram Bot API client.
-  Use this skill whenever working on /Users/Andrey.Yastrebov/IdeaProjects/KTelegram or when the user
-  mentions KTelegram, Telegram Bot API types, Telegram bot methods, or wants to add/update Telegram
+  Use this skill whenever working in the KTelegram repository or when the user mentions KTelegram, Telegram Bot API types, Telegram bot methods, or wants to add/update Telegram
   API coverage. Also trigger when the user says "add sendX method", "new Telegram type", "update
   Bot API", "telegram model", or references the Telegram Bot API changelog. Covers: adding new API
   types and methods, fixing bugs, writing tests, maintaining serialization consistency, updating
@@ -12,7 +11,7 @@ description: >
 
 # KTelegram Development Guide
 
-You are working on KTelegram, a Kotlin Multiplatform library wrapping the Telegram Bot API. The project lives at `/Users/Andrey.Yastrebov/IdeaProjects/KTelegram`.
+You are working on KTelegram, a Kotlin Multiplatform library wrapping the Telegram Bot API. General conventions, build commands and locations are in the repository root `AGENTS.md`; this skill holds the step-by-step procedures.
 
 ## Project Architecture
 
@@ -81,12 +80,11 @@ public class ChatOwnerLeft
 
 ### 4. Sealed hierarchies
 
-When the API has a "one of" type (like `InputMedia`), use a sealed class with `@SerialName` discriminator on subclasses:
+When the API has a "one of" type (like `InputMedia` or `MessageOrigin`), use a sealed class with `@SerialName` on each subclass. The serializer emits the discriminator (`"type": "photo"`) itself. **Never declare a `type` property**: a property with the discriminator's name makes encoding throw `JsonEncodingException` at runtime.
 
 ```kotlin
 @Serializable
 public sealed class InputMedia {
-    public abstract val type: String
     public abstract val media: String
 }
 
@@ -95,14 +93,18 @@ public sealed class InputMedia {
 public data class InputMediaPhoto(
     override val media: String,
     // ... fields specific to photos
-) : InputMedia() {
-    override val type: String = "photo"
-}
+) : InputMedia()
 ```
+
+When Telegram's discriminator field is not `type` (e.g. `ChatBoostSource.source`), annotate the sealed class with `@JsonClassDiscriminator("source")` (opt in to `ExperimentalSerializationApi`).
+
+When Telegram has no discriminator at all and distinguishes variants by their fields (`KeyboardMarkup`, `InputMessageContent`), the sealed class uses a hand-written `KSerializer` that encodes the concrete subclass directly and picks the subclass on decode by a distinguishing key. Extend that `when`, do not add a discriminator.
+
+Remember `encodeDefaults = false`: a constant field Telegram requires (such as `remove_keyboard: true`) needs `@EncodeDefault`.
 
 ### 5. Custom serializers
 
-Only needed for special cases (like `EditMessageResult` which can be either a `Message` or `true`). Use `JsonDecoder`/`JsonEncoder` pattern. See `EditMessageResult.kt` for the canonical example.
+Only needed for special cases: `EditMessageResult` (either a `Message` or `true`) and the discriminator-less sealed types above. Use the `JsonDecoder`/`JsonEncoder` pattern; `EditMessageResult.kt` and `InlineKeyboardMarkup.kt` (`KeyboardMarkupSerializer`) are the canonical examples.
 
 For Unix timestamps, use the existing `InstantUnixSerializer`:
 ```kotlin
@@ -118,13 +120,14 @@ Every method needs three things: Bot interface declaration, BotImp implementatio
 
 Place it in the appropriate `request/` file by category:
 - `MessageRequests.kt` — send*, forward*, copy*, delete*, getFile, sendChatAction
-- `ChatRequests.kt` — chat management, member management, invite links
-- `EditRequests.kt` — editMessage*, deleteMessage
+- `ChatRequests.kt` — chat management, members, invite links, forum topics, boosts, business connection
+- `EditRequests.kt` — editMessage*, live locations, reactions, stopPoll, deleteMessage
 - `PollRequests.kt` — sendPoll
 - `ManagedBotRequests.kt` — managed bot operations
-- `CommandRequests.kt` — setMyCommands
+- `CommandRequests.kt` — commands, bot name/description, admin rights, menu button
 - `UpdateRequests.kt` — getUpdates, webhooks
 - `InlineRequests.kt` — answerInlineQuery, answerCallbackQuery
+- `PaymentRequests.kt` — answerPreCheckoutQuery, answerShippingQuery
 
 The request DTO pattern:
 
@@ -150,6 +153,8 @@ Key rules for request DTOs:
 - `userId` is always `Long`
 - `messageId` is always `Long`
 - Include `replyParameters: ReplyParameters? = null` and `replyMarkup: KeyboardMarkup? = null` as the last two fields on send methods
+- Send methods also take `businessConnectionId`, `messageEffectId`, `allowPaidBroadcast` and `ephemeralMessageParameters`; copy the field block from `SendMessageRequest`
+- Do not add the legacy `replyToMessageId` / `allowSendingWithoutReply` fields to new requests; they exist on old ones only as `@Deprecated`
 - Import model types explicitly (not wildcard) in request files
 
 ### 2. Add to Bot interface
@@ -239,10 +244,11 @@ Use `runTestBot` helper (defined in each test class) with `createTestBot` from `
 After any change, run these in order:
 
 1. `./gradlew jvmTest` — Compile and run tests
-2. `./gradlew apiDump` — Update binary compatibility API dump (commit the `api/` changes)
+2. `./gradlew apiDump` — Update the JVM binary compatibility dump, then copy `api/jvm/telegram-api-client.api` over `api/android/telegram-api-client.api` (there is no Android dump task) and commit both
 3. `./gradlew dokkaGenerate` — Verify docs generate without warnings (`failOnWarning` is enabled)
+4. `./gradlew build` — Full multiplatform build before a PR (needs `ANDROID_HOME` or `sdk.dir` in `local.properties`)
 
-If adding Android-specific changes, ensure `local.properties` has `sdk.dir` pointing to the Android SDK.
+When adding Bot methods, also add them to the "API coverage" table in `README.MD`.
 
 ## Field Type Mapping (Telegram API → Kotlin)
 
@@ -267,7 +273,7 @@ If adding Android-specific changes, ensure `local.properties` has `sdk.dir` poin
 
 ## Releasing
 
-1. Update `README.md` version number in the dependency snippet
+1. Update the version number in the `README.MD` dependency snippet and in `.claude/skills/ktelegram-usage/SKILL.md`
 2. Commit and push to master
 3. `git tag v<version> && git push origin v<version>`
 4. The publish workflow handles: tests → GitHub Packages → GitHub Release → Dokka → GitHub Pages
@@ -283,4 +289,4 @@ To check what's new in the Telegram Bot API:
    ```bash
    curl -s https://core.telegram.org/bots/api | sed -n '/<a class="anchor" name="typename"/,/<h4/p' | sed 's/<[^>]*>//g' | sed '/^$/d'
    ```
-3. Compare against existing model classes to identify gaps
+3. Compare against existing model classes to identify gaps. For a full audit, parse every `<h4>` type/method table on the page with a script and diff field names against the `@SerialName`s in `model/` and `request/`; hand-comparing 180+ methods is error-prone.

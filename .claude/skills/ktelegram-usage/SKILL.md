@@ -45,16 +45,22 @@ The token needs the `read:packages` scope. Generate one at GitHub Settings > Dev
 
 ```kotlin
 dependencies {
-    implementation("com.github.ayastrebov.telegram:telegram-api-client:0.5.0")
+    implementation("com.github.ayastrebov.telegram:telegram-api-client:0.6.0")
+    implementation("io.ktor:ktor-client-cio:3.6.0") // any Ktor engine; KTelegram does not bundle one
 }
 ```
+
+KTelegram does not ship an HTTP engine. Without one on the classpath `TelegramBot(...)` throws
+`Failed to find HTTP client engine implementation`. Use `ktor-client-cio` on JVM/Android/Native,
+`ktor-client-darwin` on iOS/macOS, `ktor-client-js` on JS/WasmJS, or pass an engine explicitly:
+`TelegramBot(token, engine = CIO.create())`.
 
 For Kotlin Multiplatform projects, add it to `commonMain`:
 ```kotlin
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation("com.github.ayastrebov.telegram:telegram-api-client:0.5.0")
+            implementation("com.github.ayastrebov.telegram:telegram-api-client:0.6.0")
         }
     }
 }
@@ -464,7 +470,7 @@ suspend fun main() {
 ## Best Practices
 
 - **Always close the bot** — Call `bot.close()` in a `finally` block or use `use {}` if you wrap it
-- **Set a timeout on getUpdates** — Use `timeout = 30` for long polling instead of rapid requests
+- **Set a timeout on getUpdates** — Use `timeout = 30` for long polling instead of rapid requests; KTelegram raises the HTTP request timeout to `timeout + 10 s` for that call automatically
 - **Handle errors gracefully** — Wrap update processing in try/catch; don't let one bad update crash the loop
 - **Use `ignoreUnknownKeys = true`** — Already configured in KTelegram's JSON, so new API fields won't break your bot
 - **Extract chat ID early** — `update.message?.chat?.id?.toString()` is used everywhere; extract it to a val
